@@ -1,0 +1,14 @@
+#cambiar página de inicio por defecto
+#DirectoryIndex nada.html
+
+
+
+#order deny,allow
+#deny from all
+#allow from localhost
+
+#ErrorDocument 403 /nada.html
+
+#<Files page.html>
+# allow from all
+#</Files>
