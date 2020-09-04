@@ -16,21 +16,23 @@ include ("../includes/header.php");
 
 <?php
 if (isset($_POST['cargaservi'])) {
-    $minombre = $_POST['nombre'];
-    $miopref = $_POST['opref'];
-    $miidcliente1 = $_POST['idcliente1']; 
-    $miopservicio = $_POST['opservicio'];
-    $miidcliente2 = $_POST['idcliente2'];
-    $mitrabajo = $_POST['trabajo'];
-    $milugar = $_POST['lugar'];
+    $minombre = $_POST['nombre'];//
+    $miopref = $_POST['opref'];//
+    $miidcliente1 = $_POST['idcliente1']; //
+    $miopservicio = $_POST['opservicio'];//
+    $miidcliente2 = $_POST['idcliente2'];//
+    $mitrabajo = $_POST['trabajo'];//
+    $milugar = $_POST['lugar'];//
     $mifechaini = $_POST['fechaini'];
-    $mifechafin = $_POST['fechafin'];
-    $miestado = $_POST['estado'];
-    $miobs = $_POST['obs'];
+    $mifechafin = $_POST['fechafin'];//
+    //$miestado = $_POST['estado'];
+    $miestado = "NADA";
+    $miobs = $_POST['obs'];//
 
-    $query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,Cliente2,Trabajo,Lugar,FechaIni,FechaFin,estado,OBS)
-    VALUES ('$minombre',$miopref,'$miidcliente1',$miopservicio,'$miidcliente2','$mitrabajo','$milugar',
-            STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'),'$miestado','$miobs')";
+    //$query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,idCliente2,Trabajo,Lugar,FechaIni,FechaFin,estado,OBS)
+    //VALUES ('$minombre',$miopref,$miidcliente1,$miopservicio,$miidcliente2,'$mitrabajo','$milugar', STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'),'$miestado','$miobs')";
+    $query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,idCliente2,Trabajo,Lugar,FechaIni,FechaFin)
+    VALUES ('$minombre',$miopref,$miidcliente1,$miopservicio,$miidcliente2,'$mitrabajo','$milugar',STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'))";
     $result=mysqli_query($conn,$query);
     //$registro = mysqli_num_rows($result); 
     
@@ -41,8 +43,8 @@ if (isset($_POST['cargaservi'])) {
     }
 
     if(!$result) {
-        echo $_POST['contacto'] . "<br>";
-        echo $_POST['vendedor'];
+        //echo $_POST['contacto'] . "<br>";
+        //echo $_POST['vendedor'];
         die("Algo fallo y no se pudo CARGAR el registro.");
     }
 }
