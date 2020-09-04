@@ -1,16 +1,17 @@
 <?php // error_reporting(1);  //SACAR ESTA LINEA CUANDO ANDE TODO 
-//<td><a href="index.php" class="btn btn-secondary">
-//buscar <i class="fa fa-cog fa-spin"></i>
-//</td>
-
 ?>
-<?php include ("../db.php"); ?>
-<?php include ("../includes/header.php"); ?>
+<?php
+$rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
+$rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
+include ($rutadb);
+include ($rutaheader); 
+$esta = $_SERVER['PHP_SELF'];
+?>
 
 <div class="col-md-12 container p-2">
 	<div class="row">
 		<div class="col-md-11">
-			<form action="tablero.php" method="POST">
+			<form action="<?php echo $esta; ?>" method="POST">
 							
 				<table class="table table-bordered">
 					<thead class="thead-cel" style="text-align:center">
@@ -20,17 +21,18 @@
 							<th>Lugar</th>
 							<th>Operario</th>
 							<th>Vehículo</th>
-							<th>Acciones</th>
+							<th colspan=4>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
 							<tr>
 								<td ><input text="op1" name="op1" value="" style="width: 100%" placeholder="Número de OP"></td>
 								<td><input text="cliente" name="cliente" style="width: 100%" placeholder="Nombre del cliente"></td>
-								<td><input text="lugar" name="lugar" style="width: 100%" placeholder="Lugar Donde ser realizó el servicio"></td>
+								<td><input text="lugar" name="lugar" style="width: 100%" placeholder="Lugar Donde se realizó el servicio"></td>
 								<td><input text="operario" name="operario" style="width: 100%" placeholder="Nombre de nuestro personal"></td>
 								<td><input text="vehiculo" name="vehiculo" style="width: 100%" placeholder="Transporte utilizado"></td>
 								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary"><td>
+								<td><input type="submit" name="Nuevo" value="Nuevo servicio" class="btn btn-primary"><td><!--falta el codigo -->
 								
 							</tr>		
 					</tbody>
@@ -45,7 +47,7 @@
 
 		<div class="col-md-12">
 
-				<table class="table table-condensed table-bordered table-hover">
+				<table class="table table-sm table-bordered table-hover">
 					<thead class="thead-dario" style="text-align:center">
 						<tr>
 							<th>OP</th>
@@ -106,7 +108,7 @@
 									<td><?php echo $row['FechaFin'] ?></td>
 									<td>
 										<a href="../edit.php?id=<?php echo $row['id'] ?>" class= 
-										"btn btn-secondary">
+										"btn btn-warning btn-sm">
 											Detalle </i>
 										</a>
 									</td>
@@ -120,6 +122,9 @@
 
 </div>
 
-<?php include ("../includes/footer.php"); ?>
+<?php 
+$rutafooter = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/footer.php';
+include ($rutafooter); 
+?>
 
 

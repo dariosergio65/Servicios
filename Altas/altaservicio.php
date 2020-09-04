@@ -64,15 +64,33 @@ if (isset($_POST['cargaservi'])) {
                         </thead>
                          <tbody>
                             <tr>
-                                <td style="text-align:left" colspan=2>Op de Ref.: 
-                                <input text="opref" name="opref" value="" style="width: 50%" placeholder="OP de referencia">
+                                <td style="text-align:left" colspan=2 >Op de Ref.: 
+                                <select name="opref" style="width: 50%">
+                                    <option value="0">Seleccione:</option>
+                                    <?php
+                                    $queryop1="SELECT * FROM op";
+                                    $rop1=mysqli_query($conn,$queryop1);
+                                    while ($valores = mysqli_fetch_array($rop1)) {
+                                        echo '<option value="' . $valores['OP'] . '">' . $valores['OP'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
                                 </td>
-                                <td style="text-align:left" colspan=2>Op de Servicio: 
-                                <input text="opservicio" name="opservicio" value="" style="width: 50%" placeholder="OP de servicio">
+                                <td style="text-align:left" colspan=2 >Op de Servicio: 
+                                <select name="opservicio" style="width: 50%">
+                                    <option value="0">Seleccione:</option>
+                                    <?php
+                                    $queryop2="SELECT * FROM op";
+                                    $rop2=mysqli_query($conn,$queryop2);
+                                    while ($valores2 = mysqli_fetch_array($rop2)) {
+                                        echo '<option value="' . $valores2['OP'] . '">' . $valores2['OP'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
                                 </td>
                             </tr>
+
                             <tr>
-                                
                                 <td style="text-align:left" colspan=2 >Cliente Ref.: 
                                 <select name="idcliente1" style="width: 50%">
                                     <option value="0">Seleccione:</option>
