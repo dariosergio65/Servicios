@@ -25,14 +25,14 @@ if (isset($_POST['cargaservi'])) {
     $milugar = $_POST['lugar'];//
     $mifechaini = $_POST['fechaini'];
     $mifechafin = $_POST['fechafin'];//
-    //$miestado = $_POST['estado'];
-    $miestado = "NADA";
+    $miestado = $_POST['estado'];
+    //$miestado = "NADA";
     $miobs = $_POST['obs'];//
 
     //$query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,idCliente2,Trabajo,Lugar,FechaIni,FechaFin,estado,OBS)
     //VALUES ('$minombre',$miopref,$miidcliente1,$miopservicio,$miidcliente2,'$mitrabajo','$milugar', STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'),'$miestado','$miobs')";
-    $query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,idCliente2,Trabajo,Lugar,FechaIni,FechaFin)
-    VALUES ('$minombre',$miopref,$miidcliente1,$miopservicio,$miidcliente2,'$mitrabajo','$milugar',STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'))";
+    $query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,idCliente2,Trabajo,Lugar,FechaIni,FechaFin,Estado,OBS)
+    VALUES ('$minombre',$miopref,$miidcliente1,$miopservicio,$miidcliente2,'$mitrabajo','$milugar',STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'),$miestado,'$miobs')";
     $result=mysqli_query($conn,$query);
     //$registro = mysqli_num_rows($result); 
     
@@ -111,11 +111,24 @@ if (isset($_POST['cargaservi'])) {
                                 <th colspan=2>Fecha de fin del  Servicio: <input type="date" name="fechafin" value="" style="width: 50%" ></th>
                             </tr>
                            <tr>
-                                <td style="text-align:left" colspan=4>
+                                <td style="text-align:left" colspan=3>
                                     <div class="form-group">Observaciones
                                         <textarea name="obs" rows="2" value="" style="width: 100%" class="form-control">
                                         </textarea>
                                     </div>
+                                </td>
+                                </td>
+                                <td style="text-align:left" colspan=1>ESTADO DEL SERVICIO: 
+                                <select name="estado" style="width: 60%">
+                                    <option value="0">Seleccione:</option>
+                                    <?php
+                                    $queryestado="SELECT * FROM estados";
+                                    $restado=mysqli_query($conn,$queryestado);
+                                    while ($valores = mysqli_fetch_array($restado)) {
+                                        echo '<option value="' . $valores['id'] . '">' . $valores['Estado'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
                                 </td>
                             </tr>
                             <tr> 
