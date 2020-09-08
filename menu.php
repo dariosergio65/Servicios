@@ -8,6 +8,12 @@ if (isset($_POST['tablero'])){
     header ("location: Altas/altaop.php");
 }elseif (isset($_POST['cargaservi'])){
     header ("location: Altas/altaservicio.php");
+}elseif (isset($_POST['cargatrans'])){
+    header ("location: abmb/transporte.php");
+}elseif (isset($_POST['abmven'])){
+    header ("location: abmb/vendedores.php");
+}elseif (isset($_POST['abmest'])){
+    header ("location: abmb/estados.php");
 }
 ?>
 <div class="container p-4">
@@ -31,8 +37,21 @@ if (isset($_POST['tablero'])){
                             CARGAR SERVICIO
                         </button>
                     </div>
-
-                    
+                    <div class="form-group">
+                    <button class="btn btn-success" name="cargatrans">
+                            ABM TRANSPORTE
+                        </button>
+                    </div>
+                    <div class="form-group">
+                    <button class="btn btn-success" name="abmven">
+                            ABM VENDEDORES
+                        </button>
+                    </div>
+                    <div class="form-group">
+                    <button class="btn btn-success" name="abmest">
+                            ABM ESTADOS
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

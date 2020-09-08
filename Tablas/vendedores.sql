@@ -1,4 +1,5 @@
 -- phpMyAdmin SQL Dump
+<<<<<<< HEAD
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
@@ -8,6 +9,18 @@
 -- Versión de PHP: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+=======
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 07-09-2020 a las 04:28:39
+-- Versión del servidor: 5.7.23
+-- Versión de PHP: 7.2.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+>>>>>>> micasa
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -27,10 +40,19 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `vendedores`
 --
 
+<<<<<<< HEAD
 CREATE TABLE `vendedores` (
   `id` int(5) NOT NULL DEFAULT 0,
   `Vendedor` varchar(17) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+=======
+DROP TABLE IF EXISTS `vendedores`;
+CREATE TABLE IF NOT EXISTS `vendedores` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `Vendedor` varchar(17) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+>>>>>>> micasa
 
 --
 -- Volcado de datos para la tabla `vendedores`
