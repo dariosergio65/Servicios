@@ -18,42 +18,68 @@ if (isset($_POST['tablero'])){
 ?>
 <div class="container p-4">
     <div class="row">
-        <div class="col-md-5 mx-auto">
-            <div class="card card-body">
-                <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
-                    
-                    <div class="form-group">
-                        <button class="btn btn-success" name="tablero">
-                            TABLERO
-                        </button>
-                    </div>
-                    <div class="form-group">
-                    <button class="btn btn-success" name="cargaop">
-                            CARGAR OP
-                        </button>
-                    </div>
-                    <div class="form-group">
-                    <button class="btn btn-success" name="cargaservi">
-                            CARGAR SERVICIO
-                        </button>
-                    </div>
-                    <div class="form-group">
-                    <button class="btn btn-success" name="cargatrans">
-                            ABM TRANSPORTE
-                        </button>
-                    </div>
-                    <div class="form-group">
-                    <button class="btn btn-success" name="abmven">
-                            ABM VENDEDORES
-                        </button>
-                    </div>
-                    <div class="form-group">
-                    <button class="btn btn-success" name="abmest">
-                            ABM ESTADOS
-                        </button>
-                    </div>
-                </form>
-            </div>
+        <div class="col-md-10 mx-auto">
+            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
+                <table class="table table-bordered">
+                    <thead class="thead-cel" style="text-align:center"> 
+                        <tr>
+                            <th>AMB</th>
+                            <th>PRINCIPALES</th>
+                            <th>CONSULTAS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <button class="btn btn-success" name="cargatrans">
+                                    ABM TRANSPORTE
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <button class="btn btn-success" name="tablero">
+                                    TABLERO
+                                    </button>
+                                </div>
+                            <td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <button class="btn btn-success" name="abmven">
+                                    ABM VENDEDORES
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <button class="btn btn-success" name="cargaop">
+                                    CARGAR OP
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                <button class="btn btn-success" name="abmest">
+                                    ABM ESTADOS
+                                </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <button class="btn btn-success" name="cargaservi">
+                                    CARGAR SERVICIO
+                                    </button>
+                                </div>
+                            <td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>
