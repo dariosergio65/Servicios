@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-09-2020 a las 17:42:53
+-- Tiempo de generación: 14-09-2020 a las 18:42:36
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -20,6 +20,447 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `task`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `agentes`
+--
+
+CREATE TABLE `agentes` (
+  `dni` int(15) NOT NULL,
+  `Agente` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `Celular` varchar(25) NOT NULL,
+  `Direccion` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `agentes`
+--
+
+INSERT INTO `agentes` (`dni`, `Agente`, `Celular`, `Direccion`) VALUES
+(13158500, 'Eduardo Morgan', '', ''),
+(22608997, 'Marcos Gabriel Ojeda', '', ''),
+(24549398, 'Daniel Gallo', '', ''),
+(24822325, 'Raul Antonio Zaliega', '', ''),
+(25824337, 'Javier Rubén Alberto Lopez', '', ''),
+(26145001, 'Nestor Hugo Mattei', '', ''),
+(26274783, 'Diego Machado', '', ''),
+(26328612, 'Gustavo Fariña', '', ''),
+(26558634, 'José Luis Quiroz', '', ''),
+(27048478, 'Alejandro Ramirez', '', ''),
+(27152585, 'Edgardo Salvador Flores', '', ''),
+(28131069, 'Diego Armando Suarez', '', ''),
+(30086782, 'Hugo Hoffmann', '', ''),
+(31650688, 'Pablo Emanuel Alonso', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `agenteservicio`
+--
+
+CREATE TABLE `agenteservicio` (
+  `id` int(10) NOT NULL,
+  `id_agente` int(5) NOT NULL,
+  `id_servicio` int(5) NOT NULL,
+  `Cant_horas` decimal(10,2) NOT NULL,
+  `Valor_hora` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `id` int(5) NOT NULL,
+  `Cliente` varchar(85) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `Cliente`) VALUES
+(1, 'ABDULLA NASSER & ASSOCIATES'),
+(2, 'ADM. NAC. USINAS Y TRANS. ELEC'),
+(3, 'ADM.PROV.ENERG.LA PAMPA'),
+(4, 'Adm.Provincial de Energía de La Pampa'),
+(5, 'AGROPECUARIA SAN ANTONIO S.A.'),
+(6, 'ALDYL ARGENTINA SA'),
+(7, 'ALTRAK SRL'),
+(8, 'ALUMINI ENGENHARIA S.A. SUCURSAL ARGENTINA'),
+(9, 'Alumini Engenharia SA Montelectro S'),
+(10, 'ALUMINI ENGENHARIA SA MONTELECTRO SA'),
+(11, 'Alumini Engenharia SA Montelectro SA -'),
+(12, 'Alumini Engenharia SA Montelectro SA - FORMOSA'),
+(13, 'ALUMINI FUJIAN AR S.A - SOWIC S.A - LTP'),
+(14, 'ALUSA ENGENHARIA S.A. MONTELECTRO S.A.'),
+(15, 'ALUSA-MONTELECTRO U.T.E.'),
+(16, 'ALUVI CONSTRUCCIONES SA'),
+(17, 'AMERICAN SUPPLY'),
+(18, 'AMPER S.A - MONTELECTRO S.A - UNION TRANSITORIA'),
+(19, 'AMPER S.A.'),
+(20, 'AMPER-MONTELECTRO'),
+(21, 'AMPER-MONTELECTRO UTE'),
+(22, 'ANGEL ESTRADA Y COMPAÑIA S.A.'),
+(23, 'APR Energy S.R.L.'),
+(24, 'ARAUCARIA ENERGY'),
+(25, 'ARGENCOBRA S.A.'),
+(26, 'ARGUL Y CIA S.A.'),
+(27, 'ARSA ELECTRICIDAD'),
+(28, 'ATELEC'),
+(29, 'AUTOBAT S.A.C.I.'),
+(30, 'AUTOPISTAS DE BUENOS AIRES SA (AUBASA'),
+(31, 'AUTOPISTAS DE BUENOS AIRES SA (AUBASA)'),
+(32, 'B. P. S.A.'),
+(33, 'BAGNOLS S.A.'),
+(34, 'BAUZA INGENIERIA SRL'),
+(35, 'BELTZER ERNESTO RAUL'),
+(36, 'BGCONS SRL'),
+(37, 'BLANCO MONTAJES S.A.'),
+(38, 'BOUCHARD TRES S.R.L.'),
+(39, 'BP SA'),
+(40, 'BRANA HNOS SA'),
+(41, 'BRANA HNOS. S.A.'),
+(42, 'BRICAD REDES SA'),
+(43, 'BRUSHLESS S R L'),
+(44, 'BUFFA DE LORENZO JONATHAN DAN\nDireccion: CABEZON JOSE LEON 2349 Remito Nº: Fac. Saldo'),
+(45, 'CAMPO MARTIN CAMILO'),
+(46, 'CARTELLONE OIL&GAS S.A.U.'),
+(47, 'CAUTIO S.R.L.'),
+(48, 'CELULOSA ARAUCO'),
+(49, 'CEMAD S.R.L.'),
+(50, 'CENTRAL PUERTO S.A.'),
+(51, 'CENTRAL TERMICA ROCA SA'),
+(52, 'CENTRO ELECTRICO BARILOCHE SRL'),
+(53, 'CESA-PRIMONTI-COMINTEL UTE'),
+(54, 'CEYM SA - Compañia Eléctrica y Mecánica'),
+(55, 'CHEVRON ARGENTINA SRL'),
+(56, 'CIA. ELECT. PERGAMINO'),
+(57, 'CIE S.A.'),
+(58, 'CODENSA SA ESP'),
+(59, 'COEMYC S.A.'),
+(60, 'COMERCIAL & LOGISTICA GENERAL S.A.'),
+(61, 'COMERSION S.R.L.'),
+(62, 'COMINTEL SA'),
+(63, 'COMINTEL-CESA-PRIMONTE UTE'),
+(64, 'COMISION TECNICA MIXTA DE SALTO GRANDE'),
+(65, 'COMPAÑIA ARGENTINA DE LEVADURAS S A I C'),
+(66, 'COMPAÑIA DE MONTAJE S.A'),
+(67, 'CONSORCIO DE COPROPIETARIOS DEL PARQUE'),
+(68, 'COOP DE PROVISION DE SERVICIOS ELECTRICOS'),
+(69, 'COOP ELEC DE BOLIVAR LTDA'),
+(70, 'COOP ELECTRICA MONTE HERMOSO'),
+(71, 'COOP. DE ELECTRICIDAD Y OTROS SERVICIOS'),
+(72, 'COOP. E. RURAL DE GUANACASTE'),
+(73, 'COOP. E. RURAL DE GUANANCASTE'),
+(74, 'COOP. ELEC. CONCORDIA LTDA.'),
+(75, 'COOP. ELECTRICA MONTE HERMOSO Ltda.'),
+(76, 'Coop. F.E.L Ltda. de Laboulaye'),
+(77, 'COOP.ELEC.O y S PUBLICOS \"LA PLAYOSA\" Ltda'),
+(78, 'COOPERATIVA DE ENERGIA Y CONSUMO DE IBARLUCEA'),
+(79, 'COOPERATIVA DE OBRAS Y SERVICIOS PUBLICOS'),
+(80, 'COOPERATIVA ELECTRICA DE AZUL LTDA'),
+(81, 'COOPERATIVA ELECTRICA SERVICIOS ANEXOS'),
+(82, 'COOPERSIVE COOP.ELEC.SERV.PUBL.CONSUMO'),
+(83, 'COSECHAS ARGENTINAS S.A.'),
+(84, 'COTECA S.A.'),
+(85, 'CRETAL (Cooperativa Rural Eléctrica Tandil'),
+(86, 'CRUZ DE LORENA UTE'),
+(87, 'CRZ CONSTRUCCIONES SRL-TEL 3-UTE'),
+(88, 'CYRUS ELECTRIC S.R.L.'),
+(89, 'D.P.E.C.'),
+(90, 'DE MARIA TECNOLOGIA'),
+(91, 'DE MARIA TECNOLOGIA APLICADA SRL'),
+(92, 'DEL PLATA INGENIERIA S.A.'),
+(93, 'DEMARIA TECNOLOGIA'),
+(94, 'DESARROLLADORA MONTEVERDI S.A.'),
+(95, 'DI NOLFO JORGE'),
+(96, 'DIMOLA HNOS. SA'),
+(97, 'DISERGLASS SRL'),
+(98, 'DISTROCUYO'),
+(99, 'DISTROCUYO SA'),
+(100, 'DISTROCUYO SA - OBRAS ANDINAS SA - UTE'),
+(101, 'DISTROCUYO SA.'),
+(102, 'DOSEN S.A.'),
+(103, 'DUO SUDAMERICANA S.R.L.'),
+(104, 'E.A.C.E. Y E. BURBUJAS S.A.'),
+(105, 'EDEA S.A.'),
+(106, 'EDELAP'),
+(107, 'EDELAP S.A.'),
+(108, 'EDELAP SA'),
+(109, 'EDELAR'),
+(110, 'EDELAR S.A.'),
+(111, 'EDEMSA'),
+(112, 'EDEN S.A.'),
+(113, 'EDENOR'),
+(114, 'EDENOR S.A.'),
+(115, 'EDENOR SA'),
+(116, 'EDERSA'),
+(117, 'EDES SA BAHIA BLANCA'),
+(118, 'EDESA'),
+(119, 'EDESA S.A.'),
+(120, 'EDESA S.A.3'),
+(121, 'EDESA SA'),
+(122, 'EDESAL S.A. EMPRESA DISTRIBUIDORA SAN LUIS'),
+(123, 'EDESUR'),
+(124, 'EDESUR S.A.'),
+(125, 'EDET'),
+(126, 'EDET S.A.'),
+(127, 'EJESA'),
+(128, 'ELECOND CAPACITORES S.A.'),
+(129, 'ELECTRA COMERCIAL S.R.L'),
+(130, 'ELECTRIFICADORA DEL VALLE S.A.'),
+(131, 'ELECTROMECAN. BOTTINO HNOS S.A'),
+(132, 'Elektra Noreste S.A.'),
+(133, 'ELEPRINT S.A-ESUCO S.A-SUPERCEMENTO S.A.'),
+(134, 'Eleprint SA Martinez y Fuente'),
+(135, 'ELFEC (Empresa de Luz y Fuerza Eléctrica'),
+(136, 'EMA ELECTROMECANICA S.A.'),
+(137, 'EMPRESA ENERGIA DE CUNDINAMARCA'),
+(138, 'EMPRESA FEDERAL DE ENERGIA S.A.'),
+(139, 'ENEL CHILE S.A'),
+(140, 'ENERGIA ARGENTINA S.A.'),
+(141, 'ENERGIA DE ENTRE RIOS SA'),
+(142, 'ENERGIA S.R.L.'),
+(143, 'ENERGY GROUP S.R.L'),
+(144, 'ENERSIS CHILE'),
+(145, 'ENERSIS SA'),
+(146, 'ENLUZ S.A.'),
+(147, 'Ente Pcial.Regulador de la Electricidad'),
+(148, 'EPE (Rosario)'),
+(149, 'EPE SANTA FE'),
+(150, 'EPE SANTA FE (AGENCIA RAFAELA)'),
+(151, 'EPEC'),
+(152, 'EPEN'),
+(153, 'EQUIPEL S.R.L'),
+(154, 'ERCOLI JUAN CARLOS'),
+(155, 'ESE&CC S.A.'),
+(156, 'Estudios Y Servicios Para La Ingenieria'),
+(157, 'EXA TECNOLOGIA SRL EN FORMACION'),
+(158, 'FACOEL ARGENTINA S.R.L'),
+(159, 'FARADAY S.A.'),
+(160, 'FARADAY SA'),
+(161, 'FERRELEC SRL'),
+(162, 'Fidei. Obras de Transp para Abast Elect'),
+(163, 'Fidei. Obras de Transp para Abast Electrico'),
+(164, 'FIDEICOMISO - EPEN'),
+(165, 'FIDEICOMISO DOCTA URBANIZACION'),
+(166, 'FIDEICOMISO DOCTA URBANIZACION INTELIGENTE'),
+(167, 'FIDEICOMISO EDENOR'),
+(168, 'Fideicomiso TRANSENER'),
+(169, 'FONTANA NICASTRO SAC - ALTO SUR SA UTE'),
+(170, 'GARNJA TRES ARROYOS SA'),
+(171, 'GAS Y PETROLEO DEL NEUQUEN SA -MEDANITO'),
+(172, 'GENERACION CENTRO S.A.'),
+(173, 'GENERADORA TRANSANDINA S.A.'),
+(174, 'GENNEIA S.A'),
+(175, 'GES ARGENTINA S.A.'),
+(176, 'GIECO S.A. - SAPYC S.R.L. - CONSORCIO DE'),
+(177, 'GLOBAL ENERGY SOLUTIONS'),
+(178, 'GOBIERNO DE LA PROVINCIA DE RIO NEGRO'),
+(179, 'GOMEZ HUGO CESAR'),
+(180, 'GRI CALVIÑO TOWERS ARGENTINA S.A.'),
+(181, 'GRUPO COBSOL'),
+(182, 'GRUPO GGP'),
+(183, 'HECMAR SRL'),
+(184, 'HIDRELCO SRL'),
+(185, 'HIDROELECTRICA LOS NIHUILES S.A.'),
+(186, 'ICSA INGENIERIA Y COMPUTACION'),
+(187, 'ICSA Ingenieria y Computación'),
+(188, 'ILUBAIRES S A'),
+(189, 'IME S.R.L'),
+(190, 'INCRO S.A.'),
+(191, 'INDUSTRIAS CHIRINO SA'),
+(192, 'INDUSTRIAS DELIA'),
+(193, 'INDUSTRIAS JUAN F. SECCO SA'),
+(194, 'ING RONZA'),
+(195, 'ING. CARLOS MONTI (SAPYC)'),
+(196, 'ING. PABLO MARTOS'),
+(197, 'ING. RONZA SA'),
+(198, 'INGALFA S.A.'),
+(199, 'INGENER ARG S.A.'),
+(200, 'INGENER SA'),
+(201, 'INGER SA'),
+(202, 'INGESA S.A'),
+(203, 'ISEM S.A.'),
+(204, 'ISOTRON S.A. - Suc. Argentina'),
+(205, 'IVECOR SA OPELMEC SRL - S.J. UTE'),
+(206, 'JCR SA'),
+(207, 'JOSE CARTELLONE CONTRUCCIONES CIVILES S'),
+(208, 'JUAN CARLOS ROJAS Y NESTOR EZE'),
+(209, 'JULIO GARCIA E HIJOS'),
+(210, 'JUMAELECTRIC S.A.'),
+(211, 'KIOSHI S.A.'),
+(212, 'LA PAPELERA DEL PLATA'),
+(213, 'LA PAPELERA DEL PLATA S.A.'),
+(214, 'LAMBERT INGENIERIA SA'),
+(215, 'LESKO - CODELER UTE'),
+(216, 'LESKO - PROA -- UTE'),
+(217, 'LESKO S.A.C.I.F.I.A.-PROYECTOS Y OBRAS'),
+(218, 'LEVELTEC S.R.L'),
+(219, 'LEYMER S.A.'),
+(220, 'LINEAS DE TRANSMISION DEL LITORAL S.A.'),
+(221, 'LOBOS SANTIAGO OSCAR'),
+(222, 'LOMA NEGRA C.I.A.S.A'),
+(223, 'LS Industrial Systems'),
+(224, 'LUBRISIDER S.A.'),
+(225, 'LUDOPLAST S.R.L.'),
+(226, 'LUMINITEC S.R.L'),
+(227, 'M. ROYO S.A.'),
+(228, 'MAQUINARIAS SAN FRANCISCO SRL'),
+(229, 'MARTINEZ Y DE LA FUENTE- LEYMER - BRANDSEN - UTE'),
+(230, 'MARTINEZ Y DE LA FUENTE S.A'),
+(231, 'MARTOS FERNANDO PABLO'),
+(232, 'MEDANITO S.A. UTE'),
+(233, 'METALURGICA D-A S.A.'),
+(234, 'MONTELECNOR S.A.'),
+(235, 'MONTELECTRO'),
+(236, 'MONTELECTRO - PIETROBONI - TECSA - UTE'),
+(237, 'MONTELECTRO AMPER-UTE'),
+(238, 'MONTELECTRO S.A.'),
+(239, 'MONTELECTRO S.A. - AMPER S.A. - UTE'),
+(240, 'MONTELECTRO SA'),
+(241, 'MONTELECTRO-PIETROBONI-TECSA-UTE'),
+(242, 'MOPNTELECTRO SA'),
+(243, 'MSU ENERGY S.A.'),
+(244, 'MYEEL S.A.'),
+(245, 'NAPAL Y MUÑOZ S.A.'),
+(246, 'NCC NATIONAL CONTRACTING CO. LTD'),
+(247, 'NEBAR CONSTRUCCIONES S.R.L.'),
+(248, 'NOLLMANN SOCIEDAD ANONIMA'),
+(249, 'NOVA S.A.'),
+(250, 'NUCLEOELECTRICA ARGENTINA S.A.'),
+(251, 'NUEVO CERRO DRAGON'),
+(252, 'NUEVO CERRO DRAGON SA'),
+(253, 'Operadora Ferroviaria Sociedad del Estado'),
+(254, 'ORO PLATA'),
+(255, 'P&P ELECTRICIDAD SRL'),
+(256, 'PAMPA ENERGIA S.A.'),
+(257, 'PAN AMERICAN ENERGY'),
+(258, 'PAN AMERICAN ENERGY LLC. ARG.'),
+(259, 'PAN AMERICAN ENERGY, S.L., SUCURSAL ARGENTINA'),
+(260, 'PAPELERA S.A. de GILES SA'),
+(261, 'PATAGONIA ENERGIA SA'),
+(262, 'PECOM SERVICIOS ENERGIA S.A.'),
+(263, 'PEM PRODUCTOS ELECTRICOS S.A.'),
+(264, 'PEPSICO DE ARGENTINA S.A.'),
+(265, 'PETROBRAS ARGENTINA SOCIEDAD ANONIMA'),
+(266, 'PETROQ. COMODORO RIVADAVIA'),
+(267, 'PETROQ. COMODORO RIVADAVIA'),
+(268, 'PFISTERER S.A.'),
+(269, 'PIÑEIRO ELECTROTECNIA SH'),
+(270, 'POWERCHINA L.T.D. Sucursal Argentina'),
+(271, 'POWERCHINA LTD. SUCURSAL DE EMPRESA EXTRANJERA'),
+(272, 'PROA S.A.'),
+(273, 'PROA SA'),
+(274, 'PRODIEL ARGENTINA SA'),
+(275, 'PROLEC - Proyectos y Electricidad SA'),
+(276, 'PROYECCION ELECTROLUZ S.R.L'),
+(277, 'PROYECCION ELECTROLUZ SA'),
+(278, 'PROYECCION ELECTROLUZ SRL'),
+(279, 'PROYECION ELECTROLUZ SRL'),
+(280, 'REVSELECT ARGENTINA S.A.'),
+(281, 'REVSELECTARG. SA'),
+(282, 'RIO CHICO S A'),
+(283, 'RIOCA ZONA FRANCA'),
+(284, 'RIZO S.A.'),
+(285, 'Roda Transformecánica Serv SRL'),
+(286, 'ROSTAGNO ELECTROMECANICA SRL'),
+(287, 'ROVELLA CARRANZA SA'),
+(288, 'S.E.CH.E.E.P.'),
+(289, 'SADESA S.A.'),
+(290, 'SAPIC SRL'),
+(291, 'SAPYC SRL'),
+(292, 'SECRETARIA DE ENERGIA'),
+(293, 'SIE SERVICIOS DE ING. ELECTRICA S.R.L'),
+(294, 'SIEMENS PERU'),
+(295, 'SIEMENS S.A.'),
+(296, 'SIPAR ACEROS S.A.'),
+(297, 'SMARENSOL S.A.'),
+(298, 'SOENERGY ARGENTINA SA'),
+(299, 'SOLAR DEL BOSQUE COUNTRY CLUB SA'),
+(300, 'SPI ENERGY S.A'),
+(301, 'STOCK'),
+(302, 'STOCK (BIEL)'),
+(303, 'STOCK (LAGO)'),
+(304, 'STOCK LAGO'),
+(305, 'SUPERCEMENTO SAIC'),
+(306, 'T6 INDUSTRIAL SA'),
+(307, 'TABLELEC S.R.L.'),
+(308, 'TABLELEC SRL'),
+(309, 'TADEO CZERWENY SA'),
+(310, 'TAREA SRL'),
+(311, 'TECNICAS MODERNAS APLICADAS S.A'),
+(312, 'TEL 3 S.A. DISTROCUYO S.A.-UNION TRANSITORIA'),
+(313, 'TELECTRIC S.A.'),
+(314, 'TERMOELECTRICA MANUEL BELGRANO S.A.'),
+(315, 'TEYMA ABENGOA'),
+(316, 'TEYMA ABENGOA S.A.'),
+(317, 'TEYMA ABENGOA SA'),
+(318, 'TGS'),
+(319, 'TIERRA ALTA SA'),
+(320, 'TMC SUDAMERICANA SA'),
+(321, 'TRANSBA S.A.'),
+(322, 'TRANSCOMAHUE'),
+(323, 'TRANSCOMAHUE S.A.'),
+(324, 'TRANSCOMAHUE SA'),
+(325, 'TRANSENER S.A.'),
+(326, 'TRANSENER SA'),
+(327, 'Transformers Marketing Company Sudamerica'),
+(328, 'TRANSNEA'),
+(329, 'TRANSNEA S.A.'),
+(330, 'TRANSNEA SA'),
+(331, 'TRANSNOA'),
+(332, 'TRANSNOA SA'),
+(333, 'TRANSPORTADORA MAR DEL PLATA S.A.'),
+(334, 'TRANSPORTADORA RIO CORONDA S.A.'),
+(335, 'TRANSPORTEL PATAGONICA SRL'),
+(336, 'TRINIDAD & TOBAGO ELECTRICITY'),
+(337, 'TRITEC SRL'),
+(338, 'UCSA S.A'),
+(339, 'UCSA SA'),
+(340, 'UENSA S.A.'),
+(341, 'UGEN S.A.'),
+(342, 'UPEFE - UNID. PROV. DE ENLACE Y EJEC. DE'),
+(343, 'USINA POP. COOP. NECOCHEA SEBASTIAN DE'),
+(344, 'USINA TANDIL'),
+(345, 'UTE (UY)'),
+(346, 'UTE Rovella Carranza-Sistelec/ET Neuquen'),
+(347, 'VARI S.R.L.'),
+(348, 'VARI SRL'),
+(349, 'VELASCO CARLOS MATIAS'),
+(350, 'VFM S.A.'),
+(351, 'YPF'),
+(352, 'YPF ENERGIAS ELECTRICAS S.A'),
+(353, 'YPF ENERGIAS ELECTRICAS SA'),
+(354, 'YPF S.A.'),
+(355, 'YPF SA'),
+(356, 'YPF YACIMIENTO LA VENTANA');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estados`
+--
+
+CREATE TABLE `estados` (
+  `id` int(5) NOT NULL,
+  `Estado` varchar(40) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estados`
+--
+
+INSERT INTO `estados` (`id`, `Estado`) VALUES
+(1, 'Iniciada'),
+(2, 'En trámite'),
+(3, 'En Curso'),
+(4, 'Finalizada OK');
 
 -- --------------------------------------------------------
 
@@ -1279,15 +1720,188 @@ INSERT INTO `op` (`OP`, `OC`, `idCliente`, `FechaOC`, `FechaTope`, `ContactoC`, 
 (5763, '3-071-2020', 329, '2020-08-26', '2020-11-30', NULL, 15, '2 Secc.a Giro Ext C/PAT 13,2 KV 600A PL\n2 Secc. Trip. Giro Ap. Vert 17kV 600A PL', 'Cot. 24625 RI', NULL, NULL),
 (5764, '4100010577', NULL, '2020-08-27', '2020-09-25', NULL, 5, '3 Caja reductora para motor de caja de comando CE\n20 Bobina de enclavamiento R2 de 200Vcc', 'Cot. 24702 AM', NULL, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `servicios`
+--
+
+CREATE TABLE `servicios` (
+  `id` int(5) NOT NULL,
+  `Nombre` varchar(200) DEFAULT NULL,
+  `OpRef` int(5) DEFAULT NULL,
+  `idCliente1` int(5) DEFAULT NULL,
+  `OpServicio` int(5) DEFAULT NULL,
+  `idCliente2` int(5) DEFAULT NULL,
+  `Trabajo` varchar(255) DEFAULT NULL,
+  `Lugar` varchar(255) DEFAULT NULL,
+  `FechaIni` date DEFAULT NULL,
+  `FechaFin` date DEFAULT NULL,
+  `Estado` varchar(30) DEFAULT NULL,
+  `OBS` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `servicios`
+--
+
+INSERT INTO `servicios` (`id`, `Nombre`, `OpRef`, `idCliente1`, `OpServicio`, `idCliente2`, `Trabajo`, `Lugar`, `FechaIni`, `FechaFin`, `Estado`, `OBS`) VALUES
+(2, 'abc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'pru2', 5555, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'pru3', 5526, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'pru4', 5556, 16, 5557, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'pru5', 5601, 6, 5602, 17, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 'pru6', 5605, 321, 5606, 128, 'Tra 1', NULL, NULL, NULL, NULL, NULL),
+(8, 'Pru7', 5608, 170, 5609, 172, 'Puesta en servicio', 'La Rioja', NULL, NULL, NULL, NULL),
+(9, 'pru8', 5422, 89, 5423, 148, 'Cambio', 'Bahia', '2020-09-04', NULL, NULL, NULL),
+(10, 'pru9', 4408, 280, 4409, 288, 'Puesta en servicio', 'Andalgala', '2020-08-31', '2020-09-04', NULL, NULL),
+(11, 'pru11', 5122, 158, 5123, 170, 'puesta en s', 'Tandil', '2020-08-04', '2020-08-06', '4', '                         ninguna               ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `transportes`
+--
+
+CREATE TABLE `transportes` (
+  `id` int(5) NOT NULL,
+  `Transporte` varchar(85) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `transportes`
+--
+
+INSERT INTO `transportes` (`id`, `Transporte`) VALUES
+(10, 'Sprinter AD 330 DP'),
+(8, 'Partner OJG 089'),
+(16, 'Berlingo PEI 997');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vendedores`
+--
+
+CREATE TABLE `vendedores` (
+  `id` int(5) NOT NULL,
+  `Vendedor` varchar(17) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `vendedores`
+--
+
+INSERT INTO `vendedores` (`id`, `Vendedor`) VALUES
+(1, 'Luis Vela'),
+(2, 'Hugo Lopez'),
+(3, 'NN'),
+(4, 'CESAR VILLAGRA'),
+(5, 'Andres Manzo'),
+(6, 'FABIAN LLAMAZARES'),
+(7, 'JONATAN GONZALEZ'),
+(8, 'LIONEL MOCCIA'),
+(9, 'FABIAN LLAMAZAREZ'),
+(10, 'JONATAN JONZALEZ'),
+(11, 'JONATAN GONZALES'),
+(12, 'FABIAN LLMAZAREZ'),
+(13, 'ROBERT SCHUMAN'),
+(14, 'ROBERT SHUMAN'),
+(15, 'RODRIGO IGLESIAS'),
+(16, 'ROBERT'),
+(17, 'CESAR SANTORO');
+
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `agentes`
+--
+ALTER TABLE `agentes`
+  ADD PRIMARY KEY (`dni`);
+
+--
+-- Indices de la tabla `agenteservicio`
+--
+ALTER TABLE `agenteservicio`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `estados`
+--
+ALTER TABLE `estados`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `op`
 --
 ALTER TABLE `op`
   ADD PRIMARY KEY (`OP`);
+
+--
+-- Indices de la tabla `servicios`
+--
+ALTER TABLE `servicios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `transportes`
+--
+ALTER TABLE `transportes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `vendedores`
+--
+ALTER TABLE `vendedores`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `agenteservicio`
+--
+ALTER TABLE `agenteservicio`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
+
+--
+-- AUTO_INCREMENT de la tabla `estados`
+--
+ALTER TABLE `estados`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `servicios`
+--
+ALTER TABLE `servicios`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `transportes`
+--
+ALTER TABLE `transportes`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `vendedores`
+--
+ALTER TABLE `vendedores`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

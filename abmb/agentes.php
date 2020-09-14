@@ -6,7 +6,7 @@ $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
 include ($rutadb);
 include ($rutaheader); 
 $esta = $_SERVER['PHP_SELF'];
-$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borratrans.php';
+$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
 ?>
 
 <div class="col-md-12 container p-2">
@@ -17,15 +17,15 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borratrans.php';
 				<table class="table table-bordered">
 					<thead class="thead-cel" style="text-align:center">
 						<tr>
-							<th style="width: 50%">Estados</th>
+							<th style="width: 50%">Personal</th>
 							<th style="width: 40%" colspan=2>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
 							<tr>
-								<td><input text="est" name="est" style="width: 100%" placeholder="Estado a buscar"></td>
+								<td><input text="est" name="agen" style="width: 100%" placeholder="Agente a buscar"></td>
 								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary"></td>
-								<td><a href="/Servicios/Altas/altaest.php?flag=0" class="btn btn-primary"> Nuevo Estado <i class="fa fa-cog fa-spin"></i>
+								<td><a href="/Servicios/Altas/altaagen.php?flag=0" class="btn btn-primary"> Nuevo Agente <i class="fa fa-cog fa-spin"></i>
 								</a></td>
 							</tr>		
 					</tbody>
@@ -49,29 +49,32 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borratrans.php';
 
 	<div class="row">
 
-		<div class="col-md-8">
+		<div class="col-md-12">
 
-				<table class="table table-condensed table-bordered table-hover">
+				<table class="table table-sm table-bordered table-hover">
 					<thead class="thead-dario" style="text-align:center">
 						<tr>
-							<th style="width: 70%">Estado</th>
-							<th style="width: 30%">Acciones</th>
+							<th style="width: 10%">DNI</th>
+							<th style="width: 25%">Agente</th>
+							<th style="width: 15%">Celular</th>
+							<th style="width: 35%">Direccion</th>
+							<th style="width: 15%">Acciones</th>
 						<tr>
 					</thead>
 					<tbody>
 						<?php
 							if (isset($_POST['Busca'])){
-								$miest= '%' . $_POST['trans'] . '%';
-								$query = "SELECT * FROM estados WHERE Estado like '$miest'";
+								$miagen= '%' . $_POST['agen'] . '%';
+								$query = "SELECT * FROM agentes WHERE Agente like '$miagen'";
 							} 
 							else{
-								$query = "SELECT * FROM estados";
+								$query = "SELECT * FROM agentes";
 							}
 							unset($_POST['Busca']);
 							$result_tasks = mysqli_query($conn,$query);
 
 							if (!$result_tasks){
-								$query = "SELECT * FROM estados";
+								$query = "SELECT * FROM agentes";
 								$result_tasks = mysqli_query($conn,$query);
 								echo 'ALGO SALIO MAL';
 							}
@@ -79,14 +82,17 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borratrans.php';
 							while ($row=mysqli_fetch_array($result_tasks)) { 
 						?>
 								<tr>
-									<td><?php echo $row['Estado'] ?></td>
+									<td><?php echo $row['dni'] ?></td>
+									<td><?php echo $row['Agente'] ?></td>
+									<td><?php echo $row['Celular'] ?></td>
+									<td><?php echo $row['Direccion'] ?></td>
 									<td>
-										<a href="/Servicios/Modif/modifest.php?id=<?php echo $row['id'] ?>" class= 
+										<a href="/Servicios/Modif/modifagen.php?id=<?php echo $row['dni'] ?>" class= 
 										"btn btn-primary btn-sm">
 											Modificar <i class="fa fa-cog fa-spin"></i>
 										</a>
 									
-										<a href="/Servicios/Bajas/borraest.php?id=<?php echo $row['id'] ?>" class= 
+										<a href="/Servicios/Bajas/borraagen.php?id=<?php echo $row['dni'] ?>" class= 
 										"btn btn-danger btn-sm">
 											Borrar <i class="far fa-trash-alt"></i>
 										</a>
