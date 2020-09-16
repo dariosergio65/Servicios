@@ -12,7 +12,18 @@ include ("../includes/header.php");
         </button>
     </div>
 
-<?php } session_unset(); ?>
+<?php
+//session_unset();  
+} session_unset(); 
+
+    if (isset($_POST['agregaag'])){
+        //session_start();
+        if(!isset($_SESSION['cuenta'])){
+            $_SESSION['cuenta'] = 0; // la uso para agregar agentes al servicio
+        }
+    }
+
+?>
 
 <?php
 if (isset($_POST['cargaservi'])) {
@@ -153,6 +164,63 @@ if (isset($_POST['cargaservi'])) {
                                 <td colspan="4">
                                     <button class="btn btn-success" name="cargaservi">
                                         CARGAR SERVICIO
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                        
+                </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-11 ">
+                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+                        
+                    <table class="table table-bordered">
+                        <thead class="thead-cel" style="text-align:center">
+                            <tr>
+                                <th colspan=4>Agentes: </th>
+                            </tr>
+                        </thead>
+                         <tbody>
+                            <tr>
+                                <td style="text-align:left" rowspan="100" colspan="2">Ag. Asignado:<br> 
+                                <select name="agente" style="width: 50%">
+                                    <option value="0">Seleccione:</option>
+                                    <?php
+                                    $queryag="SELECT * FROM agentes";
+                                    $resultadoag=mysqli_query($conn,$queryag);
+                                    while ($valores = mysqli_fetch_array($resultadoag)) {
+                                        echo '<option value="' . $valores['Agente'] . '">' . $valores['Agente'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                                <button class="btn btn-warning btn-sm" name="agregaag">
+                                        AGREGAR
+                                    </button>
+                                </td>
+                                <?php 
+                                    if (isset($_POST['agregaag'])){
+                                        //session_start();
+                                        if (isset($_SESSION['cuenta'])){
+                                            $_SESSION['cuenta'] = $_SESSION['cuenta'] + 1;
+                                            $ag_carga = array($_SESSION['cuenta']=>$_POST['agente']);
+                                            for ($i = 1; $i <= $_SESSION['cuenta']; $i++){
+                                                echo '<tr><td style="text-align:left" >' . $ag_carga[$i] . '</td></tr>';
+                                                echo $_SESSION['cuenta'];
+                                            }
+                                        }
+                                    }else{
+                                        echo '<td>nada1</td>';
+                                    }
+                                ?>
+                            </tr>
+                            <tr> 
+                                <td colspan="4">
+                                    <button class="btn btn-success" name="cargaagente">
+                                        CARGAR AGENTES
                                     </button>
                                 </td>
                             </tr>
