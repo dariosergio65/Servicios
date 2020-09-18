@@ -14,12 +14,14 @@ include ("../includes/header.php");
 
 <?php
 //session_unset();  
-} session_unset(); 
+}  unset ($_SESSION['message']); 
+//session_unset(); 
 
     if (isset($_POST['agregaag'])){
         //session_start();
         if(!isset($_SESSION['cuenta'])){
             $_SESSION['cuenta'] = 0; // la uso para agregar agentes al servicio
+            $_SESSION['ag_nuevo'] = array();
         }
     }
 
@@ -199,21 +201,53 @@ if (isset($_POST['cargaservi'])) {
                                 </select>
                                 <button class="btn btn-warning btn-sm" name="agregaag">
                                         AGREGAR
-                                    </button>
+                                </button>
                                 </td>
-                                <?php 
+                                <?php
+                                    if (isset($_SESSION['cuenta'])){
+                                        $indice = $_SESSION['cuenta'];
+                                        $actual = 0;
+                                        $control = 0;
+                                        for ($i = 1; $i <= $indice; $i++){
+                                            $num_ag = 'borraag' . $i;
+                                            $actual++;
+                                            $control++;
+                                            $_SESSION['ag_nuevo'][$actual] = $_SESSION['ag_nuevo'][$control];
+                                            if (isset($_POST[$num_ag])){
+                                                $control++;
+                                                $se_va=$_SESSION['cuenta'];
+                                                if ($se_va == 1){
+                                                    session_destroy();
+                                                    break;
+                                                }
+                                                if ($control == $se_va){
+                                                    break;
+                                                }
+                                                $_SESSION['cuenta']=$_SESSION['cuenta']-1;
+                                                $_SESSION['ag_nuevo'][$actual] = $_SESSION['ag_nuevo'][$control];
+                                                $i++;
+                                                if ($i > $indice){break;}
+                                            }
+                                            echo '<tr><td style="text-align:left" >' . $_SESSION['ag_nuevo'][$actual] . '</td><td> <button class="btn btn-danger btn-sm" name="borraag' . $actual . '">
+                                                BORRAR</button> </td></tr>';
+                                        }
+                                        if (isset($se_va)){unset ($_SESSION['ag_nuevo'][$se_va]);}
+                                    } 
                                     if (isset($_POST['agregaag'])){
                                         //session_start();
                                         if (isset($_SESSION['cuenta'])){
-                                            $_SESSION['cuenta'] = $_SESSION['cuenta'] + 1;
-                                            $ag_carga = array($_SESSION['cuenta']=>$_POST['agente']);
-                                            for ($i = 1; $i <= $_SESSION['cuenta']; $i++){
-                                                echo '<tr><td style="text-align:left" >' . $ag_carga[$i] . '</td></tr>';
-                                                echo $_SESSION['cuenta'];
-                                            }
+                                            $_SESSION['cuenta']++;
+                                            $indice=$_SESSION['cuenta'];
+                                            //$_SESSION['ag_nuevo'] = array($indice=>$_POST['agente']);
+                                            $_SESSION['ag_nuevo'][$indice] = $_POST['agente'];
+                                            //for ($i = 1; $i <= $indice; $i++){
+                                                echo '<tr><td style="text-align:left" >' . $_SESSION['ag_nuevo'][$indice] . 'x' . '</td><td> <button class="btn btn-danger btn-sm" name="borraag' . $i . '">
+                                                BORRAR</button> </td></tr>';
+                                                //echo $_SESSION['cuenta'] . "<br>";
+                                            //}
                                         }
                                     }else{
-                                        echo '<td>nada1</td>';
+                                        echo '<td></td>';
                                     }
                                 ?>
                             </tr>

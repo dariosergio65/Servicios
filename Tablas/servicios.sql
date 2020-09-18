@@ -37,7 +37,7 @@ CREATE TABLE `agentes` (
 
 LOCK TABLES `agentes` WRITE;
 /*!40000 ALTER TABLE `agentes` DISABLE KEYS */;
-INSERT INTO `agentes` VALUES (13158500,'Eduardo Morgan','',''),(22608997,'Marcos Gabriel Ojeda','',''),(24549398,'Daniel Gallo','',''),(24822325,'Raul Antonio Zaliega','',''),(25824337,'Javier Rubén Alberto Lopez','',''),(26145001,'Nestor Hugo Mattei','',''),(26274783,'Diego Machado','',''),(26328612,'Gustavo Fariña','',''),(26558634,'José Luis Quiroz','',''),(27048478,'Alejandro Ramirez','',''),(27152585,'Edgardo Salvador Flores','',''),(28131069,'Diego Armando Suarez','',''),(30086782,'Hugo Hoffmann','',''),(31650688,'Pablo Emanuel Alonso','','');
+INSERT INTO `agentes` VALUES (13158500,'Eduardo Morgan','15 4577 8427',''),(22608997,'Marcos Gabriel Ojeda','',''),(23722925,'Luis Marcelo Cabrera','1164773557',''),(24549398,'Daniel Gallo','15 6866 0174',''),(24822325,'Raul Antonio Zaliega','15 5417 9191',''),(25824337,'Javier Rubén Alberto Lopez','',''),(26145001,'Nestor Hugo Mattei','15 3459 7700',''),(26274783,'Diego Machado','',''),(26328612,'Gustavo Fariña','',''),(26558634,'José Luis Quiroz','',''),(27048478,'Alejandro Ramirez','',''),(27152585,'Edgardo Salvador Flores','',''),(28131069,'Diego Armando Suarez','',''),(30086782,'Hugo Hoffmann','',''),(31650688,'Pablo Emanuel Alonso','',''),(94276863,'Fermín Ruiz Villalba','','');
 /*!40000 ALTER TABLE `agentes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +78,7 @@ CREATE TABLE `clientes` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `Cliente` varchar(85) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=357 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=359 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,4 +239,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-14 13:24:25
+-- Dump completed on 2020-09-18 10:11:40

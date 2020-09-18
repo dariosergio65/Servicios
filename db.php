@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+//session_destroy();
+//echo "cargada";
 
 $db_host="localhost:3306";
 $db_nombre="task";

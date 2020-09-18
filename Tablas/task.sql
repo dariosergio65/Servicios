@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-09-2020 a las 18:42:36
+-- Tiempo de generación: 18-09-2020 a las 15:13:32
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -39,12 +39,13 @@ CREATE TABLE `agentes` (
 --
 
 INSERT INTO `agentes` (`dni`, `Agente`, `Celular`, `Direccion`) VALUES
-(13158500, 'Eduardo Morgan', '', ''),
+(13158500, 'Eduardo Morgan', '15 4577 8427', ''),
 (22608997, 'Marcos Gabriel Ojeda', '', ''),
-(24549398, 'Daniel Gallo', '', ''),
-(24822325, 'Raul Antonio Zaliega', '', ''),
+(23722925, 'Luis Marcelo Cabrera', '1164773557', ''),
+(24549398, 'Daniel Gallo', '15 6866 0174', ''),
+(24822325, 'Raul Antonio Zaliega', '15 5417 9191', ''),
 (25824337, 'Javier Rubén Alberto Lopez', '', ''),
-(26145001, 'Nestor Hugo Mattei', '', ''),
+(26145001, 'Nestor Hugo Mattei', '15 3459 7700', ''),
 (26274783, 'Diego Machado', '', ''),
 (26328612, 'Gustavo Fariña', '', ''),
 (26558634, 'José Luis Quiroz', '', ''),
@@ -52,7 +53,8 @@ INSERT INTO `agentes` (`dni`, `Agente`, `Celular`, `Direccion`) VALUES
 (27152585, 'Edgardo Salvador Flores', '', ''),
 (28131069, 'Diego Armando Suarez', '', ''),
 (30086782, 'Hugo Hoffmann', '', ''),
-(31650688, 'Pablo Emanuel Alonso', '', '');
+(31650688, 'Pablo Emanuel Alonso', '', ''),
+(94276863, 'Fermín Ruiz Villalba', '', '');
 
 -- --------------------------------------------------------
 
@@ -1877,7 +1879,7 @@ ALTER TABLE `agenteservicio`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=359;
 
 --
 -- AUTO_INCREMENT de la tabla `estados`
