@@ -1,0 +1,1758 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: http://www.codexexempla.org/curso/curso_4_3_d.php#iB
+Subject: appendChild, insertBefore, replaceChild, removeChild y cloneNode < El DOM < Curso acelerado < codexexempla.org
+Date: Thu, 24 Sep 2020 17:09:26 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----"
+
+
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: text/html
+Content-ID: <frame-1BFFC52092D51334178EF028320E07E4@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.codexexempla.org/curso/curso_4_3_d.php#iB
+
+<!--?xml version=3D"1.0" encoding=3D"utf-8"?--><!DOCTYPE html PUBLIC "-//W3=
+C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html =
+xmlns=3D"http://www.w3.org/1999/xhtml" xml:lang=3D"es"><head profile=3D"htt=
+p://dublincore.org/documents/dcq-html/"><meta http-equiv=3D"Content-Type" c=
+ontent=3D"text/html; charset=3DUTF-8">
+    <link rel=3D"shortcut icon" href=3D"http://www.codexexempla.org/favicon=
+.ico">
+    <link rel=3D"schema.DC" href=3D"http://purl.org/dc/elements/1.1/">
+   =20
+    <meta http-equiv=3D"Content-Style-Type" content=3D"text/css">
+    <meta name=3D"DC.format" content=3D"application/xhtml+xml">
+    <meta http-equiv=3D"Content-Language" content=3D"es">
+    <meta name=3D"DC.language" content=3D"es">
+    <meta name=3D"robots" content=3D"index, follow">
+    <meta name=3D"DC.creator" content=3D"Sa=C3=BAl Gonz=C3=A1lez Fern=C3=A1=
+ndez">
+    <meta name=3D"DC.publisher" content=3D"codexexempla.org">
+    <meta name=3D"description" content=3D"Explicaci=C3=B3n sobre el uso de =
+appendChild, insertBefore, replaceChild, removeChild y cloneNode a la hora =
+de trabajar sobre el DOM.">
+    <meta name=3D"DC.description" content=3D"Explicaci=C3=B3n sobre el uso =
+de appendChild, insertBefore, replaceChild, removeChild y cloneNode a la ho=
+ra de trabajar sobre el DOM.">
+    <meta name=3D"keywords" content=3D"appendChild javascript, insertBefore=
+ javascript, replaceChild javascript, removeChild javascript, cloneNode jav=
+ascript, a=C3=B1adir nodos documento javascript, eliminar nodos documento j=
+avascript">
+    <meta name=3D"DC.date.created" content=3D"2007-08-29">   =20
+    <meta name=3D"DC.title" content=3D"appendChild, insertBefore, replaceCh=
+ild, removeChild y cloneNode < El DOM < Curso acelerado < codexexempla.org"=
+>
+    <title>appendChild, insertBefore, replaceChild, removeChild y cloneNode=
+ &lt; El DOM &lt; Curso acelerado &lt; codexexempla.org</title>
+    <link rel=3D"Contents" href=3D"http://www.codexexempla.org/curso/curso_=
+4_3.php">
+    <link rel=3D"Start" href=3D"http://www.codexexempla.org/curso/curso_4_3=
+_a.php">
+    <link rel=3D"Prev" href=3D"http://www.codexexempla.org/curso/curso_4_3_=
+c.php">
+    <link rel=3D"Next" href=3D"http://www.codexexempla.org/curso/curso_4_3_=
+e.php">
+ =20
+    <link href=3D"http://www.codexexempla.org/css/codexexempla.css" type=3D=
+"text/css" rel=3D"stylesheet" media=3D"screen">
+    <link type=3D"text/css" rel=3D"stylesheet" media=3D"screen and (max-wid=
+th:1024px)" href=3D"http://www.codexexempla.org/css/1024.css">
+    <link href=3D"http://www.codexexempla.org/css/imprimir.css" type=3D"tex=
+t/css" rel=3D"stylesheet" media=3D"print">
+    <link href=3D"http://www.codexexempla.org/css/s.css" type=3D"text/css" =
+rel=3D"stylesheet" media=3D"screen">
+   =20
+</head>
+<body>
+    <p id=3D"saltar"><a href=3D"http://www.codexexempla.org/curso/curso_4_3=
+_d.php#contenido-principal" accesskey=3D"0">Ir directamente al contenido de=
+ esta p=C3=A1gina</a></p>
+    <div id=3D"cabecera">
+        <a href=3D"http://www.codexexempla.org/index.php"><img src=3D"http:=
+//www.codexexempla.org/imagenes/logo.png" width=3D"380" height=3D"50" alt=
+=3D"codexexempla.org"></a>
+        <form id=3D"buscador" action=3D"http://www.codexexempla.org/resulta=
+dos-busqueda.php" method=3D"get">
+            <div><label for=3D"tb">Buscar:</label><input type=3D"text" name=
+=3D"tb" id=3D"tb"><button type=3D"submit">Buscar</button></div>
+        </form>
+    </div>
+    <div id=3D"navegacion">
+        <ul>            <li><a href=3D"http://www.codexexempla.org/index.ph=
+p">Inicio</a></li>
+            <li id=3D"actual"><a href=3D"http://www.codexexempla.org/curso/=
+index.php">Curso</a></li>
+            <li><a href=3D"http://www.codexexempla.org/articulos/index.php"=
+>Art=C3=ADculos</a></li>
+            <li><a href=3D"http://www.codexexempla.org/recursos/index.php">=
+Recursos</a></li>
+            <li><a href=3D"http://www.codexexempla.org/acerca/index.php">Ac=
+erca de</a></li>
+        </ul>
+    </div>
+    <div id=3D"menu-curso">
+        <p><strong><a href=3D"http://www.codexexempla.org/curso/curso_4_3_d=
+.php#contenido-principal" accesskey=3D"1">Contenidos <img src=3D"http://www=
+.codexexempla.org/imagenes/expandir.png" alt=3D""></a><a href=3D"http://www=
+.codexexempla.org/curso/curso_4_3_d.php?mc=3Dtrue" id=3D"activar">Activar <=
+img src=3D"http://www.codexexempla.org/imagenes/reactivar.png" alt=3D""></a=
+><a href=3D"http://www.codexexempla.org/curso/curso_4_3_d.php?mc=3Dfalse" i=
+d=3D"desactivar" class=3D"estado">Desactivar <img src=3D"http://www.codexex=
+empla.org/imagenes/error.png" alt=3D""></a></strong></p>
+=20
+        <ol>
+            <li>Breve introducci=C3=B3n a <abbr title=3D"=C2=ABeXtensible M=
+arkup Language=C2=BB, Lenguaje de Marcado eXtensible">XML</abbr>
+                <ol>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+1_1.php">Un vistazo a <abbr title=3D"=C2=ABStandard Generalized Markup Lang=
+uage=C2=BB, Lenguaje Est=C3=A1ndar de Marcado Generalizado">SGML</abbr></a>=
+</li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+1_2.php">Sintaxis de <abbr>XML</abbr></a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+1_3.php"><abbr>XML</abbr> bien formado y <abbr>XML</abbr> v=C3=A1lido</a></=
+li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+1_4.php">Referencias de entidad</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+1_5.php">=C2=BF<abbr>XML</abbr> va a reemplazar al <abbr>HTML</abbr>?</a></=
+li>
+                </ol>
+            </li>
+            <li>Capa de estructura del documento
+                <ol>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+2_1.php"><abbr title=3D"=C2=ABDocument Type Definition=C2=BB, Definici=C3=
+=B3n de Tipo de Documento">DTD</abbr> y espacios de nombres</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+2_2.php">Diferencias entre <abbr>HTML</abbr> y <abbr title=3D"=C2=ABeXtensi=
+ble HyperText Markup Language=C2=BB, Lenguaje de Marcado de HiperTexto eXte=
+nsible">XHTML</abbr></a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+2_3.php">Elementos y atributos de <abbr>XHTML</abbr> 1.1</a>
+                        <ol>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_3_a.php">Elementos estructurales</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_3_b.php">Elementos de texto</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_3_c.php">Elementos de lista</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_3_d.php">Elementos de vinculaci=C3=B3n</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_3_e.php">Elementos de objetos</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_3_f.php">Elementos de tabla</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_3_g.php">Elementos de formulario</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_3_h.php">Elementos de <i xml:lang=3D"en">scripting</i></a></li>
+                        </ol>
+                    </li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+2_4.php">Validaci=C3=B3n</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+2_5.php">C=C3=B3digo sem=C3=A1ntico</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+2_6.php">T=C3=A9cnicas de accesibilidad</a>
+                        <ol>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_6_a.php">T=C3=A9cnicas generales</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_6_b.php">Im=C3=A1genes accesibles</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_6_c.php">Tablas accesibles</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_2_6_d.php">Formularios accesibles</a></li>
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+            <li>Capa de presentaci=C3=B3n del documento
+                <ol>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_1.php"><abbr title=3D"=C2=ABCascading Style Sheets=C2=BB, Hojas de Estilo=
+ en Cascada">CSS</abbr> 2.1: Introducci=C3=B3n</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_2.php">Sintaxis de <abbr>CSS</abbr> 2.1: propiedades, declaraciones y reg=
+las</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_3.php">Selectores y pseudoselectores</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_4.php">Relaci=C3=B3n de propiedades para medios visuales</a>
+                        <ol>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_3_4_a.php">Fuentes y texto</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_3_4_b.php">Cajas</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_3_4_c.php">Colores y fondos</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_3_4_d.php">Posici=C3=B3n y flotado</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_3_4_e.php">Listas</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_3_4_f.php">Tablas</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_3_4_g.php">Contenido generado</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_3_4_h.php">Interfaz de usuario</a></li>
+                        </ol>
+                    </li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_5.php">Relaci=C3=B3n de propiedades para medios de impresi=C3=B3n</a></li=
+>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_6.php">Herencia y cascada</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_7.php">M=C3=A1s sobre posici=C3=B3n y flotado</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_8.php">El modelo de caja del <abbr title=3D"=C2=ABWorld Wide Web Consorti=
+um=C2=BB, Consorcio de la Red Mundial">W3C</abbr> y el de Internet Explorer=
+</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_9.php">Clarificaci=C3=B3n del uso de <code>id</code> y <code>class</code>=
+</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_10.php">Sabios consejos para optimizar una hoja de estilo</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_11.php">Validaci=C3=B3n</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+3_12.php">Cuestiones de accesibilidad</a></li>
+                </ol>
+            </li>
+            <li>Capa de comportamiento del documento
+                <ol>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+4_1.php">Lenguajes de <i xml:lang=3D"en">script</i> y JavaScript</a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+4_2.php">Sintaxis b=C3=A1sica de JavaScript</a>
+                        <ol>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_2_a.php">Variables</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_2_b.php">Operadores</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_2_c.php">Estructuras condicionales</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_2_d.php">Bucles</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_2_e.php">Funciones</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_2_f.php">Objetos nativos e incorporados</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_2_g.php">Eventos</a></li>
+                        </ol>
+                    </li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+4_3.php">El <abbr title=3D"=C2=ABDocument Object Model=C2=BB, Modelo de Obj=
+eto de Documento">DOM</abbr></a>
+                        <ol>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_3_a.php"><code>getElementById</code> y <code>getElementsByTagName=
+</code></a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_3_b.php"><code>parentNode</code>, <code>firstChild</code>, <code>=
+lastChild</code>, <code>nextSibling</code> y <code>previousSibling</code></=
+a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_3_c.php"><code>createElement</code> y <code>createTextNode</code>=
+</a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_3_d.php"><code>appendChild</code>, <code>insertBefore</code>, <co=
+de>replaceChild</code>, <code>removeChild</code> y <code>cloneNode</code></=
+a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_3_e.php"><code>addEventListener</code></a></li>
+                        </ol>
+                    </li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+4_4.php">El <abbr title=3D"=C2=ABBrowser Object Model=C2=BB, Modelo de Obje=
+to de Navegador">BOM</abbr></a>
+                        <ol>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_4_a.php"><i xml:lang=3D"en">Window</i> y <i xml:lang=3D"en">Docum=
+ent</i></a></li>
+                            <li><a href=3D"http://www.codexexempla.org/curs=
+o/curso_4_4_b.php"><i xml:lang=3D"en">Navigator</i> y <i xml:lang=3D"en">Sc=
+reen</i></a></li>
+                        </ol>
+                    </li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/curso_=
+4_5.php">T=C3=A9cnicas de accesibilidad: el JavaScript no obstrusivo</a></l=
+i>
+                </ol>
+            </li>
+        </ol>
+    </div>    <div id=3D"contenido">
+        <div id=3D"contenido-principal">
+            <h1><code>appendChild</code>, <code>insertBefore</code>, <code>=
+replaceChild</code>, <code>removeChild</code> y <code>cloneNode</code></h1>
+            <h2 id=3D"h-tc">Tabla de contenidos</h2>
+            <ol id=3D"tc">
+                <li><a href=3D"http://www.codexexempla.org/curso/curso_4_3_=
+d.php#intro">Introducci=C3=B3n</a></li>
+                <li><a href=3D"http://www.codexexempla.org/curso/curso_4_3_=
+d.php#aCh"><code>appendChild</code></a></li>
+                <li><a href=3D"http://www.codexexempla.org/curso/curso_4_3_=
+d.php#iB"><code>insertBefore</code></a>
+                    <ol>
+                        <li><a href=3D"http://www.codexexempla.org/curso/cu=
+rso_4_3_d.php#iA">=C2=BF<code>insertAfter</code>?</a></li>
+                    </ol>
+                </li>
+                <li><a href=3D"http://www.codexexempla.org/curso/curso_4_3_=
+d.php#rCh"><code>replaceChild</code></a></li>
+                <li><a href=3D"http://www.codexexempla.org/curso/curso_4_3_=
+d.php#rmCh"><code>removeChild</code></a></li>
+                <li><a href=3D"http://www.codexexempla.org/curso/curso_4_3_=
+d.php#cN"><code>cloneNode</code></a></li>
+            </ol>
+            <h2 id=3D"intro">Introducci=C3=B3n</h2>
+            <p>Acabamos de ver c=C3=B3mo crear elementos y nodos de texto, =
+pero tambi=C3=A9n hemos visto que estos nodos creados se mantienen en el =
+=C2=ABlimbo=C2=BB del documento hasta que los incluimos en el =C3=A1rbol de=
+l mismo.</p>
+            <p>Para trabajar incorporando, modificando o eliminando nodos, =
+contamos con los m=C3=A9todos que vamos a ver a continuaci=C3=B3n.</p>
+            <h2 id=3D"aCh"><code>appendChild</code></h2>
+            <p>Por medio de <code>appendChild</code> podemos incluir en un =
+nodo un nuevo hijo, de esta manera:</p>
+            <pre><code>
+    <i>elemento_padre</i>.appendChild(<i>nuevo_nodo</i>);
+            </code></pre>
+            <p>El nuevo nodo se incluye inmediatamente despu=C3=A9s de los =
+hijos ya existentes =E2=80=94si hay alguno=E2=80=94 y el nodo padre cuenta =
+con una nueva rama.</p>
+            <p>Por ejemplo, el siguiente c=C3=B3digo:</p>
+            <pre><code>
+    var lista =3D document.createElement('ul');
+    var item =3D document.createElement('li');
+    lista.appendChild(item);
+            </code></pre>
+            <p>crea un elemento <code>ul</code> y un elemento <code>li</cod=
+e>, y convierte el segundo en hijo del primero.</p>
+            <h2 id=3D"iB"><code>insertBefore</code></h2>
+            <p><code>insertBefore</code> nos permite elegir un nodo del doc=
+umento e incluir otro antes que =C3=A9l.</p>
+            <p>Su sintaxis es:</p>
+            <pre><code>
+    <i>elemento_padre</i>.insertBefore(<i>nuevo_nodo</i>,<i>nodo_de_referen=
+cia</i>);
+            </code></pre>
+            <p>Si tuvi=C3=A9ramos un fragmento de un documento como =C3=A9s=
+te:</p>
+            <pre><code>
+    &lt;div id=3D"padre"&gt;
+        &lt;p&gt;Un p=C3=A1rrafo.&lt;/p&gt;
+        &lt;p&gt;Otro p=C3=A1rrafo.&lt;/p&gt;
+    &lt;/div&gt;
+            </code></pre>
+            <p>y quisi=C3=A9ramos a=C3=B1adir un nuevo p=C3=A1rrafo antes d=
+el segundo, lo har=C3=ADamos as=C3=AD:</p>
+            <pre><code>
+    // Creamos el nuevo p=C3=A1rrafo
+    var nuevo_parrafo =3D document.createElement('p').appendChild(document.=
+createTextNode('Nuevo p=C3=A1rrafo.'));
+   =20
+    // Recojemos en una variable el segundo p=C3=A1rrafo
+    var segundo_p =3D document.getElementById('padre').getElementsByTagName=
+('p')[1];
+   =20
+    // Y ahora lo insertamos
+    document.getElementById('padre').insertBefore(nuevo_parrafo,segundo_p);
+            </code></pre>
+            <h3 id=3D"iA">=C2=BF<code>insertAfter</code>?</h3>
+            <p>Cuando se empieza a trabajar con el <abbr>DOM</abbr>, uno ec=
+ha de menos un m=C3=A9todo que permita incluir un nodo <em>detr=C3=A1s</em>=
+ de otro. Como no lo hay, todo programador de JavaScript acaba cre=C3=A1ndo=
+se una funci=C3=B3n propia que haga eso exactamente. =C3=89sta es la m=C3=
+=ADa:</p>
+            <pre><code>
+    function insertAfter(e,i){=20
+        if(e.nextSibling){=20
+            e.parentNode.insertBefore(i,e.nextSibling);=20
+        } else {=20
+            e.parentNode.appendChild(i);=20
+        }
+    }
+            </code></pre>
+            <p>Los par=C3=A1metros son:</p>
+            <ul>
+                <li><var>e</var>: el nodo tras el que se quiere insertar ot=
+ro.</li>
+                <li><var>i</var>: el nodo que se quiere insertar.</li>
+            </ul>
+            <p>Espero que sea de ayuda.</p>
+            <h2 id=3D"rCh"><code>replaceChild</code></h2>
+            <p>Para reemplazar un nodo por otro contamos con <code>replaceC=
+hild</code>, cuya sintaxis es:</p>
+            <pre><code>
+    <i>elemento_padre</i>.replaceChild(<i>nuevo_nodo</i>,<i>nodo_a_reemplaz=
+ar</i>);
+            </code></pre>
+            <p>Con el mismo marcado que para el ejemplo de <code>insertBefo=
+re</code>, si quisi=C3=A9ramos sustituir el segundo p=C3=A1rrafo por el que=
+ creamos, lo har=C3=ADamos as=C3=AD:</p>
+            <pre><code>
+    document.getElementById('padre').replaceChild(nuevo_parrafo,segundo_p);
+            </code></pre>
+            <h2 id=3D"rmCh"><code>removeChild</code></h2>
+            <p>Dado que podemos incluir nuevos hijos en un nodo, tiene sent=
+ido que podamos eliminarlos. Para ello existe el m=C3=A9todo <code>removeCh=
+ild</code>.</p>
+            <p>La sintaxis es:</p>
+            <pre><code>
+    <i>elemento_padre</i>.removeChild(<i>nodo_a_eliminar</i>);
+            </code></pre>
+            <p>Con el mismo ejemplo anterior, eliminar el segundo p=C3=A1rr=
+afo =C2=B4ser=C3=ADa algo tan sencillo como:</p>
+            <pre><code>
+    document.getElementById('padre').removeChild(segundo_p);
+            </code></pre>
+            <h2 id=3D"cN"><code>cloneNode</code></h2>
+            <p>Por =C3=BAltimo, podemos crear un clon de un nodo por medio =
+de <code>cloneNode</code>:</p>
+            <pre><code>
+    <i>elemento_a_clonar</i>.cloneNode(booleano);
+            </code></pre>
+            <p>El booleano que se pasa como par=C3=A1metro define si se qui=
+ere clonar el elemento =E2=80=94con el valor <code>false</code>=E2=80=94, o=
+ bien si se quiere clonar con su contenido =E2=80=94con el valor <code>true=
+</code>=E2=80=94, es decir, el elemento y todos sus descendientes.</p>
+            <p>Si quisi=C3=A9ramos clonar nuestro <code>div</code> de ejemp=
+lo con el siguiente c=C3=B3digo:</p>   =20
+            <pre><code>
+    var clon =3D document.getElementById('padre').cloneNode(false);
+            </code></pre>
+            <p><var>clon</var> contendr=C3=ADa un elemento <code>div</code>=
+, pero de esta manera:</p>
+            <pre><code>
+    var clon =3D document.getElementById('padre').cloneNode(true);
+            </code></pre>
+            <p>contendr=C3=ADa un elemento <code>div</code> con dos p=C3=A1=
+rrafos que contendr=C3=ADan los mismos nodos de texto que el original.</p>
+            <p>Y vista toda la teor=C3=ADa hasta aqu=C3=AD, <a href=3D"http=
+://www.codexexempla.org/curso/js/ejemplos_modificar_nodos.php" id=3D"v-ejem=
+plos-modificar-nodos">veamos unos cuantos ejemplos en funcionamiento de tod=
+os estos m=C3=A9todos</a>.</p>
+            <div id=3D"nav-secundaria">
+                <ul>
+                    <li id=3D"anterior"><a href=3D"http://www.codexexempla.=
+org/curso/curso_4_3_c.php" title=3D"createElement y createTextNode"><img sr=
+c=3D"http://www.codexexempla.org/imagenes/anterior.png" width=3D"16" height=
+=3D"16" alt=3D"Anterior"></a></li>
+                    <li><a href=3D"http://www.codexexempla.org/curso/temari=
+o.php">Curso: <abbr title=3D"Tabla de Contenidos">TdC</abbr></a> &gt; <a hr=
+ef=3D"http://www.codexexempla.org/curso/curso_4_3.php">El <abbr>DOM</abbr><=
+/a> &gt; <strong><code>appendChild</code>, <code>insertBefore</code>, <code=
+>replaceChild</code>=E2=80=A6</strong> <em>[59/64]</em></li>
+                    <li id=3D"siguiente"><a href=3D"http://www.codexexempla=
+.org/curso/curso_4_3_e.php" title=3D"addEventListener"><img src=3D"http://w=
+ww.codexexempla.org/imagenes/siguiente.png" width=3D"16" height=3D"16" alt=
+=3D"Siguiente"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id=3D"contenido-secundario">
+            <div id=3D"contacto">
+                <h2>Contacto</h2>
+                <form id=3D"f-contacto" method=3D"post" action=3D"http://ww=
+w.codexexempla.org/curso/curso_4_3_d.php#f-contacto">
+                    <dl>
+                        <dd><label for=3D"nombre">Nombre</label></dd>
+                        <dt><input name=3D"nombre" id=3D"nombre" type=3D"te=
+xt" value=3D""></dt>
+                        <dd><label for=3D"correo">Correo electr=C3=B3nico <=
+strong>[Necesario]</strong></label></dd>
+                        <dt><input name=3D"correo" id=3D"correo" type=3D"te=
+xt" value=3D""></dt>
+                        <dd><label for=3D"mensaje">Mensaje <strong>[Necesar=
+io]</strong></label></dd>
+                        <dt><textarea name=3D"mensaje" id=3D"mensaje" cols=
+=3D"20" rows=3D"7"></textarea></dt>
+                    </dl>
+                    <div id=3D"boton"><button type=3D"submit" id=3D"b">Envi=
+ar</button></div>
+                    <p id=3D"privacidad">En virtud de la Ley Org=C3=A1nica =
+15/1999 de Protecci=C3=B3n de Datos de Car=C3=A1cter Personal le informo de=
+ que los datos que proporcione no ser=C3=A1n empleados para otro fin que el=
+ de responder a su mensaje. En especial, me comprometo a no cederlos a terc=
+eros ni a emplearlos para enviar informaci=C3=B3n no solicitada.</p>
+                </form>
+            </div>
+            <div id=3D"blog">
+                <h2>Del blog de Digital Icon</h2>
+                <ul>
+<li>
+            <h3><a href=3D"http://digitalicon.es/blog/mapbox-alternativa-ma=
+pa-google/">MapBox: una alternativa al mapa de Google</a> <em>18/02/2013</e=
+m></h3>
+            <p>Probamos MapBox, una alternativa a Google Mpas a la hora de =
+incluir un mapa en una p=C3=A1gina web.</p>
+        </li><li>
+            <h3><a href=3D"http://digitalicon.es/blog/0000-00-00/">0000-00-=
+00</a> <em>07/12/2012</em></h3>
+            <p>Un dato importante sobre el resultado de evaluar la fecha <v=
+ar>0000-00-00</var> en PHP.</p>
+        </li><li>
+            <h3><a href=3D"http://digitalicon.es/blog/responsive-images-sin=
+-javascript-ni-php/">Responsive images sin JavaScript ni PHP</a> <em>05/11/=
+2012</em></h3>
+            <p>Experimentamos con un m=C3=A9todo para servir im=C3=A1genes =
+de tama=C3=B1os dependientes de la pantalla del usuario sin emplear JavaScr=
+ipt ni PHP.</p>
+        </li>                </ul>
+            </div>
+        </div>
+    </div>
+    <div id=3D"pie">
+        <p><strong>(<a href=3D"http://creativecommons.org/licenses/by/2.5/e=
+s/"><abbr title=3D"Creative Commons">cc</abbr></a>) <b class=3D"ce">CodexEx=
+empla.org</b>, 2007=E2=80=932020</strong> <span id=3D"ayuda"><a href=3D"htt=
+p://www.codexexempla.org/ayuda/mapa.php">Mapa del sitio</a> | <a href=3D"ht=
+tp://validator.w3.org/check/referer">XHTML</a> | <a href=3D"http://jigsaw.w=
+3.org/css-validator/check/referer">CSS</a> | <a href=3D"http://www.codexexe=
+mpla.org/ayuda/accesibilidad.php">AA</a></span></p>
+    </div>
+
+</body></html>
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.codexexempla.org/css/codexexempla.css
+
+@charset "utf-8";
+
+* { padding: 0px; margin: 0px; border: 0px; }
+
+body { font: 1em / 1.7 "Century Gothic", Helvetica, Verdana, sans-serif; co=
+lor: rgb(238, 238, 238); background: url("../imagenes/fondo.png") rgb(30, 3=
+0, 30); padding: 0px 150px; }
+
+#saltar { position: absolute !important; top: -999em !important; }
+
+#cse { display: none !important; }
+
+pre { font: 0.9em / 1 "Lucida Console", "Andale Mono", "Courier New", Couri=
+er, monospace; background: rgba(0, 0, 0, 0.2); overflow: hidden; }
+
+pre:hover { overflow-x: auto; }
+
+code { font-family: "Lucida Console", "Andale Mono", "Courier New", Courier=
+, monospace; font-style: normal; color: rgb(132, 218, 255); }
+
+code strong { color: rgb(0, 0, 0); background: rgb(245, 253, 17); padding: =
+1px; font-weight: normal; }
+
+samp, var { font-family: "Courier New", Courier, monospace; font-size: 1.05=
+em; font-style: normal; }
+
+abbr[title] { border-bottom: 1px dotted rgb(59, 59, 59); cursor: help; }
+
+kbd { color: rgb(0, 0, 0); background: rgb(246, 246, 246); padding: 1px 3px=
+; border: 1px outset rgb(246, 246, 246); font-family: Arial, sans-serif; }
+
+b.ce { font-weight: normal; font-variant: small-caps; }
+
+.nota-importante { background: url("../imagenes/advertencia.png") 25px 1.2e=
+m no-repeat rgba(0, 0, 0, 0.2); min-height: 50px; padding: 1em 25px 1em 75p=
+x !important; }
+
+.nota-importante pre { background: transparent; }
+
+ul li .nota-importante { background: url("../imagenes/advertencia.png") 45p=
+x 1.2em no-repeat rgba(0, 0, 0, 0.2); margin: 0px -25px 0px -45px; padding:=
+ 1em 50px 1em 95px !important; }
+
+ul li ul li .nota-importante { background: url("../imagenes/advertencia.png=
+") 65px 1.2em no-repeat rgba(0, 0, 0, 0.2); margin: 0px -25px 0px -65px; pa=
+dding: 1em 50px 1em 115px !important; }
+
+dl ul li .nota-importante { background: url("../imagenes/advertencia.png") =
+65px 1.2em no-repeat rgba(0, 0, 0, 0.2); margin: 0px -25px 0px -45px; paddi=
+ng: 1em 50px 1em 115px !important; }
+
+.nota-importante + * { padding-top: 1em !important; }
+
+.nota-importante pre { margin: 0px -25px 0px -75px; padding-left: 75px; pad=
+ding-right: 25px; }
+
+#cabecera { background: rgba(0, 0, 0, 0.3); border-bottom: 1px solid rgb(59=
+, 59, 59); margin: 0px -150px; position: relative; }
+
+#cabecera img { display: block; }
+
+#cabecera h1, #cabecera a { display: block; padding: 0px 170px; border-bott=
+om: 1px solid rgb(0, 0, 0); margin-top: 2px; color: rgb(255, 255, 255); fon=
+t-weight: normal; }
+
+#cabecera form { position: absolute; top: 9px; right: 150px; border: 1px so=
+lid rgb(0, 0, 0); border-radius: 5px; }
+
+#cabecera form div { border: 1px solid rgb(59, 59, 59); border-radius: 4px;=
+ }
+
+#cabecera form label { display: block; height: 0px !important; width: 0px !=
+important; overflow: hidden !important; }
+
+#cabecera form input { font: 0.8em / 1 "Century Gothic", Helvetica, Verdana=
+, sans-serif; padding: 4px; background: rgba(0, 0, 0, 0.2); border-bottom-l=
+eft-radius: 3px; border-top-left-radius: 3px; color: rgb(255, 255, 255); }
+
+#cabecera form button { background: rgba(132, 218, 255, 0.1); padding: 6px =
+4px 4px; color: rgb(255, 255, 255); cursor: pointer; border-bottom-right-ra=
+dius: 3px; border-top-right-radius: 3px; text-shadow: rgb(0, 0, 0) 0px 1px =
+1px; border-left: 1px solid rgb(59, 59, 59); }
+
+#navegacion { margin: 50px 0px; border-radius: 6px; overflow: hidden; borde=
+r: 1px solid rgb(0, 0, 0); line-height: 1; text-transform: uppercase; posit=
+ion: relative; }
+
+#navegacion li { float: left; }
+
+#navegacion ul { overflow: auto; border-radius: 5px; padding: 0px 1px; bord=
+er: 1px solid rgb(59, 59, 59); background: url("../imagenes/fondo_barra.png=
+") left bottom repeat-x rgba(0, 0, 0, 0.2); }
+
+#navegacion li { width: 20%; list-style: none; padding: 1px 0px; }
+
+#navegacion li a, #navegacion li strong { display: block; text-align: cente=
+r; padding: 15px 0px; text-decoration: none; color: rgb(255, 255, 255); bor=
+der-right: 1px solid rgb(0, 0, 0); border-left: 1px solid rgb(59, 59, 59); =
+text-shadow: rgb(0, 0, 0) 0px 1px 1px; }
+
+#navegacion li:first-child a, #navegacion li:first-child strong { border-le=
+ft: 0px; border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+
+#navegacion li:last-child a, #navegacion li:last-child strong { border-righ=
+t: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+
+#navegacion li a:hover, #navegacion li#actual a, #navegacion li strong { ba=
+ckground: rgba(132, 218, 255, 0.1); font-weight: normal; }
+
+#menu-curso { position: relative; top: -50px; padding: 0px; height: 0px !im=
+portant; }
+
+#menu-curso > ol { position: absolute; background: rgba(0, 0, 0, 0.9); font=
+-size: 90%; overflow: hidden; width: 100%; border-bottom-right-radius: 5px;=
+ border-bottom-left-radius: 5px; height: 0px !important; }
+
+#menu-curso:hover > ol, #menu-curso.m-desplegado > ol { height: auto !impor=
+tant; margin: 0px !important; }
+
+#menu-curso:hover > ol > li:last-child, #menu-curso.m-desplegado > ol > li:=
+last-child { padding-bottom: 50px; }
+
+#menu-curso > ol ol, #menu-curso > ol li { margin-left: 25px; }
+
+#menu-curso > ol > li { margin-left: 50px; }
+
+#menu-curso > ol ol { overflow: hidden; height: 0px !important; }
+
+#menu-curso > ol li:hover ol, #menu-curso.m-desplegado > ol ol.ol-desplegad=
+o { height: auto !important; }
+
+#menu-curso ol ol ol li { list-style: lower-alpha; }
+
+#menu-curso > p { font-size: 90%; text-transform: uppercase; margin-left: 2=
+0%; width: 20%; border-top-right-radius: 5px; border-top-left-radius: 5px; =
+}
+
+#menu-curso > p.espera { background: transparent !important; }
+
+#menu-curso > p strong { display: block; line-height: 1; background: rgba(0=
+, 0, 0, 0.2); text-align: center; position: relative; left: 2px; font-weigh=
+t: normal; padding-top: 2px; padding-bottom: 8px; border-bottom-right-radiu=
+s: 5px; border-bottom-left-radius: 5px; }
+
+#menu-curso > p strong a { text-decoration: none; }
+
+#menu-curso > p strong #activar, #menu-curso > p strong #desactivar { displ=
+ay: none; position: relative; top: 1px; }
+
+#menu-curso img { position: relative; top: 3px; left: 5px; }
+
+#menu-curso:hover > p, #menu-curso.m-desplegado > p { background: rgba(0, 0=
+, 0, 0.9); margin-left: 0px; width: 100%; }
+
+#menu-curso:hover > p > strong, #menu-curso.m-desplegado > p > strong { mar=
+gin-left: 20%; width: 20%; }
+
+#menu-curso:hover > p > strong a, #menu-curso.m-desplegado > p > strong a {=
+ display: none; }
+
+#menu-curso:hover > p > strong a.estado, #menu-curso.m-desplegado > p > str=
+ong a.estado { display: inline !important; }
+
+#menu-curso a { color: rgb(255, 255, 255); }
+
+#contenido h1 { font-weight: normal; font-size: 1.3em; border-bottom: 1px s=
+olid rgb(0, 0, 0); padding: 10px 25px; background: url("../imagenes/fondo_b=
+arra.png") left bottom repeat-x rgba(0, 0, 0, 0.2); }
+
+#contenido h1 + * { border-top: 1px solid rgb(59, 59, 59); padding-top: 15p=
+x; }
+
+#ultimos-articulos em { font-style: normal; color: rgb(158, 158, 158); font=
+-size: 90%; }
+
+#contenido a { color: rgb(255, 255, 255); background: rgba(0, 0, 0, 0.3); p=
+adding: 0px 0.1em; }
+
+#contenido a:hover, #contenido a.volver { background: transparent; }
+
+#contenido a.volver { position: relative; top: 2px; }
+
+#contenido a.vn { padding-right: 15px; background: url("../imagenes/vn.png"=
+) right center no-repeat rgba(0, 0, 0, 0.2); }
+
+#contenido a.vn:hover { background-color: transparent; }
+
+#contenido sup.nota a { color: rgb(132, 218, 255); text-decoration: none; f=
+ont-weight: normal !important; }
+
+#contenido-principal { margin-bottom: 50px; background: rgba(0, 0, 0, 0.3);=
+ border-radius: 6px; border: 1px solid rgb(0, 0, 0); }
+
+#contenido-principal > * { border-left: 1px solid rgb(59, 59, 59); border-r=
+ight: 1px solid rgb(59, 59, 59); padding: 0px 25px; }
+
+#contenido-principal > :first-child { border-top: 1px solid rgb(59, 59, 59)=
+; border-radius: 5px 5px 0px 0px; }
+
+#contenido-principal > :last-child { border-bottom: 1px solid rgb(59, 59, 5=
+9); border-radius: 0px 0px 5px 5px; padding-bottom: 30px; }
+
+#contenido-principal p { padding-bottom: 1em; }
+
+#contenido-principal pre + * { padding-top: 1em; }
+
+#contenido-principal ul, #contenido-principal ol, #contenido-principal li {=
+ padding-bottom: 0.4em; }
+
+#contenido-principal li { margin-left: 20px; }
+
+#contenido-principal ul li { list-style: outside square; }
+
+#contenido-principal ul li ul li { list-style: outside circle; }
+
+#contenido-principal li li ul li { list-style: outside disc; }
+
+#contenido-principal ul li ul { padding-top: 0.5em; padding-bottom: 0px; }
+
+#contenido-principal li pre, #contenido-principal li dl { margin-left: -45p=
+x; padding-left: 45px; margin-right: -25px; padding-right: 25px; }
+
+#contenido-principal li dl { margin-left: -45px; padding-left: 25px; }
+
+#contenido-principal li li pre { margin-left: -65px; padding-left: 65px; }
+
+#contenido-principal ol ol ol li, #contenido-principal #tc ol li { list-sty=
+le-type: lower-latin; }
+
+#contenido-principal h2, #contenido-principal #glosario dt { padding-top: 1=
+em; padding-bottom: 0.3em; font-weight: normal; font-size: 1.4em; line-heig=
+ht: 1.2; clear: left; }
+
+#contenido-principal h3 { padding-top: 1.6em; padding-bottom: 0.3em; font-w=
+eight: normal; font-size: 1em; text-transform: uppercase; letter-spacing: 0=
+.1em; }
+
+#contenido-principal dd { padding-bottom: 1em; }
+
+#contenido-principal dl.ilustracion, #contenido-principal dl.ilustracion-no=
+ta { background: rgba(0, 0, 0, 0.2); padding: 40px 50px 20px; text-align: c=
+enter; }
+
+#contenido-principal dl.ilustracion dt a { padding: 0px; }
+
+#contenido-principal dl.ilustracion dt img { display: block; margin: 0px au=
+to; min-width: 100%; max-width: 100%; height: auto; }
+
+#contenido-principal dl.ilustracion dd, #contenido-principal dl.ilustracion=
+-nota dd { font-size: 90%; padding-bottom: 0px; }
+
+#contenido-principal dl.ilustracion + *, #contenido-principal dl.ilustracio=
+n-nota + * { padding-top: 1em; }
+
+#contenido-principal dl.desc-elemento dt, #contenido-principal dl.desc-prop=
+iedad dt { border-bottom: 1px dotted rgb(59, 59, 59); }
+
+#contenido-principal dl.biblio { overflow: hidden; clear: left; padding-lef=
+t: 15px; }
+
+#contenido-principal dl.biblio dt, #contenido-principal dl.biblio dd { floa=
+t: left; }
+
+#contenido-principal dl.biblio dt { margin-right: 25px; clear: left; }
+
+#contenido-principal dl.biblio dt a { padding: 10px; background: rgba(0, 0,=
+ 0, 0.3); display: block; margin-bottom: 2em; }
+
+#contenido-principal dl.biblio dt a:hover { background: rgba(132, 218, 255,=
+ 0.1); }
+
+#contenido-principal dl.biblio dt a img { display: block; }
+
+#contenido-principal dl.biblio dd { width: 62%; }
+
+#contenido-principal dl dd pre { margin-left: -25px; padding-left: 25px; ma=
+rgin-right: -25px; padding-right: 25px; }
+
+#contenido-principal dl dd dl.ilustracion { margin: 0px -25px; padding-left=
+: 50px; padding-right: 50px; }
+
+#contenido-principal blockquote { padding: 1.5em 50px; color: rgb(158, 158,=
+ 158); }
+
+#contenido-principal blockquote cite { display: block; text-align: right; f=
+ont-style: normal; font-size: 90%; position: relative; top: -0.5em; }
+
+#contenido-principal blockquote i { color: rgb(255, 255, 255); }
+
+#contenido-principal blockquote cite i { color: inherit; }
+
+#contenido-principal .audio { background: rgba(0, 0, 0, 0.2); padding-top: =
+2em; padding-bottom: 2em; }
+
+#contenido-principal .audio object { display: block; margin: 0px auto; }
+
+#contenido-principal .audio + * { padding-top: 1em; }
+
+#contenido-principal table { width: 100%; empty-cells: hide; caption-side: =
+bottom; background: rgba(0, 0, 0, 0.2); padding-top: 10px; }
+
+#contenido-principal li.li-esp { padding-right: 0px; margin-right: -70px; }
+
+#contenido-principal dd.dd-esp { padding-right: 0px; margin-right: -50px; }
+
+#contenido-principal li.li-esp p { padding-right: 70px; }
+
+#contenido-principal li table { margin: 0px -45px; padding: 10px 45px 0px; =
+}
+
+#contenido-principal dd table { margin: 0px -25px; padding: 10px 25px 0px; =
+}
+
+#contenido-principal table + * { padding-top: 1em; }
+
+#contenido-principal table caption { border-left: 1px solid rgb(59, 59, 59)=
+; border-right: 1px solid rgb(59, 59, 59); font-size: 90%; background: rgba=
+(0, 0, 0, 0.2); padding: 0px 25px 15px; }
+
+#contenido-principal li table caption, #contenido-principal dd table captio=
+n { border-left: none; border-right: none; }
+
+#contenido-principal table th, #contenido-principal table td { font-weight:=
+ normal; text-align: left; border-bottom: 1px solid rgb(59, 59, 59); paddin=
+g: 2px 4px; vertical-align: top; }
+
+#contenido-principal table th { background: rgba(0, 0, 0, 0.2); }
+
+#contenido-principal table pre { background: transparent; padding: 5px; }
+
+#contenido-principal .linea-codigo { padding: 0px 1px; margin-bottom: 1px; =
+background: rgba(0, 0, 0, 0.2); }
+
+#contenido-principal td.soportado { color: rgb(0, 0, 0); background: rgb(10=
+9, 173, 109); text-align: center; }
+
+#contenido-principal td.no-soportado { color: rgb(255, 255, 255); backgroun=
+d: rgb(179, 64, 64); text-align: center; }
+
+#contenido-principal td.casi-soportado { color: rgb(0, 0, 0); background: r=
+gb(255, 179, 64); text-align: center; }
+
+#contenido-principal div.demo { background: rgba(0, 0, 0, 0.2); padding: 0p=
+x 25px 1em 65px; margin: 0px -25px 0px -65px; }
+
+#contenido-principal div.demo + * { padding-top: 1em; }
+
+#contenido-principal div.demo li { list-style: none; padding: 0px; margin-l=
+eft: 0px; }
+
+#contenido-principal div.demo li textarea { padding: 5px; background: rgba(=
+0, 0, 0, 0.2); width: 97.4%; color: rgb(255, 255, 255); font: 1em / 1 "Cent=
+ury Gothic", Helvetica, Verdana, sans-serif; border: 1px solid rgb(59, 59, =
+59); outline: rgb(0, 0, 0) solid 1px; border-radius: 3px; }
+
+#contenido-principal div.demo li textarea:focus { outline: rgb(132, 218, 25=
+5) solid 2px; }
+
+#contenido-principal div.demo .demo-boton { border-radius: 4px; border: 1px=
+ solid rgb(0, 0, 0); margin-top: 0.2em; background: url("../imagenes/fondo_=
+barra.png") left bottom repeat-x rgba(0, 0, 0, 0.2); width: 10em; margin-le=
+ft: -1px; }
+
+#contenido-principal div.demo .demo-boton button { padding: 5px; display: b=
+lock; border: 1px solid rgb(59, 59, 59); text-align: center; width: 100%; c=
+olor: rgb(255, 255, 255); font: 1em / 1 "Century Gothic", Helvetica, Verdan=
+a, sans-serif; border-radius: 3px; cursor: pointer; background: transparent=
+; }
+
+#contenido-principal div.demo .demo-boton button:hover { background: rgba(1=
+32, 218, 255, 0.1); }
+
+#contenido-principal div.ejemplo { background: rgba(0, 0, 0, 0.2); padding-=
+top: 2em; }
+
+#contenido-principal div.ejemplo + * { padding-top: 1em; }
+
+#contenido-principal div.ejemplo div { overflow: hidden; }
+
+#contenido-principal div.ejemplo .info-ejemplo { font-size: 90%; text-align=
+: center; }
+
+#contenido-principal #ejemplo-01 div { background: rgb(255, 255, 225); padd=
+ing-bottom: 1em; }
+
+#contenido-principal #ejemplo-01 div img, #contenido-principal #ejemplo-01 =
+div ul { float: left; }
+
+#contenido-principal #ejemplo-01 div ul { padding: 2em 0px; width: 50%; }
+
+#contenido-principal #ejemplo-01 div ul li { list-style: none; color: rgb(1=
+28, 104, 66); text-decoration: underline; }
+
+#contenido-principal #ejemplo-02 div, #contenido-principal #ejemplo-03 div,=
+ #contenido-principal #ejemplo-04 div, #contenido-principal #ejemplo-05 div=
+, #contenido-principal #ejemplo-06 div, #contenido-principal #ejemplo-08 di=
+v, #contenido-principal #ejemplo-09 div, #contenido-principal #ejemplo-10 d=
+iv, #contenido-principal #ejemplo-11 div { background: rgb(255, 255, 255); =
+color: rgb(0, 0, 0); padding: 1em; }
+
+#contenido-principal #ejemplo-02 div img, #contenido-principal #ejemplo-03 =
+div dl, #contenido-principal #ejemplo-04 div img { float: left; margin-righ=
+t: 1em; }
+
+#contenido-principal #ejemplo-03 div dl { width: 250px; font-size: 90%; col=
+or: rgb(51, 51, 51); text-align: center; }
+
+#contenido-principal #ejemplo-03 div a, #contenido-principal #ejemplo-04 di=
+v a { background: transparent; color: rgb(0, 0, 0); }
+
+#contenido-principal #ejemplo-05 div p, #contenido-principal #ejemplo-05 di=
+v a, #contenido-principal #ejemplo-08 div p, #contenido-principal #ejemplo-=
+08 div a { float: left; width: 49%; }
+
+#contenido-principal #ejemplo-05 div a, #contenido-principal #ejemplo-08 di=
+v a { background: transparent; }
+
+#contenido-principal #ejemplo-05 div code { color: rgb(51, 51, 51); }
+
+#contenido-principal #ejemplo-06 div img, #contenido-principal #ejemplo-09 =
+div img, #contenido-principal #ejemplo-10 div img, #contenido-principal #ej=
+emplo-11 div object { display: block; margin: 0px auto; }
+
+#contenido-principal #ejemplo-08 div img { border: 1px solid rgb(0, 0, 0); =
+}
+
+#contenido-principal #analizador { background: rgba(0, 0, 0, 0.2); }
+
+#contenido-principal #analizador ul { padding: 1em 0px 0.8em; overflow: aut=
+o; }
+
+#contenido-principal #analizador li { float: left; line-height: 1; list-sty=
+le: none; }
+
+#contenido-principal #analizador button, #contenido-principal #analizador i=
+nput { padding: 5px; border: 1px solid rgb(59, 59, 59); text-align: center;=
+ color: rgb(255, 255, 255); font: 1em / 1 "Century Gothic", Helvetica, Verd=
+ana, sans-serif; border-radius: 3px; cursor: pointer; background: url("../i=
+magenes/fondo_barra.png") left bottom repeat-x rgba(0, 0, 0, 0.2); }
+
+#contenido-principal #analizador input { cursor: auto; }
+
+#contenido-principal #analizador button:hover { background: rgba(132, 218, =
+255, 0.1); }
+
+#contenido-principal #analizador button:active { position: relative; top: 1=
+px; }
+
+#contenido-principal #analizador input { padding: 6px 5px; text-align: left=
+; background: rgba(0, 0, 0, 0.2); }
+
+#contenido-principal .resultado-analisis { font-weight: normal; padding: 1p=
+x 2px; }
+
+#contenido-principal #imgs-flickr { overflow: hidden; }
+
+#contenido-principal #imgs-flickr li { list-style: none; float: left; margi=
+n: 0px 15px 10px 0px; }
+
+#contenido-principal #imgs-flickr li a, #contenido-principal #imgs-flickr l=
+i img { display: block; }
+
+#contenido-principal #imgs-flickr li a { padding: 10px; background: rgba(0,=
+ 0, 0, 0.3); }
+
+#contenido-principal #imgs-flickr li a:hover, #contenido-principal #activac=
+ion-menu-curso a:hover, #contenido-principal #cambiar-estilo a:hover { back=
+ground: rgba(132, 218, 255, 0.1); }
+
+#contenido-principal #imgs-flickr + * { clear: left; }
+
+#contenido-principal #ir-a-google, #contenido-principal #activacion-menu-cu=
+rso, #contenido-principal #cambiar-estilo { padding: 1.5em 25px 1em; margin=
+: 0px -25px; background: rgba(0, 0, 0, 0.2); text-align: center; }
+
+#contenido-principal #ir-a-google a, #contenido-principal #activacion-menu-=
+curso a, #contenido-principal #cambiar-estilo a { padding: 5px 10px; border=
+: 1px solid rgb(59, 59, 59); border-radius: 3px; background: url("../imagen=
+es/fondo_barra.png") left bottom repeat-x rgba(0, 0, 0, 0.2); text-decorati=
+on: none; }
+
+#contenido-principal #ir-a-google a:active, #contenido-principal #activacio=
+n-menu-curso a:active, #contenido-principal #cambiar-estilo a:active { posi=
+tion: relative; top: 1px; }
+
+#contenido-principal #activacion-menu-curso, #contenido-principal #cambiar-=
+estilo { margin-left: -45px; padding-left: 45px; line-height: 2; }
+
+#contenido-principal #cambiar-estilo { padding: 0.5em 25px 2em 45px; line-h=
+eight: 1; }
+
+#contenido-principal h1.error { color: rgb(255, 255, 255); background: url(=
+"../imagenes/fondo_barra.png") left bottom repeat-x rgb(176, 28, 46); }
+
+#contenido-principal blockquote.error { padding-left: 35%; padding-right: 3=
+5%; }
+
+#contenido-principal #foto + * { padding-top: 1em; }
+
+#contenido-principal #foto dt, #contenido-principal #foto dd { width: 450px=
+; margin: 0px auto; padding: 10px; background: rgba(0, 0, 0, 0.3); }
+
+#contenido-principal #foto dd { text-align: center; font-size: 90%; padding=
+-top: 0px; }
+
+#contenido-principal #foto img { display: block; }
+
+#nav-articulos { padding-bottom: 20px; }
+
+#nav-articulos th { min-width: 8em; }
+
+#nav-articulos li { float: left; margin-left: 1px; margin-right: 1px; list-=
+style-type: none !important; }
+
+#nav-articulos li::after { content: " =E2=80=A2 "; }
+
+#nav-articulos li:last-child::after { content: ""; }
+
+#nav-secundaria { background: url("../imagenes/fondo_barra.png") left botto=
+m repeat-x rgba(0, 0, 0, 0.2); font-size: 90%; color: rgb(240, 240, 240); p=
+adding-top: 1px; padding-bottom: 1px !important; }
+
+#nav-secundaria ul { border-top: 1px solid rgb(0, 0, 0); margin: 0px -25px;=
+ overflow: hidden; padding-bottom: 0px; }
+
+#nav-secundaria ul li { margin: 0px; list-style: none; float: left; border-=
+top: 1px solid rgb(59, 59, 59); width: 86%; padding: 10px 2%; }
+
+#nav-secundaria ul li a { background: transparent; }
+
+#nav-secundaria ul li strong { font-weight: normal; line-height: 1; }
+
+#nav-secundaria ul li em { font-style: normal; color: rgb(158, 158, 158); f=
+ont-size: 90%; }
+
+#nav-secundaria ul li#anterior, #nav-secundaria ul li#siguiente { width: 5%=
+; padding: 0px; }
+
+#nav-secundaria ul li#anterior a, #nav-secundaria ul li#siguiente a { displ=
+ay: block; text-align: center; padding: 10px 0px; }
+
+#nav-secundaria ul li#anterior a:hover, #nav-secundaria ul li#siguiente a:h=
+over { background: rgba(132, 218, 255, 0.1); }
+
+#nav-secundaria ul li#anterior img, #nav-secundaria ul li#siguiente img { p=
+osition: relative; top: 3px; }
+
+#nav-secundaria ul li#anterior { border-right: 1px solid rgb(59, 59, 59); m=
+argin-left: -1px; }
+
+#nav-secundaria ul li#anterior a { border-right: 1px solid rgb(0, 0, 0); }
+
+#nav-secundaria ul li#siguiente { border-left: 1px solid rgb(0, 0, 0); marg=
+in-right: -1px; }
+
+#nav-secundaria ul li#siguiente a { border-left: 1px solid rgb(59, 59, 59);=
+ }
+
+#nav-secundaria a { padding: 0px; }
+
+#contenido-secundario { margin: 0px -150px; background: rgba(0, 0, 0, 0.3);=
+ border-top: 1px solid rgb(0, 0, 0); overflow: hidden; }
+
+#contenido-secundario h2 { font-weight: normal; border-bottom: 1px solid rg=
+b(0, 0, 0); margin-bottom: 0px; line-height: 1; padding-bottom: 7px; font-s=
+ize: 1.2em; text-shadow: rgb(0, 0, 0) 0px 1px 1px; }
+
+#contenido-secundario h2 + * { border-top: 1px solid rgb(59, 59, 59); }
+
+#contacto, #blog { float: left; width: 50%; border-top: 1px solid rgb(59, 5=
+9, 59); padding: 26px 0px 50px; font-size: 90%; }
+
+#contacto > * { margin: 0px 25px 0px 175px; }
+
+#f-contacto label { display: block; width: 97.4%; padding: 5px 0px; }
+
+#f-contacto label strong { font-weight: normal; font-size: 75%; color: rgb(=
+158, 158, 158); text-transform: uppercase; }
+
+#f-contacto input, #f-contacto textarea { padding: 5px; background: rgba(0,=
+ 0, 0, 0.2); width: 97.4%; color: rgb(255, 255, 255); font: 1em / 1 "Centur=
+y Gothic", Helvetica, Verdana, sans-serif; border: 1px solid rgb(59, 59, 59=
+); outline: rgb(0, 0, 0) solid 1px; border-radius: 3px; }
+
+#f-contacto textarea { height: 150px; }
+
+#f-contacto input:focus, #f-contacto textarea:focus { outline: rgb(132, 218=
+, 255) solid 2px; }
+
+#f-contacto #boton { border-radius: 4px; border: 1px solid rgb(0, 0, 0); ma=
+rgin-top: 2em; margin-bottom: 2em; background: url("../imagenes/fondo_barra=
+.png") left bottom repeat-x rgba(0, 0, 0, 0.2); width: 100%; }
+
+#f-contacto #boton button { padding: 5px; display: block; border: 1px solid=
+ rgb(59, 59, 59); text-align: center; width: 100%; color: rgb(255, 255, 255=
+); font: 1em / 1 "Century Gothic", Helvetica, Verdana, sans-serif; border-r=
+adius: 3px; cursor: pointer; background: transparent; }
+
+#f-contacto #privacidad { font-size: 75%; color: rgb(158, 158, 158); }
+
+#f-contacto #boton button:hover { background: rgba(132, 218, 255, 0.1); }
+
+#f-contacto #boton button:active { position: relative; top: 1px; }
+
+#f-contacto #boton button img { position: relative; top: 2px; padding-right=
+: 2px; }
+
+#f-contacto dd { margin-top: 1px; }
+
+#f-contacto #resultados { border-bottom: 1px dotted rgb(59, 59, 59); paddin=
+g: 0px; margin-bottom: 1em; }
+
+#contenido #resultados #veredicto { padding: 0.5em 1em; margin-top: 0.5em; =
+color: rgb(255, 255, 255); background: rgb(60, 113, 111); border-radius: 3p=
+x; }
+
+#contenido #resultados #veredicto.error { background: rgb(176, 28, 46); }
+
+#contenido #resultados p, #contenido #resultados ul { margin: 0px 0px 1em; =
+}
+
+#contenido #resultados li { font-size: 0.9em; padding-left: 20px; backgroun=
+d: url("../imagenes/error.png") left 3px no-repeat; margin-bottom: 0.2em; l=
+ist-style: none; }
+
+#blog > * { margin: 0px 175px 0px 25px; }
+
+#blog ul { padding-top: 5px; }
+
+#blog ul li { list-style: none; }
+
+#blog h3 { font-size: 1em; font-weight: normal; }
+
+#blog h3 a { color: rgb(132, 218, 255); background: transparent; }
+
+#blog h3 em { font-style: normal; display: block; font-size: 90%; color: rg=
+b(158, 158, 158); }
+
+#blog p { padding: 0.2em 0px 1.4em; }
+
+#pie { font-size: 0.9em; padding: 0px 150px; margin: 0px -150px; background=
+: rgba(0, 0, 0, 0.6); border-top: 1px solid rgb(0, 0, 0); overflow: hidden;=
+ }
+
+#pie p { padding: 15px 175px; margin: 0px -150px; border-top: 1px solid rgb=
+(59, 59, 59); text-align: right; }
+
+#pie strong { float: left; font-weight: normal; }
+
+#pie a { text-decoration: none; border-bottom: 1px dotted rgb(59, 59, 59); =
+color: inherit; }
+
+#pie a:hover { border-bottom: 1px solid rgb(238, 238, 238); }
+
+.gsc-search-box .gsc-search-button .gsc-search-button, .gsc-search-box .gsc=
+-input .gsc-input { border: 1px solid rgb(59, 59, 59); border-radius: 3px; =
+padding: 2px !important; }
+
+.gsc-search-box .gsc-search-button .gsc-search-button { text-align: center;=
+ color: rgb(255, 255, 255); font: 1em / 1 "Century Gothic", Helvetica, Verd=
+ana, sans-serif; cursor: pointer; background: url("../imagenes/fondo_barra.=
+png") left bottom repeat-x rgba(0, 0, 0, 0.2); position: relative; top: -1p=
+x; left: -3px; }
+
+.gsc-search-box .gsc-search-button .gsc-search-button:hover { background: r=
+gba(132, 218, 255, 0.1); }
+
+.gsc-search-box .gsc-search-button .gsc-search-button:active { position: re=
+lative; top: 1px; }
+
+.gsc-search-box .gsc-input .gsc-input { padding: 3px 2px !important; }
+
+table.gsc-branding th, table.gsc-branding td, table.gsc-resultsHeader th, t=
+able.gsc-resultsHeader td { border: none !important; }
+
+div.gs-webResult.gs-result { padding: 1em 0px 1.5em; border-bottom: 1px dot=
+ted rgb(59, 59, 59); }
+
+div.gs-title { font-size: 115%; margin-bottom: 0.3em; }
+
+div.gs-webResult.gs-result b { color: rgb(0, 0, 0); background: rgb(245, 25=
+3, 17); padding: 1px; font-weight: normal; }
+
+div.gs-visibleUrl.gs-visibleUrl-short { display: none; }
+
+div.gs-visibleUrl.gs-visibleUrl-long { color: rgb(132, 218, 255); display: =
+block !important; }
+
+div.gsc-cursor-page { color: rgb(255, 255, 255) !important; }
+
+div.gsc-cursor-page.gsc-cursor-current-page { color: rgb(132, 218, 255) !im=
+portant; }
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.codexexempla.org/imagenes/fondo.png
+
+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
+a9T/CDAARm+faU4XUWoAAAAASUVORK5CYII=
+
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.codexexempla.org/imagenes/fondo_barra.png
+
+iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAGNJREFUeNrs2jEKACEMRcGouf+ZtbBOK8QR9gDD+zayEU3OON/sAMmL
+aQGZIKalSAlZioCYliIgpqUICAgICMgjSCoCAuKyKwICAgIC8g3EcxCIaSkCYlqKhB8GQEyrOluA
+AQBYywFAw43lawAAAABJRU5ErkJggg==
+
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.codexexempla.org/css/1024.css
+
+@charset "utf-8";
+
+#f-contacto #boton { width: 101.2% !important; }
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.codexexempla.org/css/imprimir.css
+
+@charset "utf-8";
+
+* { background: transparent !important; }
+
+body { color: rgb(0, 0, 0); font: 12pt / 18pt Georgia, "Times New Roman", T=
+imes, serif; }
+
+#cabecera, #navegacion, #menu-curso, #saltar, #nav-secundaria, #ayuda, #h-t=
+c, #tc, #contenido-secundario { display: none; }
+
+abbr { border-bottom: none; }
+
+pre { white-space: pre-wrap; border-bottom: 0.5pt dotted rgb(0, 0, 0); bord=
+er-top: 0.5pt dotted rgb(0, 0, 0); }
+
+code { font: 11pt / 18pt "Lucida Console", "Andale Mono", "Courier New", Co=
+urier, monospace; }
+
+pre code { font-size: 10pt; line-height: 12pt; }
+
+samp, var { font: 12pt / 18pt "Lucida Console", "Andale Mono", "Courier New=
+", Courier, monospace; }
+
+abbr[title]::after { content: " (" attr(title) ")"; }
+
+a { text-decoration: none; color: inherit; }
+
+a::after { content: " [" attr(href) "]"; }
+
+b.ce { font-weight: normal; font-variant: small-caps; font-size: 10pt; }
+
+p { margin: 0px; text-indent: 1cm; }
+
+li { margin-bottom: 12pt; }
+
+h1 { font-weight: normal; font-size: 18pt; text-align: center; border-botto=
+m: 0.5pt solid rgb(0, 0, 0); padding-bottom: 12pt; }
+
+h2 { font-weight: bold; font-size: 15pt; margin-top: 24pt; margin-bottom: 6=
+pt; }
+
+h3 { font-weight: normal; font-size: 12pt; text-transform: uppercase; lette=
+r-spacing: 2pt; margin-top: 18pt; margin-bottom: 4pt; }
+
+h1 + p, h2 + p, h3 + p, ul + p, ol + p, table + p, dl + p, .nota-importante=
+, li p:first-child, dd p:first-child, table + p, blockquote p:first-child {=
+ text-indent: 0px; }
+
+dt { font-weight: bold; margin-top: 1em; }
+
+table { width: 100%; border-collapse: separate; border-spacing: 1px; empty-=
+cells: hide; font-size: 10pt; line-height: 12pt; caption-side: bottom; bord=
+er-top: 0.5pt solid rgb(0, 0, 0); border-right: 0.5pt solid rgb(0, 0, 0); b=
+order-left: 0.5pt solid rgb(0, 0, 0); border-image: initial; border-bottom:=
+ none; margin: 1em 0px; break-inside: avoid; }
+
+table caption { border-right: 0.5pt solid rgb(0, 0, 0); border-bottom: 0.5p=
+t solid rgb(0, 0, 0); border-left: 0.5pt solid rgb(0, 0, 0); border-image: =
+initial; border-top: none; padding: 5pt 0px 10pt; }
+
+table th, table td { vertical-align: top; padding: 3pt; }
+
+table th { border-bottom: 0.5pt solid rgb(0, 0, 0); text-align: left; text-=
+transform: uppercase; font-weight: normal; }
+
+table td { border-bottom: 0.5pt dotted rgb(0, 0, 0); }
+
+blockquote { font-size: 10pt; line-height: 16pt; margin-top: 16pt; margin-b=
+ottom: 16pt; }
+
+blockquote cite { display: block; text-align: right; font-style: normal; ma=
+rgin-top: 16pt; }
+
+.nota-importante { font-size: 10pt; line-height: 12pt; border-top: 0.5pt do=
+tted; border-bottom: 0.5pt dotted; padding: 6pt 10px; margin: 6pt 0px; }
+
+.nota-importante::before { content: "Nota: "; font-weight: bold; }
+
+.volver::after, sup a::after, .ilustracion dt a::after { content: ""; }
+
+.volver img { display: none; }
+
+.ilustracion { text-align: center; border: 0.5pt solid rgb(0, 0, 0); break-=
+inside: avoid; }
+
+.ilustracion img { display: block; border: 0.5pt solid rgb(0, 0, 0); margin=
+: 0px auto; width: 100%; height: auto; }
+
+.ilustracion dt { padding: 10pt 10pt 0px; margin-top: 0px; }
+
+.ilustracion dd { font-size: 10pt; line-height: 12pt; padding: 5pt 0px 10pt=
+; }
+
+#pie { font-size: 10pt; line-height: 12pt; border-top: 0.5pt solid rgb(0, 0=
+, 0); width: 100%; margin-top: 1cm; }
+
+#pie p { text-indent: 0px; }
+
+#pie strong { display: none; }
+
+#pie p::before { content: "Contenido sujeto a http://creativecommons.org/li=
+censes/by/2.5/es/"; font-size: 8pt; color: rgb(0, 0, 0); }
+
+#pie p::after { content: "CodexExempla.org"; font-variant: small-caps; disp=
+lay: block; text-align: center; padding-top: 10pt; color: rgb(0, 0, 0); }
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.codexexempla.org/css/s.css
+
+@charset "utf-8";
+
+code { font-size: 1.25em !important; }
+
+var, samp { font-size: 1.35em !important; }
+
+#navegacion ul li:last-child a { margin-right: -3px; }
+
+#nav-secundaria #anterior a, #nav-secundaria #siguiente a { padding-bottom:=
+ 12px !important; }
+
+#nav-secundaria #siguiente a { margin-right: -2px !important; }
+
+#b { padding-top: 8px !important; padding-bottom: 8px !important; }
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.codexexempla.org/imagenes/logo.png
+
+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
+gg==
+
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.codexexempla.org/imagenes/expandir.png
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAMFJREFUeNpi/P//PwMlgImBQjAMDGABER8/fkQJyR8/fjB8+/aN4cuX
+LwyfPn0CyYPxhw8fGN6/fw9md3V1GQKVPgC7QEBAQJFEzRuASh1AWmFe+AA0JJBIzR+geh6A9MEN
+AOIDEhISgURoPgDEC6H0B+RABEvq6ekFEqsZWyyAFXl7ewcSoxkMcCRlASAOKCsrA0neB+L1ID5U
+HAUwggxgZGTEZQgopA2A+AKGzQRcgGyIAjabiTWAIGCk1ACAAAMA6M640O6D1g4AAAAASUVORK5C
+YII=
+
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.codexexempla.org/imagenes/reactivar.png
+
+iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAASVJREFUeNpi/P//PwO5gIWRkZEcfWx6s1kymMjQyK7Vw9zBwsMwkYVU
+jZpdzJ0c0oz5fz4xfGYhVSOnLGP+7w8M3+52/d1JisYJRstZ/utOZ/nKpci4HigWApJg1J3KIgyi
+SdQoxqRazezCIsBwT72JOQwU+gScuuvb/f9LgeKHgPgN87vD/0UEzRhtOeUYE3l1GO+/O/T/OlDi
+HyGNIDXMQELgzZ7/v/kNGNW4VRgjoQbcB2psx6cR5CyQ5m9A/OPtgf/fgAYocSszRglZM5pxyjDG
+4NMI0/wbiN8D8ReQAXx6jKpcSoymv98zfL/bjVsjOuAGYksgblMqZH4MDNW1sFAFYqwpkRGLAbpA
+rA3Ez4D4LD4bscUtF9SQnyCv4HMqQIABAEdlkBg7EIJhAAAAAElFTkSuQmCC
+
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.codexexempla.org/imagenes/error.png
+
+iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAaNJREFUeNqkUktLAlEUnjs+yAdTmRFmEWnSxnW0KlCC6EW72kYQ/ZJ+
+QwS1qYVECykVwYxaFe1qVQhGUFKk+WDMUMfpfMOM3MRVXTicc77zfefOPWeYqqrCX48o/OfoN5t2
+Bv2zx97g9UavZ5Ry1oXKtvu93og3GIFHbtzsmrTaE1YmTs85XJfr0tBYRwMGbMbWd9XDxDV4wqS2
+OCp/ABDsosm37HRfcA00ITCq+cE5/yreQWPWxfJh+S1RUpoTm33DAYdoGge5JahhFClOA0N8UMo9
+nsr5FIXfDG9mjFkp8ZEtEXELDbSOLeUZ3ima8BXCfimXOZPzexTGyLKGGLWuDYzTKSSr86uq62D8
+plY+KSiNhlFADAw1Q6hNkbtZyxecAwEaUFoSzSP8zZVW8yVSeQ8n5EIGG+4Ut6dqDGe3+JqHp726
+4ast5Yk+PURNMAvVzO+RF+KNyWohitjC2Cq/BYK0BsabpRVuHdxwjmCIgaEGDri/fpJU9fO+y1Qf
+dIvxDXSuy3izh5JFn8UWyjZqtxQn+alya5wnzhRx8OnxHwEGAML5zl/ZAW2AAAAAAElFTkSuQmCC
+
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.codexexempla.org/imagenes/anterior.png
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAMRJREFUeNqkk9EJwyAQhqsTZIR2gazQvvtS18goWSRTCBmhuEhURPKW
+enAXjBh6oT8c5NDvU5Motm27/RUQlHUWay0M3nN1JSc5iwAcQoDHN0r2SC7svYf2STtgCUoYBV09
+R3Jh51xznuTCy7LwBGcwHuG3oO/7RwtmC3KcUkrXMH5GniDXPAyDLuEYI/8lkmQcR01wSumSYJdM
+06QBXtf1smCXGGN00R8i6gskhGiJ4A984T2Yc32I4wpI0uEuHHFfAQYAhk3FANBRlhsAAAAASUVO
+RK5CYII=
+
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.codexexempla.org/imagenes/siguiente.png
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAMhJREFUeNqkk8EJwyAUhp+ZICN0hIzQETpNhnAA750gJ+8dobhAc/Sm
+hiC52WewUNL3NFDhR+H5fYL6REoJ/hpZcIz3PlsvmL7FdlwRJS+cri1JVytaa6eWhBVs2wYxRjDG
+VCVdDV7XFZZlAa01KyEF33AIYY9SipSQgiOMFwrOORjH8UdCCig4r6WUM5aHpoCBPZaeJb4pIOAH
+5l7muuAszArOwmwv4G3nXphKbtwnynsF1Y1CiKE818ye3BD05VTPwR/BW4ABAJ461Pl9xBrcAAAA
+AElFTkSuQmCC
+
+------MultipartBoundary--qpSeGBmislReo2ozOfWojSyzEX05ufXii92Nvx0HuO------

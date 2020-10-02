@@ -6,7 +6,7 @@ $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
 include ($rutadb);
 include ($rutaheader); 
 $esta = $_SERVER['PHP_SELF'];
-$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borratrans.php';
+$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraest.php';
 ?>
 
 <div class="col-md-12 container p-2">

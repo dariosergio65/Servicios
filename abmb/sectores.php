@@ -6,7 +6,7 @@ $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
 include ($rutadb);
 include ($rutaheader); 
 $esta = $_SERVER['PHP_SELF'];
-$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
+$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borrasector.php';
 ?>
 
 <div class="col-md-12 container p-2">
@@ -17,15 +17,15 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
 				<table class="table table-bordered">
 					<thead class="thead-cel" style="text-align:center">
 						<tr>
-							<th style="width: 50%">Personal</th>
+							<th style="width: 50%">Sectores</th>
 							<th style="width: 40%" colspan=2>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
 							<tr>
-								<td><input text="est" name="agen" style="width: 100%" placeholder="Agente a buscar"></td>
+								<td><input text="sector" name="sector" style="width: 100%" placeholder="Sector a buscar"></td>
 								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary"></td>
-								<td><a href="/Servicios/Altas/altaagen.php?flag=0" class="btn btn-primary"> Nuevo Agente <i class="fa fa-cog fa-spin"></i>
+								<td><a href="/Servicios/Altas/altasector.php?flag=0" class="btn btn-primary"> Nuevo Sector <i class="fa fa-cog fa-spin"></i>
 								</a></td>
 							</tr>		
 					</tbody>
@@ -49,33 +49,29 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
 
 	<div class="row">
 
-		<div class="col-md-12">
+		<div class="col-md-8">
 
-				<table class="table table-sm table-bordered table-hover">
+				<table class="table table-condensed table-bordered table-hover">
 					<thead class="thead-dario" style="text-align:center">
 						<tr>
-							<th style="width: 10%">DNI</th>
-							<th style="width: 25%">Agente</th>
-							<th style="width: 15%">Celular</th>
-							<th style="width: 15%">Sector</th>
-							<th style="width: 20%">Direccion</th>
-							<th style="width: 15%">Acciones</th>
+							<th style="width: 70%">Sector</th>
+							<th style="width: 30%">Acciones</th>
 						<tr>
 					</thead>
 					<tbody>
 						<?php
 							if (isset($_POST['Busca'])){
-								$miagen= '%' . $_POST['agen'] . '%';
-								$query = "SELECT dni,Agente,Celular,Sector,Direccion FROM agentes LEFT JOIN sectores ON agentes.id_sector=sectores.id WHERE Agente like '$miagen' AND Activo=1";
+								$miest= '%' . $_POST['sector'] . '%';
+								$query = "SELECT * FROM sectores WHERE Sector like '$miest'";
 							} 
 							else{
-								$query = "SELECT dni,Agente,Celular,Sector,Direccion FROM agentes LEFT JOIN sectores ON agentes.id_sector=sectores.id WHERE Activo=1";
+								$query = "SELECT * FROM sectores";
 							}
 							unset($_POST['Busca']);
 							$result_tasks = mysqli_query($conn,$query);
 
 							if (!$result_tasks){
-								$query = "SELECT * FROM agentes";
+								$query = "SELECT * FROM sectores";
 								$result_tasks = mysqli_query($conn,$query);
 								echo 'ALGO SALIO MAL';
 							}
@@ -83,18 +79,14 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
 							while ($row=mysqli_fetch_array($result_tasks)) { 
 						?>
 								<tr>
-									<td><?php echo $row['dni'] ?></td>
-									<td><?php echo $row['Agente'] ?></td>
-									<td><?php echo $row['Celular'] ?></td>
 									<td><?php echo $row['Sector'] ?></td>
-									<td><?php echo $row['Direccion'] ?></td>
 									<td>
-										<a href="/Servicios/Modif/modifagen.php?id=<?php echo $row['dni'] ?>" class= 
+										<a href="/Servicios/Modif/modifsector.php?id=<?php echo $row['id'] ?>" class= 
 										"btn btn-primary btn-sm">
 											Modificar <i class="fa fa-cog fa-spin"></i>
 										</a>
 									
-										<a href="/Servicios/Bajas/borraagen.php?id=<?php echo $row['dni'] ?>" class= 
+										<a href="/Servicios/Bajas/borrasector.php?id=<?php echo $row['id'] ?>" class= 
 										"btn btn-danger btn-sm">
 											Borrar <i class="far fa-trash-alt"></i>
 										</a>

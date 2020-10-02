@@ -39,11 +39,12 @@ if (isset($_POST['update'])) {
     $miagen = $_POST['agen'];
     $miid = $_POST['dni'];
     $micelu = $_POST['celu'];
+    $misector = $_POST['sector'];
     $midire = $_POST['dire'];
 
     $id = $_POST['id'];
 
-    $query="UPDATE agentes SET Agente = '$miagen', dni = '$miid', Celular = '$micelu', Direccion = '$midire' WHERE dni = $id";
+    $query="UPDATE agentes SET Agente = '$miagen', dni = '$miid', Celular = '$micelu', id_sector = $misector, Direccion = '$midire' WHERE dni = $id";
     $result=mysqli_query($conn,$query);
 
     if(!$result) {
@@ -69,6 +70,18 @@ if (isset($_POST['update'])) {
                     </div>
                     <div class="form-group">Celular: 
                         <input type="text" name="celu" value="<?php echo $micelu; ?>" class="form-control">
+                    </div>
+                    <div class="form-group">Sector: 
+                        <select name="sector" style="width: 50%">
+                            <option value="0">Seleccione:</option>
+                            <?php
+                            $querysector="SELECT * FROM sectores";
+                            $resultsector=mysqli_query($conn,$querysector);
+                            while ($valores = mysqli_fetch_array($resultsector)) {
+                                echo '<option value="' . $valores['id'] . '">' . $valores['Sector'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="form-group">Dirección: 
                         <input type="text" name="dire" value="<?php echo $midire; ?>" class="form-control">

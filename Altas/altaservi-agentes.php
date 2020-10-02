@@ -1,7 +1,7 @@
 <?php
 include ("../db.php");
 include ("../includes/header.php");
-//include_once ("funciones.js");
+include_once ("funciones.js");
 ?>
 
 <?php if (isset($_SESSION['message'])) { ?>
@@ -168,6 +168,46 @@ if (isset($_POST['cargaservi'])) {
                             <td colspan="4">
                                 <button class="btn btn-success" name="cargaservi">
                                     CARGAR SERVICIO
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-11 ">
+            <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+
+                <table class="table table-bordered">
+                    <thead class="thead-cel" style="text-align:center">
+                        <tr>
+                            <th colspan=4>Agentes: </th>
+                        </tr>
+                    </thead>
+                        <tbody id="aquiagentes">
+                        <tr >
+                            <td style="text-align:left" rowspan="100" colspan="2"><p>Asignar Agente:</p><br> 
+                            <select name="agente" id="agente" style="width: 50%">
+                                <option value="0">Seleccione:</option>
+                                <?php
+                                $queryag="SELECT * FROM agentes";
+                                $resultadoag=mysqli_query($conn,$queryag);
+                                while ($valores = mysqli_fetch_array($resultadoag)) {
+                                    echo '<option value="' . $valores['dni'] . '">' . $valores['Agente'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <div><br><button class="btn btn-danger btn-sm" >Prueba</button><br></div>
+                            <input type="Radio" name="col"  id="borrar" > Borr <br> 
+                            </td>
+                        </tr>
+                        <tr> 
+                            <td colspan="4">
+                                <button class="btn btn-success" name="cargaagente">
+                                    CARGAR AGENTES
                                 </button>
                             </td>
                         </tr>

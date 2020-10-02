@@ -19,6 +19,7 @@ if (isset($_POST['cargaagen'])) {
     $miagen = $_POST['agen'];
     $midni = $_POST['dni'];
     $micelu = $_POST['celu'];
+    $misector = $_POST['sector'];
     $midire = $_POST['dire'];
 
     if (isset($_GET['flag'])) {
@@ -31,7 +32,7 @@ if (isset($_POST['cargaagen'])) {
         }
     }
     
-    $query="INSERT INTO agentes (dni,Agente,Celular,Direccion) VALUES ($midni, '$miagen', '$micelu', '$midire')";
+    $query="INSERT INTO agentes (dni,Agente,Celular,id_sector,Direccion) VALUES ($midni, '$miagen', '$micelu', $misector, '$midire')";
     $result=mysqli_query($conn,$query);
     //$registro = mysqli_num_rows($result); 
     //echo "llegamos aca";
@@ -69,6 +70,20 @@ if (isset($_POST['cargaagen'])) {
                             </tr>
                             <tr>
                                 <td>Celular: <input text="celu" name="celu" style="width: 50%" placeholder="número de celular"></td>
+                            </tr>
+                            <tr>
+                                <td>Sector: 
+                                    <select name="sector" style="width: 50%">
+                                    <option value="0">Seleccione:</option>
+                                    <?php
+                                    $querysector="SELECT * FROM sectores";
+                                    $resultsector=mysqli_query($conn,$querysector);
+                                    while ($valores = mysqli_fetch_array($resultsector)) {
+                                        echo '<option value="' . $valores['id'] . '">' . $valores['Sector'] . '</option>';
+                                    }
+                                    ?>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Dirección<input text="dire" name="dire" style="width: 100%" placeholder="Dirección particular"></td>

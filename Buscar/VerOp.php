@@ -11,8 +11,9 @@ if (isset($_GET['id'])) {
         WHERE op.OP=$id AND op.idCliente = clientes.id AND op.idVendedor = vendedores.id";
     $result=mysqli_query($conn,$query);
     //$registro = mysqli_num_rows($result);
+    if ($id == 0) { $result = NULL;}
     
-    if ($result) {    
+    if (!is_null($result)) {    
         $row = mysqli_fetch_array($result);
         $miop = $row['OP'];
         $mioc = $row['OC'];
