@@ -18,15 +18,37 @@ include ("../includes/header.php");
 }  unset ($_SESSION['message']); 
 //session_unset(); 
 
-    if (isset($_POST['agregaag'])){
-        //session_start();
-        if(!isset($_SESSION['cuenta'])){
-            $_SESSION['cuenta'] = 0; // la uso para agregar agentes al servicio
-            $_SESSION['ag_nuevo'] = array();
-        }
+if (isset($_GET['id'])) {
+    $id=$_GET['id'];
+    $query="SELECT * FROM servicios WHERE id = $id";
+    $result=mysqli_query($conn,$query);
+    
+    if ($result) {    
+        $row = mysqli_fetch_array($result);
+        $minombre = $row['Nombre'];
+        $miid = $row['id'];
+        $miopref = $row['OpRef'];
+        $micliente1 = $row['idCliente1'];
+        $miopservicio = $row['OpServicio'];
+        $micliente2 = $row['idCliente2'];
+        $mitrabajo = $row['Trabajo'];
+        $milugar = $row['Lugar'];
+        $mifechaini = $row['FechaIni'];
+        $mifechafin = $row['FechaFin'];
+        $miestado = $row['Estado'];
+        $miobs = $row['OBS'];
+        $mifacturado = $row['Facturado'];
     }
 
+
+}
+
 ?>
+
+
+
+
+
 
 <?php
 if (isset($_POST['cargaservi'])) {
@@ -68,7 +90,7 @@ if (isset($_POST['cargaservi'])) {
 <div class="container p-1">
 
     <div class="row">
-        <div class="col-md-11 ">
+        <div class="col-md-12 ">
             <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
                     
                 <table class="table table-bordered">

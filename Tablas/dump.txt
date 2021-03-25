@@ -7,7 +7,7 @@ para recuperar la db en destino
 
 mysql --user=root --password="" --database=nombre < servicios.sql
 
-(la base de datos nombre tiene que estar creada)
+(la base de datos "nombre" tiene que estar creada)
 
 
 los ejecutables de mysql tienen que estar en el path

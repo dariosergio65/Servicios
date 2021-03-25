@@ -47,6 +47,17 @@ $esta = $_SERVER['PHP_SELF'];
 		</div>
 	</div>	
 
+	<?php if (isset($_SESSION['message'])) { ?>
+
+	<div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+		<?= $_SESSION['message'] ?>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	<?php } session_unset(); ?>	
+
 
 	<div class="row">
 
@@ -60,11 +71,11 @@ $esta = $_SERVER['PHP_SELF'];
 							<th>Cliente OP</th>
 							<th>OP Serv.</th>
 							<th>Cliente Serv.</th>
-							<th style="width: 25%">Trabajo Realizado</th>
+							<th style="width: 20%">Trabajo Realizado</th>
 							<th>Lugar</th>
 							<th>Fecha inicio</th>
 							<th>Fecha final</th>
-							<th>Acciones</th>
+							<th style="width: 9%">Acciones</th>
 						<tr>
 					</thead>
 					<tbody>
@@ -78,17 +89,17 @@ $esta = $_SERVER['PHP_SELF'];
 								if ($op1fin == 1){
 									//$query = "SELECT * FROM servicios WHERE idCliente1 LIKE '$clientefin' AND Lugar LIKE '$lugarfin'";
 															// falta operario y Vehiculo
-									$query = "SELECT s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin'";
+									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin'";
 									//$qCliente2 = "SELECT c.Cliente FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE idCliente1 LIKE '$clientefin' AND Lugar LIKE '$lugarfin'";
 									$qCliente2 = "SELECT c.Cliente FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin'";
 								}
 								else{
-									$query = "SELECT s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin)";
+									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin)";
 									$qCliente2 = "SELECT c.Cliente FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin)";
 								}
 							} 
 							else{
-								$query = "SELECT s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id ";
+								$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id ";
 								$qCliente2 = "SELECT c.Cliente FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id ";
 								//$query = "SELECT * FROM servicios";
 							}
@@ -118,9 +129,14 @@ $esta = $_SERVER['PHP_SELF'];
 									<td><?php echo $row['FechaIni'] ?></td>
 									<td><?php echo $row['FechaFin'] ?></td>
 									<td>
-										<a href="../edit.php?id=<?php echo $row['id'] ?>" class= 
-										"btn btn-warning btn-sm">
-											Detalle </i>
+										<a href="/Servicios/Buscar/detalle.php?id=<?php echo $row['id'] ?>" class= 
+										"btn btn-warning btn-sm">D.</i>
+										</a>
+										
+										<a href="/Servicios/Modif/modifservicio.php?id=<?php echo $row['id'] ?>" class= "btn btn-primary btn-sm"> <i class="fa fa-cog fa-spin"></i>
+										</a>
+									
+										<a href="/Servicios/Bajas/borraservicio.php?id=<?php echo $row['id'] ?>" class="btn btn-danger btn-sm"> <i class="far fa-trash-alt"></i>
 										</a>
 									</td>
 								</tr>		

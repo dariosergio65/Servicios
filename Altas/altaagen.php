@@ -19,8 +19,10 @@ if (isset($_POST['cargaagen'])) {
     $miagen = $_POST['agen'];
     $midni = $_POST['dni'];
     $micelu = $_POST['celu'];
-    $misector = $_POST['sector'];
+    $miestado = $_POST['estado'];
+    $mivence = $_POST['vence'];
     $midire = $_POST['dire'];
+    $miobs = $_POST['obs'];
 
     if (isset($_GET['flag'])) {
         $miflag = $_GET['flag'];
@@ -32,7 +34,7 @@ if (isset($_POST['cargaagen'])) {
         }
     }
     
-    $query="INSERT INTO agentes (dni,Agente,Celular,id_sector,Direccion) VALUES ($midni, '$miagen', '$micelu', $misector, '$midire')";
+    $query="INSERT INTO agentes (dni,Agente,Celular,id_estado,Vence,Direccion,OBS) VALUES ($midni, '$miagen', '$micelu', $miestado, STR_TO_DATE('$mivence', '%Y-%m-%d'), '$midire', '$miobs')";
     $result=mysqli_query($conn,$query);
     //$registro = mysqli_num_rows($result); 
     //echo "llegamos aca";
@@ -72,21 +74,29 @@ if (isset($_POST['cargaagen'])) {
                                 <td>Celular: <input text="celu" name="celu" style="width: 50%" placeholder="número de celular"></td>
                             </tr>
                             <tr>
-                                <td>Sector: 
-                                    <select name="sector" style="width: 50%">
+                                <td>Estado: 
+                                    <select name="estado" style="width: 50%">
                                     <option value="0">Seleccione:</option>
                                     <?php
-                                    $querysector="SELECT * FROM sectores";
-                                    $resultsector=mysqli_query($conn,$querysector);
-                                    while ($valores = mysqli_fetch_array($resultsector)) {
-                                        echo '<option value="' . $valores['id'] . '">' . $valores['Sector'] . '</option>';
+                                    $queryestado="SELECT * FROM estados";
+                                    $resultestado=mysqli_query($conn,$queryestado);
+                                    while ($valores = mysqli_fetch_array($resultestado)) {
+                                        echo '<option value="' . $valores['id'] . '">' . $valores['Estado'] . '</option>';
                                     }
                                     ?>
                                     </select>
                                 </td>
                             </tr>
+
+                            <tr>
+                                <td>Vence: <input type="date" name="vence" style="width: 50%" placeholder="Fecha de Vencimiento del Apto"></td>
+                            </tr>
+
                             <tr>
                                 <td>Dirección<input text="dire" name="dire" style="width: 100%" placeholder="Dirección particular"></td>
+                            </tr>
+                            <tr>
+                                <td>Comentarios<input text="obs" name="obs" style="width: 100%" placeholder="Observaciones"></td>
                             </tr>
                             <tr> 
                                 <td>

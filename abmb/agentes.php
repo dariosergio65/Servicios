@@ -55,21 +55,22 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
 					<thead class="thead-dario" style="text-align:center">
 						<tr>
 							<th style="width: 10%">DNI</th>
-							<th style="width: 25%">Agente</th>
-							<th style="width: 15%">Celular</th>
-							<th style="width: 15%">Sector</th>
-							<th style="width: 20%">Direccion</th>
-							<th style="width: 15%">Acciones</th>
+							<th style="width: 25%">Nombre</th>
+							<th style="width: 10%">Celular</th>
+							<th style="width: 10%">Estado</th>
+							<th style="width: 10%">Vence</th>
+							<th style="width: 15%">Comm</th>
+							<th style="width: 20%">Acciones</th>
 						<tr>
 					</thead>
 					<tbody>
 						<?php
 							if (isset($_POST['Busca'])){
 								$miagen= '%' . $_POST['agen'] . '%';
-								$query = "SELECT dni,Agente,Celular,Sector,Direccion FROM agentes LEFT JOIN sectores ON agentes.id_sector=sectores.id WHERE Agente like '$miagen' AND Activo=1";
+								$query = "SELECT dni,Agente,Celular,Estado,Vence,OBS FROM agentes LEFT JOIN estados ON agentes.id_estado=estados.id WHERE Agente like '$miagen' AND Activo=1";
 							} 
 							else{
-								$query = "SELECT dni,Agente,Celular,Sector,Direccion FROM agentes LEFT JOIN sectores ON agentes.id_sector=sectores.id WHERE Activo=1";
+								$query = "SELECT dni,Agente,Celular,Estado,Vence,OBS FROM agentes LEFT JOIN estados ON agentes.id_estado=estados.id WHERE Activo=1 order by Estado";
 							}
 							unset($_POST['Busca']);
 							$result_tasks = mysqli_query($conn,$query);
@@ -86,8 +87,21 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
 									<td><?php echo $row['dni'] ?></td>
 									<td><?php echo $row['Agente'] ?></td>
 									<td><?php echo $row['Celular'] ?></td>
-									<td><?php echo $row['Sector'] ?></td>
-									<td><?php echo $row['Direccion'] ?></td>
+
+									<?php
+										if ($row['Estado']=='Apto'){ ?>
+											<td bgcolor="lightgreen"><?php echo $row['Estado'] ?></td>
+										<?php
+										}else{
+										?>
+											<td><?php echo $row['Estado'] ?></td>
+										<?php
+										}
+									?>	
+
+									<td><?php echo $row['Vence'] ?></td>
+									<td><?php echo $row['OBS'] ?></td>							
+
 									<td>
 										<a href="/Servicios/Modif/modifagen.php?id=<?php echo $row['dni'] ?>" class= 
 										"btn btn-primary btn-sm">

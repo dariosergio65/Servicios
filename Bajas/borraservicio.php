@@ -3,15 +3,14 @@ $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
 $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
 include ($rutadb);
 include ($rutaheader); 
-$regreso = $_SERVER['DOCUMENT_ROOT'] . '/servicios/abmb/agentes.php';
+$regreso = $_SERVER['DOCUMENT_ROOT'] . '/servicios/buscar/tablero.php';
 ?>
 
 <?php
 
 if (isset($_GET['id'])) {
     $id=$_GET['id'];
-    //$query="DELETE FROM agentes where dni = $id";
-    $query="UPDATE agentes SET activo=0 where dni = $id";
+    $query="DELETE FROM servicios where id = $id";
     $result=mysqli_query($conn,$query);
 
     if(!$result){
@@ -21,7 +20,7 @@ if (isset($_GET['id'])) {
     $_SESSION['message'] = 'Registro borrado';
     $_SESSION['message_type'] = 'danger';
 
-    header("location: /servicios/abmb/agentes.php");
+    header("location: /servicios/buscar/tablero.php");
 
 }
 ?>

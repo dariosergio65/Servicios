@@ -31,7 +31,10 @@ if (isset($_GET['id'])) {
         $miagen = $row['Agente'];
         $miid = $row['dni'];
         $micelu = $row['Celular'];
+        $miestado = $row['id_estado'];
+        $mivence = $row['Vence'];
         $midire = $row['Direccion'];
+        $miobs = $row['OBS'];
     }
 }
 
@@ -39,12 +42,14 @@ if (isset($_POST['update'])) {
     $miagen = $_POST['agen'];
     $miid = $_POST['dni'];
     $micelu = $_POST['celu'];
-    $misector = $_POST['sector'];
+    $miestado = $_POST['estado'];
+    $mivence = $_POST['vence'];
     $midire = $_POST['dire'];
+    $miobs = $_POST['obs'];
 
     $id = $_POST['id'];
 
-    $query="UPDATE agentes SET Agente = '$miagen', dni = '$miid', Celular = '$micelu', id_sector = $misector, Direccion = '$midire' WHERE dni = $id";
+    $query="UPDATE agentes SET Agente = '$miagen', dni = '$miid', Celular = '$micelu', id_estado = $miestado, Vence = '$mivence', Direccion = '$midire', OBS = '$miobs' WHERE dni = $id";
     $result=mysqli_query($conn,$query);
 
     if(!$result) {
@@ -71,20 +76,30 @@ if (isset($_POST['update'])) {
                     <div class="form-group">Celular: 
                         <input type="text" name="celu" value="<?php echo $micelu; ?>" class="form-control">
                     </div>
-                    <div class="form-group">Sector: 
-                        <select name="sector" style="width: 50%">
+                    <div class="form-group">Estado: 
+                        <select name="estado" style="width: 50%">
                             <option value="0">Seleccione:</option>
                             <?php
-                            $querysector="SELECT * FROM sectores";
-                            $resultsector=mysqli_query($conn,$querysector);
-                            while ($valores = mysqli_fetch_array($resultsector)) {
-                                echo '<option value="' . $valores['id'] . '">' . $valores['Sector'] . '</option>';
+                            $queryestado="SELECT * FROM estados";
+                            $resultestado=mysqli_query($conn,$queryestado);
+                            while ($valores = mysqli_fetch_array($resultestado)) {
+                                if ($miestado==$valores['id']){
+                                    echo '<option value="' . $valores['id'] . '" selected>' . $valores['Estado'] . '</option>';
+                                }else{
+                                    echo '<option value="' . $valores['id'] . '">' . $valores['Estado'] . '</option>';    
+                                }
                             }
                             ?>
                         </select>
                     </div>
+                    <div class="form-group">Fecha de vencimiento: 
+                        <input type="date" name="vence" value="<?php echo $mivence; ?>" class="form-control">
+                    </div>
                     <div class="form-group">Dirección: 
                         <input type="text" name="dire" value="<?php echo $midire; ?>" class="form-control">
+                    </div>
+                    <div class="form-group">Observaciones: 
+                        <input type="text" name="obs" value="<?php echo $miobs; ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">  
