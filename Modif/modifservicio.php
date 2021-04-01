@@ -38,7 +38,8 @@ if (isset($_GET['id'])) {
         $milugar = $row['Lugar'];
         $mifechaini = $row['FechaIni'];
         $mifechafin = $row['FechaFin'];
-        $miestado = $row['Estado'];
+        $miestado = $row['id_estado'];
+        $mitranspo = $row['id_transporte'];
         $miobs = $row['OBS'];
         $mifacturado = $row['Facturado'];
     }
@@ -56,12 +57,13 @@ if (isset($_POST['update'])) {
     $nufechaini = $_POST['fechaini'];
     $nufechafin = $_POST['fechafin'];
     $nuestado = $_POST['estado'];
+    $nutranspo = $_POST['transpo'];
     $nuobs = $_POST['obs'];
     $nufacturado = $_POST['fac'];
 
     $id = $_POST['id'];
 
-    $query="UPDATE servicios SET Nombre = '$nunombre', OpRef = $nuopref, idCliente1 = $nucliente1, OpServicio = $nuopservicio, Trabajo = '$nutrabajo', Lugar = '$nulugar', FechaIni = '$nufechaini', FechaFin = '$nufechafin', Estado = '$nuestado', OBS = '$nuobs', Facturado = '$nufacturado' WHERE id = $id";
+    $query="UPDATE servicios SET Nombre = '$nunombre', OpRef = $nuopref, idCliente1 = $nucliente1, OpServicio = $nuopservicio, Trabajo = '$nutrabajo', Lugar = '$nulugar', FechaIni = '$nufechaini', FechaFin = '$nufechafin', id_estado = $nuestado, id_transporte = $nutranspo, OBS = '$nuobs', Facturado = '$nufacturado' WHERE id = $id";
 
     $result=mysqli_query($conn,$query);
 
@@ -165,7 +167,7 @@ if (isset($_POST['update'])) {
                     <div class="form-group">Estado:
                         <select name="estado" style="width: 60%">
                             <option value="0">Seleccione:</option>
-                            <?php $queryestado="SELECT * FROM estados";
+                            <?php $queryestado="SELECT * FROM estadoservi";
                             $restado=mysqli_query($conn,$queryestado);
                             while ($valores = mysqli_fetch_array($restado)) {
                                 if ($miestado==$valores['id']){
@@ -177,6 +179,24 @@ if (isset($_POST['update'])) {
                             ?>
                         </select>
                     </div>
+
+                    <div class="form-group">Trasnporte utilizado: 
+                        <select name="transpo" style="width: 50%">
+                                <option value="0">Seleccione:</option>
+                                <?php
+                                $querytrans="SELECT * FROM transportes";
+                                $rtrans=mysqli_query($conn,$querytrans);
+                                while ($valores = mysqli_fetch_array($rtrans)) {
+                                    if ($mitranspo==$valores['id']){
+                                        echo '<option value="' . $valores['id'] . '" selected>' . $valores['Transporte'] . '</option>';
+                                    }else{
+                                        echo '<option value="' . $valores['id'] . '">' . $valores['Transporte'] . '</option>';
+                                    }
+                                }
+                                ?>
+                        </select>
+                    </div>
+
                     <div class="form-group">Facturado: </b>
                         <input type="text" name="fac" value="<?php echo $mifacturado; ?>" class="form-control">
                     </div>

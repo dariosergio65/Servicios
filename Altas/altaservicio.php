@@ -40,16 +40,16 @@ if (isset($_POST['cargaservi'])) {
     $mifechaini = $_POST['fechaini'];
     $mifechafin = $_POST['fechafin'];//
     $miestado = $_POST['estado'];
-    //$miestado = "NADA";
+    $mitranspo = $_POST['transpo'];
     $miobs = $_POST['obs'];//
     $mifac = $_POST['fac'];
 
-    //$query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,idCliente2,Trabajo,Lugar,FechaIni,FechaFin,estado,OBS)
-    //VALUES ('$minombre',$miopref,$miidcliente1,$miopservicio,$miidcliente2,'$mitrabajo','$milugar', STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'),'$miestado','$miobs')";
-    $query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,idCliente2,Trabajo,Lugar,FechaIni,FechaFin,Estado,OBS,Facturado)
-    VALUES ('$minombre',$miopref,$miidcliente1,$miopservicio,$miidcliente2,'$mitrabajo','$milugar',STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'),$miestado,'$miobs',$mifac)";
+    //$query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,idCliente2,Trabajo,Lugar,FechaIni,FechaFin,id_estado,OBS,Facturado)
+    //VALUES ('$minombre',$miopref,$miidcliente1,$miopservicio,$miidcliente2,'$mitrabajo','$milugar',STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'),$miestado,'$miobs',$mifac)";
+
+    $query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,idCliente2,Trabajo,Lugar,FechaIni,FechaFin,id_estado,id_transporte,OBS,Facturado) VALUES ('$minombre',$miopref,$miidcliente1,$miopservicio,$miidcliente2,'$mitrabajo','$milugar',STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'),$miestado,$mitranspo,'$miobs',$mifac)";
+
     $result=mysqli_query($conn,$query);
-    //$registro = mysqli_num_rows($result); 
     
     if ($result) {    
         $_SESSION['message'] = "Registro cargado con exito";
@@ -63,6 +63,7 @@ if (isset($_POST['cargaservi'])) {
         die("Algo fallo y no se pudo CARGAR el registro.");
     }
 }
+//////
 ?>
 
 <div class="container p-1">
@@ -145,18 +146,18 @@ if (isset($_POST['cargaservi'])) {
                             <th colspan=2>Fecha de fin del  Servicio: <input type="date" name="fechafin" value="" style="width: 50%" ></th>
                         </tr>
                         <tr>
-                            <td style="text-align:left" colspan=3>
+                            <td style="text-align:left" colspan=3 ROWSPAN="2">
                                 <div class="form-group">Observaciones
                                     <textarea name="obs" rows="2" value="" style="width: 100%" class="form-control">
                                     </textarea>
                                 </div>
                             </td>
                             </td>
-                            <td style="text-align:left" colspan=1>ESTADO DEL SERVICIO: 
+                            <td style="text-align:left" colspan=1 >ESTADO DEL SERVICIO: 
                             <select name="estado" style="width: 60%">
                                 <option value="0">Seleccione:</option>
                                 <?php
-                                $queryestado="SELECT * FROM estados";
+                                $queryestado="SELECT * FROM estadoservi";
                                 $restado=mysqli_query($conn,$queryestado);
                                 while ($valores = mysqli_fetch_array($restado)) {
                                     echo '<option value="' . $valores['id'] . '">' . $valores['Estado'] . '</option>';
@@ -166,8 +167,23 @@ if (isset($_POST['cargaservi'])) {
                             </td>
                         </tr>
                         <tr>
+                            <td>
+                            TRANSPORTE UTILIZADO:
+                            <select name="transpo" style="width: 60%">
+                                <option value="0">Seleccione:</option>
+                                <?php
+                                $queryestado="SELECT * FROM transportes";
+                                $restado=mysqli_query($conn,$queryestado);
+                                while ($valores = mysqli_fetch_array($restado)) {
+                                    echo '<option value="' . $valores['id'] . '">' . $valores['Transporte'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                            </td>
+                        </tr>
+                        <tr>
                             <td colspan=2>
-                                Facturado $: <input text="fac" name="fac" value="" style="width: 80%"     placeholder="Monto facturado en $">
+                                Facturado $: <input text="fac" name="fac" value="" style="width: 80%" placeholder="Formato: 125.64 no usar comas">
                             </td>
                             <td colspan="2">
                                 <button class="btn btn-success" name="cargaservi">

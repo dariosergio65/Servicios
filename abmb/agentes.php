@@ -57,7 +57,7 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
 							<th style="width: 10%">DNI</th>
 							<th style="width: 25%">Nombre</th>
 							<th style="width: 10%">Celular</th>
-							<th style="width: 10%">Estado</th>
+							<th style="width: 10%">Apto Medico</th>
 							<th style="width: 10%">Vence</th>
 							<th style="width: 15%">Comm</th>
 							<th style="width: 20%">Acciones</th>
@@ -74,6 +74,7 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
 							}
 							unset($_POST['Busca']);
 							$result_tasks = mysqli_query($conn,$query);
+							
 
 							if (!$result_tasks){
 								$query = "SELECT * FROM agentes";
