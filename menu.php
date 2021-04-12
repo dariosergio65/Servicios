@@ -18,10 +18,8 @@ if (isset($_POST['tablero'])){
     header ("location: abmb/agentes.php");
 }elseif (isset($_POST['abmclientes'])){
     header ("location: abmb/clientes.php");
-}elseif (isset($_POST['abmagserv'])){
-    header ("location: altas/alta-agenteservi.php");
 }elseif (isset($_POST['ag-serv'])){
-    header ("location: Consultas/agente-servicio.php");
+    header ("location: abmb/agente-servicio.php");
 }elseif (isset($_POST['cantservi'])){
     header ("location: Consultas/cantservicios.php");
 }
@@ -56,9 +54,9 @@ if (isset($_POST['tablero'])){
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="ag-serv">
-                                    Agente-Servicio
-                                    </button>
+                                        <button class="btn btn-success" name="nada">
+                                        NADA
+                                        </button>
                                 </div>
                             </td>
                         </tr>
@@ -112,9 +110,9 @@ if (isset($_POST['tablero'])){
                             </td>
                             <td>
                                 <div class="form-group">
-                                <button class="btn btn-success" name="abmagserv">
-                                    CARGA Agente-Servicio
-                                </button>
+                                        <button class="btn btn-success" name="nada">
+                                        NADA
+                                        </button>
                                 </div>
                             </td>
                             <td>
@@ -123,9 +121,9 @@ if (isset($_POST['tablero'])){
                         <tr>
                             <td>
                                 <div class="form-group">
-                                <button class="btn btn-success" name="abmclientes">
-                                    ABM CLIENTES
-                                </button>
+                                    <button class="btn btn-success" name="abmclientes">
+                                        ABM CLIENTES
+                                    </button>
                                 </div>
                             </td>
                             <td>
@@ -139,10 +137,11 @@ if (isset($_POST['tablero'])){
                         <tr>
                             <td>
                             <div class="form-group">
-                                    <button class="btn btn-success" name="nada">
-                                    NADA
-                                    </button>
-                                </div>
+                                <button class="btn btn-success" name="ag-serv">
+                                Agente-Servicio
+                                </button>
+                            </div>
+                            
                             </td>
                             <td>
                                 <div class="form-group">

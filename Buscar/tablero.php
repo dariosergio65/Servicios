@@ -91,17 +91,23 @@ $esta = $_SERVER['PHP_SELF'];
 															// falta operario y Vehiculo
 									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin'";
 									//$qCliente2 = "SELECT c.Cliente FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE idCliente1 LIKE '$clientefin' AND Lugar LIKE '$lugarfin'";
-									$qCliente2 = "SELECT c.Cliente FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin'";
+									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin'";
 								}
 								else{
 									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin)";
-									$qCliente2 = "SELECT c.Cliente FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin)";
+									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin)";
 								}
+							}elseif (isset($_GET['id'])) {
+									$serviid=$_GET['id'];
+									//echo 'nada';
+									//echo $serviid;
+									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE (s.id = $serviid)";
+									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE (s.id = $serviid)";
 							} 
 							else{
-								$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id ";
-								$qCliente2 = "SELECT c.Cliente FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id ";
-								//$query = "SELECT * FROM servicios";
+								$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, c.Cliente, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id ";
+								$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id ";
+								//$query = "SELECT * FROM servicios"; s.idCliente2
 							}
 							unset($_POST['Busca']);
 							$result_tasks = mysqli_query($conn,$query);
@@ -123,7 +129,7 @@ $esta = $_SERVER['PHP_SELF'];
 									<td><?php echo $row['Cliente'] ?></td>
 									<td><a href="../Buscar/VerOp.php?id=<?php echo $row['OpServicio'] ?>"><?php echo $row['OpServicio'] ?>
 										</a></td>
-									<td><?php echo $row2['Cliente'] ?></td>
+									<td><?php echo $row2['cli2'] ?></td>
 									<td><?php echo $row['Trabajo'] ?></td>
 									<td><?php echo $row['Lugar'] ?></td>
 									<td><?php echo $row['FechaIni'] ?></td>

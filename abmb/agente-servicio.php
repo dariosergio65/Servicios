@@ -17,8 +17,8 @@ $esta = $_SERVER['PHP_SELF'];
 				<table class="table table-bordered">
 					<thead class="thead-cel" style="text-align:center">
 						<tr>
-							<th style="width: 80%" colspan=3>Personal -- Servicios</th>
-							<th style="width: 20%" >Acciones</th>
+							<th style="width: 70%" colspan=3>Personal -- Servicios</th>
+							<th style="width: 30%" colspan=2>Acciones</th>
 							
 						</tr>
 					</thead>
@@ -34,6 +34,10 @@ $esta = $_SERVER['PHP_SELF'];
 									<input text="est2" name="lugar" style="width: 100%" placeholder="Lugar a buscar">
 								</td>
 								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary"></td>
+								<td>
+								<a href="<?php echo '../Altas/alta-agenteservi.php' ?>" class="btn btn-primary ">Nuevo Registro </i>
+								</a>
+								</td>
 								
 							</tr>		
 					</tbody>
@@ -63,12 +67,13 @@ $esta = $_SERVER['PHP_SELF'];
 					<thead class="thead-dario" style="text-align:center">
 						<tr>
 							<th style="width: 15%">Nombre Agente</th>
-							<th style="width: 15%">Nombre Servicio</th>
+							<th style="width: 10%">Nombre Servicio</th>
 							<th style="width: 15%">Lugar</th>
 							<th style="width: 10%">Inicio</th>
 							<th style="width: 10%">Final</th>
 							<th style="width: 10%">Transporte</th>
-							<th style="width: 25%">Tarea</th>
+							<th style="width: 20%">Tarea</th>
+							<th style="width: 10%">Acciones</th>
 						<tr>
 					</thead>
 					<tbody>
@@ -77,7 +82,7 @@ $esta = $_SERVER['PHP_SELF'];
 								$miagen= '%' . $_POST['agen'] . '%';
 								$minom= '%' . $_POST['nomserv'] . '%';
 								$milugar= '%' . $_POST['lugar'] . '%';
-								$query = "SELECT Agente, agenteservicio.Fechaini as inicio, agenteservicio.Fechafin as final, Nombre, Lugar, Trabajo, Transporte FROM agentes 
+								$query = "SELECT servicios.id as servi, agenteservicio.id as agservid, Agente, agenteservicio.Fechaini as inicio, agenteservicio.Fechafin as final, Nombre, Lugar, Trabajo, Transporte FROM agentes 
 								INNER JOIN agenteservicio ON agentes.dni=agenteservicio.id_agente 
 								INNER JOIN servicios ON agenteservicio.id_servicio=servicios.id
 								INNER JOIN transportes ON servicios.id_transporte=transportes.id 
@@ -85,7 +90,7 @@ $esta = $_SERVER['PHP_SELF'];
 								ORDER BY agenteservicio.Fechaini desc";
 							} 
 							else{
-								$query = "SELECT Agente, agenteservicio.Fechaini as inicio, agenteservicio.Fechafin as final, Nombre, Lugar, Trabajo, Transporte FROM agentes 
+								$query = "SELECT servicios.id as servi, agenteservicio.id as agservid, Agente, agenteservicio.Fechaini as inicio, agenteservicio.Fechafin as final, Nombre, Lugar, Trabajo, Transporte FROM agentes 
 								INNER JOIN agenteservicio ON agentes.dni=agenteservicio.id_agente 
 								INNER JOIN servicios ON agenteservicio.id_servicio=servicios.id
 								INNER JOIN transportes ON servicios.id_transporte=transportes.id
@@ -106,12 +111,19 @@ $esta = $_SERVER['PHP_SELF'];
 						?>
 								<tr>
 									<td><?php echo $row['Agente']; ?></td>
-									<td><?php echo $row['Nombre'] ?></td>
+									<td><a href="../Buscar/tablero.php?id=<?php echo $row['servi'] ?>"><?php echo $row['Nombre'] ?> </a></td>
 									<td><?php echo $row['Lugar'] ?></td>
 									<td><?php echo $row['inicio'] ?></td>
 									<td><?php echo $row['final'] ?></td>
 									<td><?php echo $row['Transporte'] ?></td>
-									<td><?php echo $row['Trabajo'] ?></td>							
+									<td><?php echo $row['Trabajo'] ?></td>
+									<td>
+										<a href="/Servicios/Modif/modifagserv.php?agservid=<?php echo $row['agservid'] ?>" class= "btn btn-primary btn-sm"> <i class="fa fa-cog fa-spin"></i>
+										</a>
+									
+										<a href="/Servicios/Bajas/borraagserv.php?agservid=<?php echo $row['agservid'] ?>" class="btn btn-danger btn-sm"> <i class="far fa-trash-alt"></i>
+										</a>
+									</td>							
 
 								</tr>		
 						<?php }

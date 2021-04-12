@@ -52,52 +52,62 @@ $esta = $_SERVER['PHP_SELF'];
 	<div class="row">
 
 		<div class="col-md-6">
+			<table class="table table-sm table-bordered table-hover">
+				<thead class="thead-dario" style="text-align:center">
+					<tr>
+						<th style="width: 50%">Nombre Agente</th>
+						<th style="width: 30%">Servicios realizados</th>
+						<th style="width: 20%">Porcentaje</th>
+					<tr>
+				</thead>
+				<tbody>
+					<?php
+						if (isset($_POST['Busca'])){
+							$miagen= '%' . $_POST['agen'] . '%';
+							$query = "SELECT count(id_agente) as canti, Agente FROM agenteservicio
+							INNER JOIN agentes ON agenteservicio.id_agente=agentes.dni
+							WHERE Agente like '$miagen'
+							GROUP BY id_agente
+							ORDER BY canti desc
+							";
+						} 
+						else{
+							$query = "SELECT count(id_agente) as canti, Agente FROM agenteservicio
+							INNER JOIN agentes ON agenteservicio.id_agente=agentes.dni
+							GROUP BY id_agente
+							ORDER BY canti desc
+							";
+						}
 
-				<table class="table table-sm table-bordered table-hover">
-					<thead class="thead-dario" style="text-align:center">
-						<tr>
-							<th style="width: 70%">Nombre Agente</th>
-							<th style="width: 30%">Servicios realizados</th>
-						<tr>
-					</thead>
-					<tbody>
-						<?php
-							if (isset($_POST['Busca'])){
-								$miagen= '%' . $_POST['agen'] . '%';
-								$query = "SELECT count(id_agente) as canti, Agente FROM agenteservicio
-								INNER JOIN agentes ON agenteservicio.id_agente=agentes.dni
-								WHERE Agente like '$miagen'
-								GROUP BY id_agente
-								ORDER BY canti desc
-								";
-							} 
-							else{
-								$query = "SELECT count(id_agente) as canti, Agente FROM agenteservicio
-								INNER JOIN agentes ON agenteservicio.id_agente=agentes.dni
-								GROUP BY id_agente
-								ORDER BY canti desc
-								";
-							}
-							unset($_POST['Busca']);
+						$queryservi = "SELECT count(id) as cantservi from servicios";
+						$result_servi = mysqli_query($conn,$queryservi);
+						$row_servi=mysqli_fetch_array($result_servi);	
+
+
+						unset($_POST['Busca']);
+						$result_tasks = mysqli_query($conn,$query);
+
+						if (!$result_tasks){
+							$query = "SELECT * FROM agentes";
 							$result_tasks = mysqli_query($conn,$query);
+							echo 'ALGO SALIO MAL';
+						}
 
-							if (!$result_tasks){
-								$query = "SELECT * FROM agentes";
-								$result_tasks = mysqli_query($conn,$query);
-								echo 'ALGO SALIO MAL';
-							}
-
-							while ($row=mysqli_fetch_array($result_tasks)) { 
-						?>
-								<tr>
-									<td><?php echo $row['Agente']; ?></td>
-									<td><?php echo $row['canti'] ?></td>							
-
-								</tr>		
-						<?php }
-						?>
-					</tbody>
-				</table>
+						while ($row=mysqli_fetch_array($result_tasks)) { 
+					?>
+							<tr>
+								<td><?php echo $row['Agente']; ?></td>
+								<td><?php echo $row['canti'] ?></td>
+								<td><?php echo number_format(($row['canti']/$row_servi['cantservi']*100),2).' %' ?></td>
+							</tr>		
+					<?php }
+					?>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-4">
+			<?php echo 'Servicios realizados: ' . $row_servi['cantservi'] ?>
+		
 		</div>
 	</div>
 

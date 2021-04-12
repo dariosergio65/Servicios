@@ -31,6 +31,13 @@ if (isset($_GET['id'])) {
         $e="NO se encontró la OP";
     }
 
+    if (!$result){
+        $query = "SELECT OP, OC, Cliente, FechaOC, FechaTope, Vendedor, ContactoC, Material, OBS, Moneda, Monto
+        FROM op WHERE OP=0";
+        $result = mysqli_query($conn,$query);
+        echo 'ALGO MAL';
+    }
+
 }
 
 ?>
