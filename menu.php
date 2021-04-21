@@ -1,5 +1,6 @@
 <?php
 include ("includes/header.php");
+//include ("includes/funciones.php");
 ?>
 <?php
 if (isset($_POST['tablero'])){
@@ -22,6 +23,8 @@ if (isset($_POST['tablero'])){
     header ("location: abmb/agente-servicio.php");
 }elseif (isset($_POST['cantservi'])){
     header ("location: Consultas/cantservicios.php");
+}elseif (isset($_POST['internos'])){
+    header ("location: Consultas/internos.php");
 }
 ?>
 <div class="container p-4">
@@ -94,7 +97,7 @@ if (isset($_POST['tablero'])){
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="cargaservi">
+                                    <button class="btn btn-success" name="cargaservi" >
                                     CARGAR SERVICIO
                                     </button>
                                 </div>
@@ -110,7 +113,7 @@ if (isset($_POST['tablero'])){
                             </td>
                             <td>
                                 <div class="form-group">
-                                        <button class="btn btn-success" name="nada">
+                                        <button class="btn btn-dark" name="nada">
                                         NADA
                                         </button>
                                 </div>
@@ -128,7 +131,7 @@ if (isset($_POST['tablero'])){
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="nada">
+                                    <button class="btn btn-dark" name="nada">
                                     NADA
                                     </button>
                                 </div>
@@ -145,11 +148,18 @@ if (isset($_POST['tablero'])){
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="nada">
+                                    <button class="btn btn-dark" name="nada">
                                     NADA
                                     </button>
                                 </div>
+                            </td>
                             <td>
+                                <div class="form-group">
+                                    <button class="btn btn-success" name="internos">
+                                    INTERNOS
+                                    </button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

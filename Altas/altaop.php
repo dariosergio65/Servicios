@@ -42,7 +42,7 @@ if (isset($_POST['cargaop'])) {
 
     if(!$result) {
         echo $_POST['contacto'] . "<br>";
-        echo $_POST['vendedor'];
+        echo $_POST['vendedor'] . "<br>";
         die("Algo fallo y no se pudo CARGAR el registro.");
     }
 }
