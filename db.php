@@ -1,6 +1,7 @@
 <?php
 
-session_start();
+if (!session_status()){ session_start(); }
+//session_start();
 //session_destroy();
 //echo "cargada";
 

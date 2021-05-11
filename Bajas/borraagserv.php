@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['ingresado'])){
+    header("location: index.php");
+}
+$usuario=$_SESSION['ingresado'];
+
 $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
 $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
 include ($rutadb);

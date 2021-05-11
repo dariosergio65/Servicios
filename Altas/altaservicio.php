@@ -1,4 +1,26 @@
 <?php
+// if (!session_status()){ session_start(); }
+session_start();
+if (!isset($_SESSION['ingresado'])){
+	header("location: ../index.php");
+	die();
+}
+$rutaf = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/funciones.php';
+include ($rutaf);
+$rutaindex = '/Servicios/index.php';
+$usuario=$_SESSION['ingresado']; 
+
+$pantalla = 'altaservicio0';//ojo al cambiar el nombre del archivo php
+
+$r=comprobar($usuario,$pantalla);
+if($r=='disabled'){
+    header ("location: " . $rutaindex);
+    die();
+}
+//if (!isset($_SESSION['ingresado'])){
+//    header("location: /Servicios/index.php");
+//}
+
 include ("../db.php");
 include ("../includes/header.php");
 //include_once ("funciones.js");
@@ -15,7 +37,8 @@ include ("../includes/header.php");
 
 <?php
 //session_unset();  
-}  unset ($_SESSION['message']); 
+
+} unset ($_SESSION['message']);  // unset ($_SESSION['message']); 
 //session_unset(); 
 
     if (isset($_POST['agregaag'])){

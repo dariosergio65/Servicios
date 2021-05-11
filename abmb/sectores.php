@@ -1,6 +1,12 @@
 <?php // error_reporting(1);  //SACAR ESTA LINEA CUANDO ANDE TODO 
 ?>
 <?php
+session_start();
+if (!isset($_SESSION['ingresado'])){
+	header("location: index.php");
+}
+$usuario=$_SESSION['ingresado'];
+
 $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
 $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
 include ($rutadb);
@@ -44,7 +50,7 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borrasector.php';
 			</button>
 		</div>
 
-	<?php } session_unset(); ?>	
+	<?php } unset($_SESSION['message']); ?>	
 
 
 	<div class="row">

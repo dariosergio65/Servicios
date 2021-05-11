@@ -1,12 +1,28 @@
-<?php // error_reporting(1);  //SACAR ESTA LINEA CUANDO ANDE TODO 
-?>
 <?php
-$rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
-$rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
+session_start();
+if (!isset($_SESSION['ingresado'])){
+	header("location: ../index.php");
+	die();
+}
+$rutaf = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/funciones.php';
+include ($rutaf);
+$rutaindex = '/Servicios/index.php';
+$usuario=$_SESSION['ingresado']; 
+
+$pantalla = 'agentes0';//ojo al cambiar el nombre del archivo php
+
+$r=comprobar($usuario,$pantalla);
+if($r=='disabled'){
+    header ("location: " . $rutaindex);
+    die();
+}
+
+$rutadb = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/db.php';
+$rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/header.php';
 include ($rutadb);
 include ($rutaheader); 
 $esta = $_SERVER['PHP_SELF'];
-$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
+$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraagen.php';
 ?>
 
 <div class="col-md-12 container p-2">
@@ -44,7 +60,7 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
 			</button>
 		</div>
 
-	<?php } session_unset(); ?>	
+	<?php } unset($_SESSION['message']); ?>	
 
 
 	<div class="row">
@@ -70,7 +86,7 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
 								$query = "SELECT dni,Agente,Celular,Estado,Vence,OBS FROM agentes LEFT JOIN estados ON agentes.id_estado=estados.id WHERE Agente like '$miagen' AND Activo=1";
 							} 
 							else{
-								$query = "SELECT dni,Agente,Celular,Estado,Vence,OBS FROM agentes LEFT JOIN estados ON agentes.id_estado=estados.id WHERE Activo=1 order by Estado";
+								$query = "SELECT dni,Agente,Celular,Estado,Vence,OBS FROM agentes LEFT JOIN estados ON agentes.id_estado=estados.id WHERE Activo=1 order by Estado,Vence";
 							}
 							unset($_POST['Busca']);
 							$result_tasks = mysqli_query($conn,$query);

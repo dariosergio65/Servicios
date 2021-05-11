@@ -1,6 +1,23 @@
 <?php // error_reporting(1);  //SACAR ESTA LINEA CUANDO ANDE TODO 
 ?>
 <?php
+session_start();
+if (!isset($_SESSION['ingresado'])){
+	header("location: ../index.php");
+	die();
+}
+$rutaf = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/funciones.php';
+include ($rutaf);
+$rutaindex = '/Servicios/index.php';
+$usuario=$_SESSION['ingresado']; 
+
+$pantalla = 'agente-servicio0';//ojo al cambiar el nombre del archivo php
+
+$r=comprobar($usuario,$pantalla);
+if($r=='disabled'){
+    header ("location: " . $rutaindex);
+    die();
+}
 $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
 $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
 include ($rutadb);
@@ -56,7 +73,7 @@ $esta = $_SERVER['PHP_SELF'];
 			</button>
 		</div>
 
-	<?php } session_unset(); ?>	
+	<?php } unset($_SESSION['message']); ?>	
 
 
 	<div class="row">

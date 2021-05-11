@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['ingresado'])){
+    header("location: index.php");
+}
+$usuario=$_SESSION['ingresado'];
+
 include ("../db.php");
 include ("../includes/header.php");
 ?>
@@ -12,7 +18,7 @@ include ("../includes/header.php");
         </button>
     </div>
 
-<?php } session_unset(); ?>
+<?php } unset($_SESSION['message']); ?>
 
 <?php
 if (isset($_POST['cargavend'])) {
@@ -39,7 +45,7 @@ if (isset($_GET['flag'])) {
     }
 
     if(!$result) {
-        echo $_POST['vend'];
+        //echo $_POST['vend'];
         die("Algo fallo y no se pudo CARGAR el registro.");
     }
 }

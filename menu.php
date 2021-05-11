@@ -1,6 +1,31 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['ingresado'])){
+        header("location: index.php");
+        die();
+    }
+$rutaf = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/funciones.php';
+include ($rutaf);
+$rutaindex = '/Servicios/index.php';
+$usuario=$_SESSION['ingresado']; 
+
+$pantalla = 'menu0';//ojo al cambiar nombre del archivo php
+
+$r=comprobar($usuario,$pantalla);
+if($r=='disabled'){
+    header ("location: " . $rutaindex);
+    die();
+}
+?>
+<?php
 include ("includes/header.php");
-//include ("includes/funciones.php");
+
+for ($i=1; $i<19; $i++){
+    $pantalla= 'menu' . $i;
+    $r=(comprobar($usuario,$pantalla)=='enabled') ? 'enabled' : 'disabled';
+
+    $btn[$i]=$r;
+}
 ?>
 <?php
 if (isset($_POST['tablero'])){
@@ -17,6 +42,8 @@ if (isset($_POST['tablero'])){
     header ("location: abmb/estados.php");
 }elseif (isset($_POST['abmpers'])){
     header ("location: abmb/agentes.php");
+}elseif (isset($_POST['abmop'])){
+    header ("location: abmb/abmop.php");    
 }elseif (isset($_POST['abmclientes'])){
     header ("location: abmb/clientes.php");
 }elseif (isset($_POST['ag-serv'])){
@@ -25,7 +52,10 @@ if (isset($_POST['tablero'])){
     header ("location: Consultas/cantservicios.php");
 }elseif (isset($_POST['internos'])){
     header ("location: Consultas/internos.php");
+}elseif (isset($_POST['admin'])){
+    header ("location: menuadmin.php");
 }
+
 ?>
 <div class="container p-4">
     <div class="row">
@@ -43,21 +73,21 @@ if (isset($_POST['tablero'])){
                         <tr>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="cargatrans">
+                                    <button class="btn btn-success" name="cargatrans" <?php echo $btn[1]; ?>>
                                     ABM TRANSPORTE
                                     </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="tablero">
+                                    <button class="btn btn-success" name="tablero" <?php echo $btn[7]; ?>>
                                     TABLERO
                                     </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
-                                        <button class="btn btn-success" name="nada">
+                                        <button class="btn btn-dark" name="nada" <?php echo $btn[13]; ?> disabled>
                                         NADA
                                         </button>
                                 </div>
@@ -66,14 +96,14 @@ if (isset($_POST['tablero'])){
                         <tr>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="abmven">
+                                    <button class="btn btn-success" name="abmven" <?php echo $btn[2]; ?>>
                                     ABM VENDEDORES
                                     </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="cargaop">
+                                    <button class="btn btn-success" name="cargaop" <?php echo $btn[8]; ?>>
                                     CARGAR OP
                                     </button>
                                 </div>
@@ -81,7 +111,7 @@ if (isset($_POST['tablero'])){
                             
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="cantservi">
+                                    <button class="btn btn-success" name="cantservi" <?php echo $btn[14]; ?>>
                                         Cantidad de servicios
                                     </button>
                                 </div>
@@ -90,57 +120,76 @@ if (isset($_POST['tablero'])){
                         <tr>
                             <td>
                                 <div class="form-group">
-                                <button class="btn btn-success" name="abmest">
+                                <button class="btn btn-success" name="abmest" <?php echo $btn[3]; ?>>
                                     ABM ESTADOS
                                 </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="cargaservi" >
+                                    <button class="btn btn-success" name="cargaservi" <?php echo $btn[9]; ?>>
                                     CARGAR SERVICIO
                                     </button>
                                 </div>
+                            </td>
                             <td>
+                                <div class="form-group">
+                                        <button class="btn btn-dark" name="nada" <?php echo $btn[15]; ?> disabled>
+                                        NADA
+                                        </button>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="form-group">
-                                <button class="btn btn-success" name="abmpers">
+                                <button class="btn btn-success" name="abmpers" <?php echo $btn[4]; ?>>
                                     ABM PERSONAL
                                 </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
-                                        <button class="btn btn-dark" name="nada">
-                                        NADA
+                                        <button class="btn btn-success" name="abmop" <?php echo $btn[10]; ?>>
+                                        ABM OP
                                         </button>
                                 </div>
                             </td>
                             <td>
+                                <div class="form-group">
+                                        <button class="btn btn-dark" name="nada" <?php echo $btn[16]; ?> disabled>
+                                        NADA
+                                        </button>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="abmclientes">
+                                    <button class="btn btn-success" name="abmclientes" <?php echo $btn[5]; ?>>
                                         ABM CLIENTES
                                     </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-dark" name="nada">
+                                    <button class="btn btn-dark" name="nada" <?php echo $btn[11]; ?> disabled>
                                     NADA
                                     </button>
                                 </div>
+                            </td>
                             <td>
+                                <div class="form-group">
+                                        <button class="btn btn-dark" name="nada" <?php echo $btn[17]; ?> disabled>
+                                        NADA
+                                        </button>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td>
                             <div class="form-group">
-                                <button class="btn btn-success" name="ag-serv">
+                                <button class="btn btn-success" name="ag-serv" <?php echo $btn[6]; ?>>
                                 Agente-Servicio
                                 </button>
                             </div>
@@ -148,14 +197,14 @@ if (isset($_POST['tablero'])){
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-dark" name="nada">
-                                    NADA
+                                    <button class="btn btn-danger" name="admin" <?php echo $btn[12]; ?>>
+                                    ADMINISTRACION
                                     </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-success" name="internos">
+                                    <button class="btn btn-success" name="internos" <?php echo $btn[18]; ?>>
                                     INTERNOS
                                     </button>
                                 </div>

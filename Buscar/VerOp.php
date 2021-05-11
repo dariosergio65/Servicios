@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['ingresado'])){
+    header("location: index.php");
+}
+$usuario=$_SESSION['ingresado'];
 
 include("../db.php");
 

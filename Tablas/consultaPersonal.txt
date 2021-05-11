@@ -1,0 +1,8 @@
+SELECT s.id, a.Agente as nom, ase.Fechaini as ini, ase.Fechafin as fin, ase.Cant_horas as trabajadas, 
+ase.Valor_hora as valhora, ase.Valor_dia as valdia, ase.Dolarfecha valdolar,
+(((SELECT DATEDIFF(ase.Fechafin , ase.Fechaini)+1)*ase.Valor_dia)+(ase.Cant_horas*ase.Valor_hora)) as totals,
+((((SELECT DATEDIFF(ase.Fechafin , ase.Fechaini)+1)*ase.Valor_dia)+(ase.Cant_horas*ase.Valor_hora))/ase.Dolarfecha) as totaluss
+FROM servicios s 
+LEFT JOIN agenteservicio ase ON s.id=ase.id_servicio
+LEFT JOIN agentes a ON ase.id_agente=a.dni
+WHERE s.id=87;

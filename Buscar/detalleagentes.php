@@ -1,6 +1,12 @@
 <?php // error_reporting(1);  //SACAR ESTA LINEA CUANDO ANDE TODO 
 ?>
 <?php
+session_start();
+if (!isset($_SESSION['ingresado'])){
+    header("location: index.php");
+}
+$usuario=$_SESSION['ingresado'];
+
 $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
 $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
 include ($rutadb);
@@ -17,7 +23,8 @@ $esta = $_SERVER['PHP_SELF'];
 				<table class="table table-bordered">
 					<thead class="thead-cel" style="text-align:center">
 						<tr>
-							<th style="width: 80%" >Nombre del Agente </th>
+							<th style="width: 80%" >Nombre del Agente 
+							</th>
 							<th style="width: 20%" >Acciones</th>
 							
 						</tr>
@@ -46,7 +53,7 @@ $esta = $_SERVER['PHP_SELF'];
 			</button>
 		</div>
 
-	<?php } session_unset(); ?>	
+	<?php } unset($_SESSION['message']); ?>	
 
 
 	<div class="row">

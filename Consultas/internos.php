@@ -1,12 +1,38 @@
 <?php // error_reporting(1);  //SACAR ESTA LINEA CUANDO ANDE TODO 
 ?>
 <?php
+session_start();
+if (!isset($_SESSION['ingresado'])){
+	header("location: ../index.php");
+	die();
+}
+$rutaf = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/funciones.php';
+include ($rutaf);
+$rutaindex = '/Servicios/index.php';
+$usuario=$_SESSION['ingresado']; 
+
+$pantalla = 'internos0';//ojo al cambiar el nombre del archivo php
+
+$r=comprobar($usuario,$pantalla);
+if($r=='disabled'){
+    header ("location: " . $rutaindex);
+    die();
+}
 $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
 $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
 include ($rutadb);
 include ($rutaheader); 
 $esta = $_SERVER['PHP_SELF'];
-//$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraagen.php';
+$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borraint.php';
+
+// crear borraint.php 
+
+//$btnBuscar= (comprobar($usuario,'internos1')=='enabled') ? 'enabled' : 'disabled';
+$btnNuevo= (comprobar($usuario,'internos2')=='enabled') ? '"/Servicios/Altas/altaint.php?flag=0"' : '"#"';
+$btnModif= (comprobar($usuario,'internos3')=='enabled') ? '/Servicios/Modif/modifint.php?id=' : '"#"';
+$btnBorrar= (comprobar($usuario,'internos4')=='enabled') ? '/Servicios/Bajas/borraint.php?id=' : '"#"';
+//echo 'variable btnBuscar: ' . $btnBuscar;
+
 ?>
 
 <div class="col-md-12 container p-2">
@@ -18,7 +44,7 @@ $esta = $_SERVER['PHP_SELF'];
 					<thead class="thead-cel" style="text-align:center">
 						<tr>
 							<th style="width: 60%" colspan=2>Personal</th>
-							<th style="width: 20%" >Acciones</th>
+							<th style="width: 20%" colspan=2>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -27,6 +53,7 @@ $esta = $_SERVER['PHP_SELF'];
 								<td><input text="ape" name="ape" style="width: 100%" placeholder="Apellido del empleado"></td>
 
 								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary"></td>
+								<td><a href=<?php echo $btnNuevo; ?> class="btn btn-primary" > Nuevo Interno </a></td>
 							</tr>		
 					</tbody>
 				</table>
@@ -44,7 +71,7 @@ $esta = $_SERVER['PHP_SELF'];
 			</button>
 		</div>
 
-	<?php } session_unset(); ?>	
+	<?php } unset($_SESSION['message']); ?>	
 
 
 	<div class="row">
@@ -57,7 +84,8 @@ $esta = $_SERVER['PHP_SELF'];
 							<th style="width: 20%">Nombre</th>
 							<th style="width: 15%">Apellido</th>
 							<th style="width: 10%">Interno</th>
-							<th style="width: 55%">Equipo</th>
+							<th style="width: 25%">Equipo</th>
+							<th style="width: 30%">Acciones</th>
 						<tr>
 					</thead>
 					<tbody>
@@ -66,10 +94,10 @@ $esta = $_SERVER['PHP_SELF'];
 								$miagen= '%' . $_POST['agen'] . '%';
 								$miape= '%' . $_POST['ape'] . '%';
 
-								$query = "SELECT Nombre,Apellido,Interno,Equipo FROM internos WHERE (Nombre like '$miagen' AND Apellido LIKE '$miape')";
+								$query = "SELECT id,Nombre,Apellido,Interno,Equipo FROM internos WHERE (Nombre like '$miagen' AND Apellido LIKE '$miape')";
 							} 
 							else{
-								$query = "SELECT Nombre,Apellido,Interno,Equipo FROM internos  order by Interno";
+								$query = "SELECT id,Nombre,Apellido,Interno,Equipo FROM internos  order by Interno";
 							}
 							unset($_POST['Busca']);
 							$result_tasks = mysqli_query($conn,$query);
@@ -89,7 +117,19 @@ $esta = $_SERVER['PHP_SELF'];
 									<td><?php echo $row['Interno'] ?></td>
 									<td><?php echo $row['Equipo'] ?></td>
 
-								</tr>		
+									<td>
+										<a href="<?php echo $btnModif; echo $row['id']; ?> " class="btn btn-primary btn-sm">
+											Modificar <i class="fa fa-cog fa-spin"></i>
+										</a>
+									
+										<a href="<?php echo $btnBorrar; echo $row['id']; ?> " class= 
+										"btn btn-danger btn-sm">
+											Borrar <i class="far fa-trash-alt"></i>
+										</a>
+									</td>
+
+								</tr>
+										
 						<?php }
 						?>
 					</tbody>

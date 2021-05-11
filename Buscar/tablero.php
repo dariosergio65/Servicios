@@ -1,12 +1,30 @@
 <?php // error_reporting(1);  //SACAR ESTA LINEA CUANDO ANDE TODO 
 ?>
 <?php
+session_start();
+if (!isset($_SESSION['ingresado'])){
+	header("location: ../index.php");
+	die();
+}
+$rutaf = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/funciones.php';
+include ($rutaf);
+$rutaindex = '/Servicios/index.php';
+$usuario=$_SESSION['ingresado']; 
+
+$pantalla = 'tablero0';//ojo al cambiar el nombre del archivo php
+
+$r=comprobar($usuario,$pantalla);
+if($r=='disabled'){
+    header ("location: " . $rutaindex);
+    die();
+}
 $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
 $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
 $NuevoServicio = $_SERVER['DOCUMENT_ROOT'] . '/servicios/Altas/altaservicio.php';
 include ($rutadb);
 include ($rutaheader); 
 $esta = $_SERVER['PHP_SELF'];
+
 ?>
 
 <div class="col-md-12 container p-2">
@@ -56,7 +74,7 @@ $esta = $_SERVER['PHP_SELF'];
 		</button>
 	</div>
 
-	<?php } session_unset(); ?>	
+	<?php } unset($_SESSION['message']); ?>	
 
 
 	<div class="row">
@@ -89,24 +107,24 @@ $esta = $_SERVER['PHP_SELF'];
 								if ($op1fin == 1){
 									//$query = "SELECT * FROM servicios WHERE idCliente1 LIKE '$clientefin' AND Lugar LIKE '$lugarfin'";
 															// falta operario y Vehiculo
-									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin'";
+									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin' order by s.FechaFin desc";
 									//$qCliente2 = "SELECT c.Cliente FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE idCliente1 LIKE '$clientefin' AND Lugar LIKE '$lugarfin'";
-									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin'";
+									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin' order by s.FechaFin";
 								}
 								else{
 									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin)";
-									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin)";
+									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin) order by s.FechaFin desc";
 								}
 							}elseif (isset($_GET['id'])) {
 									$serviid=$_GET['id'];
 									//echo 'nada';
 									//echo $serviid;
 									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE (s.id = $serviid)";
-									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE (s.id = $serviid)";
+									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE (s.id = $serviid) order by s.FechaFin desc";
 							} 
 							else{
-								$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, c.Cliente, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id ";
-								$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id ";
+								$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, c.Cliente, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id order by s.FechaFin desc";
+								$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id order by s.FechaFin desc";
 								//$query = "SELECT * FROM servicios"; s.idCliente2
 							}
 							unset($_POST['Busca']);
@@ -116,7 +134,7 @@ $esta = $_SERVER['PHP_SELF'];
 							}
 
 							if (!$result_tasks){
-								$query = "SELECT * FROM servicios";
+								$query = "SELECT * FROM servicios order by FechaFin desc";
 								$result_tasks = mysqli_query($conn,$query);
 								echo 'ALGO MAL';
 							}
@@ -135,7 +153,7 @@ $esta = $_SERVER['PHP_SELF'];
 									<td><?php echo $row['FechaIni'] ?></td>
 									<td><?php echo $row['FechaFin'] ?></td>
 									<td>
-										<a href="/Servicios/Buscar/detalle.php?id=<?php echo $row['id'] ?>" class= 
+										<a href="/Servicios/Buscar/detalleservicios.php?id=<?php echo $row['id'] ?>" class= 
 										"btn btn-warning btn-sm">D.</i>
 										</a>
 										

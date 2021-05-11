@@ -13,11 +13,31 @@
 </head>
 <body>
 
+<?php 
+    //if (!session_status()){ session_start(); }
+    if (isset($_SESSION['ingresado'])){
+        //header("location: index.php");
+        $usuario=$_SESSION['ingresado'];
+    }
+    if (isset($usuario)){
+      $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
+      include ($rutadb); 
+      $query = "SELECT Nombre FROM usuarios WHERE User like '$usuario'";
+			$result_tasks = mysqli_query($conn,$query);
+			while ($row=mysqli_fetch_array($result_tasks)) { 
+			  $nombre= $row['Nombre'];
+      }
+    }
+?>
+
 <nav class="navbar navbar-dark bg-dark">
 
 	<div class="container">
 
 		<a href="/servicios/menu.php" class="navbar-brand">SERVICIOS LAGO</a>
+    <h5 style="color:green;">Usuario: <?php if (isset($nombre)){ echo ' ' . $nombre;}?> </h5>
+    <h5 style="color:green;">Fecha: <?php echo date('l jS \of F Y'); ?> </h5>
+    <a href="/servicios/cierre.php" style="color:red;">Cerrar Sesión</a>
 	
 	</div>
 
