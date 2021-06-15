@@ -31,7 +31,13 @@ if (isset($_GET['id'])) {
     $query="DELETE FROM op where OP = $id";
     $result=mysqli_query($conn,$query);
 
-    if(!$result){
+    $queryest="DELETE FROM estadosop where OP = $id";
+    $resultest=mysqli_query($conn,$queryest);
+
+    $queryinfo="DELETE FROM infoop where OP = $id";
+    $resultinfo=mysqli_query($conn,$queryinfo);
+
+    if((!$result)  || (!$resultest)){
         die("No se pudo borrar el registro");
     }
 

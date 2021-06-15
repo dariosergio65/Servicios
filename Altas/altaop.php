@@ -45,6 +45,10 @@ if (isset($_POST['cargaop'])) {
     $miobs = $_POST['obs'];
     $mimoneda = $_POST['moneda'];
     $mimonto = $_POST['monto'];
+
+    if ( is_null($mimonto) or (!isset($mimonto)) ){ 
+        $mimonto=0; 
+    }
     
     $query="INSERT INTO op (OP,OC,idCliente,FechaOC,FechaTope,ContactoC,idVendedor,Material,OBs,Moneda,Monto) 
     VALUES ($miop,'$mioc',$micliente,STR_TO_DATE('$mifechaoc', '%Y-%m-%d'),STR_TO_DATE('$mifechatope', '%Y-%m-%d'),
@@ -52,17 +56,22 @@ if (isset($_POST['cargaop'])) {
     $result=mysqli_query($conn,$query);
     //$registro = mysqli_num_rows($result); 
     
-    if ($result) {    
+    $queryest="INSERT INTO estadosop (OP) VALUES ($miop)";
+    $resultest=mysqli_query($conn,$queryest);
+
+
+    if ($result && $resultest) {    
         $_SESSION['message'] = "Registro cargado con exito";
         $_SESSION['message_type'] = "success";
         header("location: " . $_SERVER['PHP_SELF']);
     }
 
-    if(!$result) {
+    if((!$result) || (!$resultest)) {
         echo $_POST['contacto'] . "<br>";
         echo $_POST['vendedor'] . "<br>";
         die("Algo fallo y no se pudo CARGAR el registro.");
     }
+
 }
 ?>
 

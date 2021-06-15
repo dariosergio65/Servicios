@@ -5,11 +5,12 @@ if (!isset($_SESSION['ingresado'])){
 }
 $usuario=$_SESSION['ingresado'];
 
-$rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
-$rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
+$rutadb = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/db.php';
+$rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/header.php';
 include ($rutadb);
 include ($rutaheader); 
-$regreso = $_SERVER['DOCUMENT_ROOT'] . '/servicios/abmb/agente-servicio.php';
+$regreso = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/abmb/agente-servicio.php';
+$regreso1 = '/Servicios/Buscar/detalleservicios.php';
 ?>
 
 <?php
@@ -22,16 +23,22 @@ if (isset($_GET['agservid'])) {
     if(!$result){
         die("No se pudo borrar el registro");
     }
-
     $_SESSION['message'] = 'Registro borrado';
     $_SESSION['message_type'] = 'danger';
 
-    header("location: /servicios/abmb/agente-servicio.php");
-
+    if (isset($_GET['flag1'])) {
+        $idvuelta=$_GET['flag1'];
+        $vuelve = "location: " . $regreso1 . "?id=" . $idvuelta;
+        header($vuelve);
+        die();
+    }else{
+        header("location: /Servicios/abmb/agente-servicio.php");
+        die();
+    }
 }
 ?>
 
 <?php 
-$rutafooter = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/footer.php';
+$rutafooter = '/Servicios/includes/footer.php';
 include ($rutafooter); 
 ?>

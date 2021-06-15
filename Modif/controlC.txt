@@ -1,0 +1,19 @@
+                        <div class="form-group" style="text-align:center">
+                        <?php if ($ingparcial==1){?>
+                            <input type="checkbox" class="form-check-input" id="ingp" name="ingp" value="1" checked>
+                        <?php }else{?>
+                            <input type="checkbox" class="form-check-input" id="ingp" name="ingp" value="1">
+                        <?php }?>
+                        <label class="form-check-label" style="font-weight:bold" for="ingp">Parcial</label>
+                        Fecha: <input type="date" name="fechaingp" value="<?php echo $ingfechap; ?>" class="form-group">
+                        </div>
+
+                        <div class="form-group" style="text-align:center">
+                        <?php if ($ingcompleta==1){?>
+                            <input type="checkbox" class="form-check-input" id="ingf" name="ingf" value="1" checked>
+                        <?php }else{?>
+                            <input type="checkbox" class="form-check-input" id="ingf" name="ingf" value="1">
+                        <?php }?>
+                        <label class="form-check-label" style="font-weight:bold" for="ingf">Final</label>
+                        Fecha: <input type="date" name="fechadesp" value="<?php echo $desfechap; ?>" class="form-group">
+                        </div>

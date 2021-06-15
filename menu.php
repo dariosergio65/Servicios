@@ -32,6 +32,8 @@ if (isset($_POST['tablero'])){
     header ("location: Buscar/tablero.php");
 }elseif (isset($_POST['cargaop'])){
     header ("location: Altas/altaop.php");
+}elseif (isset($_POST['programados'])){
+    header ("location: Consultas/programados.php");
 }elseif (isset($_POST['cargaservi'])){
     header ("location: Altas/altaservicio.php");
 }elseif (isset($_POST['cargatrans'])){
@@ -64,7 +66,7 @@ if (isset($_POST['tablero'])){
                 <table class="table table-bordered">
                     <thead class="thead-cel" style="text-align:center"> 
                         <tr>
-                            <th>AMB</th>
+                            <th>Altas Bajas Modificaciones</th>
                             <th>PRINCIPALES</th>
                             <th>CONSULTAS</th>
                         </tr>
@@ -74,21 +76,21 @@ if (isset($_POST['tablero'])){
                             <td>
                                 <div class="form-group">
                                     <button class="btn btn-success" name="cargatrans" <?php echo $btn[1]; ?>>
-                                    ABM TRANSPORTE
+                                    TRANSPORTE
                                     </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
                                     <button class="btn btn-success" name="tablero" <?php echo $btn[7]; ?>>
-                                    TABLERO
+                                    SERVICIOS <i class="fas fa-tools"></i>
                                     </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
-                                        <button class="btn btn-dark" name="nada" <?php echo $btn[13]; ?> disabled>
-                                        NADA
+                                        <button class="btn btn-success" name="programados" <?php echo $btn[13]; ?> >
+                                        Servicios Programados
                                         </button>
                                 </div>
                             </td>
@@ -97,7 +99,7 @@ if (isset($_POST['tablero'])){
                             <td>
                                 <div class="form-group">
                                     <button class="btn btn-success" name="abmven" <?php echo $btn[2]; ?>>
-                                    ABM VENDEDORES
+                                    VENDEDORES
                                     </button>
                                 </div>
                             </td>
@@ -121,7 +123,7 @@ if (isset($_POST['tablero'])){
                             <td>
                                 <div class="form-group">
                                 <button class="btn btn-success" name="abmest" <?php echo $btn[3]; ?>>
-                                    ABM ESTADOS
+                                    ESTADOS
                                 </button>
                                 </div>
                             </td>
@@ -134,8 +136,8 @@ if (isset($_POST['tablero'])){
                             </td>
                             <td>
                                 <div class="form-group">
-                                        <button class="btn btn-dark" name="nada" <?php echo $btn[15]; ?> disabled>
-                                        NADA
+                                        <button class="btn btn-success" name="nada" <?php echo $btn[15]; ?> disabled>
+                                        HORAS TRABAJADAS <i class="far fa-clock"></i>
                                         </button>
                                 </div>
                             </td>
@@ -144,7 +146,7 @@ if (isset($_POST['tablero'])){
                             <td>
                                 <div class="form-group">
                                 <button class="btn btn-success" name="abmpers" <?php echo $btn[4]; ?>>
-                                    ABM PERSONAL
+                                    PERSONAL
                                 </button>
                                 </div>
                             </td>
@@ -167,7 +169,7 @@ if (isset($_POST['tablero'])){
                             <td>
                                 <div class="form-group">
                                     <button class="btn btn-success" name="abmclientes" <?php echo $btn[5]; ?>>
-                                        ABM CLIENTES
+                                        CLIENTES
                                     </button>
                                 </div>
                             </td>
@@ -205,7 +207,7 @@ if (isset($_POST['tablero'])){
                             <td>
                                 <div class="form-group">
                                     <button class="btn btn-success" name="internos" <?php echo $btn[18]; ?>>
-                                    INTERNOS
+                                    INTERNOS LAGO <i class="fas fa-phone"></i>
                                     </button>
                                 </div>
                             </td>

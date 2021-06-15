@@ -83,10 +83,10 @@ if (isset($_GET['flag'])) {
                                 <td>Nombre:<br><input text="nom" name="nom" style="width: 60%" placeholder="Nombre"></td>
                             </tr>
                             <tr>
-                                <td>Apellido:<br><input text="nom" name="nom" style="width: 60%" placeholder="Apellido"></td>
+                                <td>Apellido:<br><input text="ape" name="ape" style="width: 60%" placeholder="Apellido"></td>
                             </tr>
                             <tr>
-                                <td>Equipo:<br><input text="nom" name="nom" style="width: 60%" placeholder="Equipo instalado"></td>
+                                <td>Equipo:<br><input text="equi" name="equi" style="width: 60%" placeholder="Equipo instalado"></td>
                             </tr>
 
                             <tr> 

@@ -67,6 +67,10 @@ if (isset($_POST['cargaservi'])) {
     $miobs = $_POST['obs'];//
     $mifac = $_POST['fac'];
 
+    if ( is_null($mifac) or (!isset($mifac)) or is_string($mifac) ){ 
+        $mifac=0; 
+    }
+
     //$query="INSERT INTO servicios (Nombre,OpRef,idCliente1,OpServicio,idCliente2,Trabajo,Lugar,FechaIni,FechaFin,id_estado,OBS,Facturado)
     //VALUES ('$minombre',$miopref,$miidcliente1,$miopservicio,$miidcliente2,'$mitrabajo','$milugar',STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'),$miestado,'$miobs',$mifac)";
 

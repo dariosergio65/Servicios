@@ -42,7 +42,7 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraop.php';
 					</thead>
 					<tbody>
 							<tr>
-								<td><input text="op" name="op" style="width: 100%" placeholder="OP a buscar"></td>
+								<td><input text="op" name="op" style="width: 100%" value="<?php	if (isset($_POST['op'])){echo $_POST['op'];} ?>" placeholder="OP a buscar"></td>
 								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary"></td>
 								<td><a href="/Servicios/Altas/altaop.php?flag=0" class="btn btn-primary"> Nueva OP <i class="fa fa-cog fa-spin"></i>
 								</a></td>
@@ -86,14 +86,23 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraop.php';
 					<tbody>
 						<?php
 							if (isset($_POST['Busca'])){
-								$miop=  $_POST['op'] ;
-								//echo $miop;
-								$query = "SELECT OP,OC,Cliente,FechaOC,FechaTope,Material,OBS FROM op LEFT JOIN clientes ON op.idCliente=clientes.id WHERE OP = $miop ";
+								$miop =  $_POST['op'] ;
+								/* if ( is_null($miop) or is_string($miop) ){ 
+									$miop=0; 
+								} */
+								if ( $miop==0 ){ 
+									$query = "SELECT OP,OC,Cliente,FechaOC,FechaTope,Material,OBS FROM op 
+									LEFT JOIN clientes ON op.idCliente=clientes.id order by FechaOC desc";
+								}else{
+									$query = "SELECT OP,OC,Cliente,FechaOC,FechaTope,Material,OBS FROM op 
+									LEFT JOIN clientes ON op.idCliente=clientes.id WHERE OP = $miop ";
+								}
 							} 
 							else{
-								$query = "SELECT OP,OC,Cliente,FechaOC,FechaTope,Material,OBS FROM op LEFT JOIN clientes ON op.idCliente=clientes.id order by FechaOC desc";
+								$query = "SELECT OP,OC,Cliente,FechaOC,FechaTope,Material,OBS FROM op 
+								LEFT JOIN clientes ON op.idCliente=clientes.id order by FechaOC desc";
 							}
-							unset($_POST['Busca']);
+							//unset($_POST['Busca']);
 							$result_tasks = mysqli_query($conn,$query);
 							
 

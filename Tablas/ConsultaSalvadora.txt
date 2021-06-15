@@ -1,5 +1,5 @@
 Este es el update que funciona:
-Primero crear un idCliente (int) en la tabla op (y despues borrar el campo Cliente
+Primero crear un idCliente (int) en la tabla op (y despues borrar el campo Cliente)
 
 UPDATE op as P 
 INNER JOIN clientes as SP ON 

@@ -1,0 +1,68 @@
+-- para leandro
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop0';
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop1';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop2';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop3';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop4';
+
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'agente-servicio0';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'agente-servicio1';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'agente-servicio2';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'agente-servicio3';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'agente-servicio4';
+
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'agentes0';
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'agentes1';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'agentes2';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'agentes3';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'agentes4';
+
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'transporte0';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'transporte1';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'transporte2';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'transporte3';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'transporte4';
+
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'vendedores0';
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'vendedores1';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'vendedores2';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'vendedores3';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'vendedores4';
+
+
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'tablero0';
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'tablero1';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'tablero2';
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'tablero3';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'tablero4';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'tablero5';
+
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'VerOp0';
+
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'detalleservicios0';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'detalleservicios1';
+
+-- hasta aca ejecutado
+
+
+
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop0';
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop1';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop2';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop3';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop4';
+
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop0';
+UPDATE permisos SET permitido=1 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop1';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop2';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop3';
+UPDATE permisos SET permitido=0 WHERE id_usuario LIKE 'leandro' and id_pantalla like 'abmop4';
+
+-- para rodrigo
+
+-- para jonatan
+
+
+-- para gallo
+
+-- para paola

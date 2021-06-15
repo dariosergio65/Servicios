@@ -55,22 +55,20 @@ function cargapermisos($user,$categoria){// se ejecuta cuando creo un usuario nu
                 $permiso=true;   
                 
             }elseif($categoria==2){//personal Lago
-                if ($idpantalla=='menu12') {
+                if ($idpantalla=='menu12') {//menu del admin
                     $permiso=0;
-                    //echo 'idpantalla= ' . $idpantalla . '<br>';
-                    //echo 'permiso= ' . $permiso . '<br>';
-                    //die ('entró');
                 }elseif(strstr($idpantalla,'admin')){
+                    $permiso=0;
+                }elseif($idpantalla=='menu1' or $idpantalla=='menu2' or $idpantalla=='menu3' or $idpantalla=='menu4' or $idpantalla=='menu5' or $idpantalla=='menu6' or $idpantalla=='menu8' or $idpantalla=='menu9'){
+                    $permiso=0;
+                }elseif(strstr($idpantalla,'pantallas') or strstr($idpantalla,'permisos') or strstr($idpantalla,'recarga') or strstr($idpantalla,'usuarios') or strstr($idpantalla,'agente-servicio')){
                     $permiso=0;
                 }else{
                     $permiso=true;    
                 }
             }elseif($categoria==3){//invitado   
-                if ($idpantalla=='menu0' or $idpantalla=='menu18') {
+                if ($idpantalla=='menu0' or $idpantalla=='menu18' or $idpantalla=='menu13' or $idpantalla=='menu14') {
                     $permiso=true;
-                    //echo 'idpantalla= ' . $idpantalla . '<br>';
-                    //echo 'permiso= ' . $permiso . '<br>';
-                    //die ('entró');
                 }else{
                     $permiso=0;    
                 }
@@ -145,4 +143,122 @@ function recargartodos(){// se usa cuando agrego algun botón o pantalla al proy
     }
     return 1;
 }
+
+function clavevalida($clave,&$error_clave){
+    if(strlen($clave) < 6){
+       $error_clave = "La clave debe tener al menos 6 caracteres";
+       return false;
+    }
+    /* 
+    if(strlen($clave) > 16){
+       $error_clave = "La clave no puede tener más de 16 caracteres";
+       return false;
+    }
+    if (!preg_match('`[a-z]`',$clave)){
+       $error_clave = "La clave debe tener al menos una letra minúscula";
+       return false;
+    }
+    if (!preg_match('`[A-Z]`',$clave)){
+       $error_clave = "La clave debe tener al menos una letra mayúscula";
+       return false;
+    }
+    if (!preg_match('`[0-9]`',$clave)){
+       $error_clave = "La clave debe tener al menos un caracter numérico";
+       return false;
+    }
+    */
+    $error_clave = "";
+    return true;
+ }
+
+ function claveanterior($usu,$clave){//verifica la clave anterior en los cambios de clave
+     
+    $clave=htmlentities(addslashes($clave)); //para evitar inyección
+    
+    try{
+        $base= new PDO("mysql:host=localhost:3306; dbname=task", "root", "");
+        $base->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $base->exec("SET CHARACTER SET utf8");
+        $sql="SELECT * FROM usuarios WHERE User= :miuser";
+        $resultado=$base->prepare($sql);
+    
+        $resultado->bindValue(":miuser", $usu); 
+    
+        $resultado->execute();
+    
+        while($registro = $resultado->fetch(PDO::FETCH_ASSOC)){
+            if(password_verify($clave, $registro['Clave'])){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    
+    }
+    catch(Exception $e){
+        die("Error Servicios: " . $e->getMessage());
+    }
+    
+    $resultado->closeCursor();
+    
+ }
+
+ function iniciasivacia(&$variable,$tipo){
+    //tipos: int, date, decimal, varchar, tinyint
+    if ($tipo=='int'){
+        if ( is_null($variable) or (!isset($variable)) or is_string($variable) ){ 
+            $variable=0; 
+        }
+    }
+    if ($tipo=='date'){
+        if ( ($variable=='') or is_null($variable) or (!isset($variable)) ){ 
+            $variable=date('Y-m-d');
+            //echo ' x ' . $variable . ' x '; die();
+        }
+    }
+    if ($tipo=='decimal'){
+        if ( is_null($variable) or (!isset($variable)) or is_string($variable) ){ 
+            $variable=0; 
+        }
+    }
+    if ($tipo=='varchar'){
+        if ( is_null($variable) or (!isset($variable)) ){ 
+            $variable=''; 
+        }
+    }
+    if ($tipo=='tinyint'){
+        if ( is_null($variable) or (!isset($variable)) or is_string($variable) ){ 
+            $variable=0; 
+        }
+    }
+ }
+
+function useracceso ($nombreusuario,$accion='ingreso') { // registra los ingresos de usuarios y su salida
+    /* acciones:
+                ingreso x
+                cierre x
+    */
+    $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/db.php';
+    include ($rutadb);
+    
+    $fechahora = date("Y-m-d H:i:s");
+    $ipuser =  $_SERVER['REMOTE_ADDR'];
+    $requesturi = $_SERVER['REQUEST_URI'];
+    
+    $queryu="SELECT * FROM usuarios WHERE User = '$nombreusuario'";
+    $resultu=mysqli_query($conn,$queryu);
+    if ($resultu) {    
+        $rowest = mysqli_fetch_array($resultu);
+        $miuser = $rowest['User'];
+    }
+    
+    $sqlinsert = "INSERT INTO accesos (fechahora, idusuario, accion, ip, requesturi) VALUES('$fechahora', '$miuser', '$accion', '$ipuser',  '$requesturi' );";
+    
+    $resulti = mysqli_query($conn,$sqlinsert);
+    mysqli_free_result($result); // libero el conjunto de resultados
+    
+    mysqli_close($conn); // cierro la conexion
+        
+}// fin de la funcion
+
 ?>

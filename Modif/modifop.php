@@ -73,7 +73,11 @@ if (isset($_POST['update'])) {
     $mimoneda = $_POST['moneda'];
     $mimonto = $_POST['monto'];
     
-    $id = $_POST['id'];
+    $id = $_POST['id']; 
+
+    if ( is_null($mimonto) or (!isset($mimonto)) ){ 
+        $mimonto=0; 
+    }
 
     $query="UPDATE op SET OP = $miop, OC = '$mioc', idCliente = $micliente, FechaOC = STR_TO_DATE('$mifechaoc', '%Y-%m-%d'), FechaTope = STR_TO_DATE('$mifechatope', '%Y-%m-%d'), ContactoC = '$micontacto', idVendedor = $mivendedor, Material = '$mimaterial', OBS = '$miobs', Moneda = '$mimoneda', Monto = $mimonto WHERE OP = $id";
 

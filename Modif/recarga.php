@@ -1,5 +1,3 @@
-<?php // error_reporting(1);  //SACAR ESTA LINEA CUANDO ANDE TODO 
-?>
 <?php
 session_start();
 if (!isset($_SESSION['ingresado'])){

@@ -27,7 +27,7 @@ $esta = $_SERVER['PHP_SELF'];
 $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borratrans.php';
 //if ternario (permisos)
 $btnBuscar= (comprobar($usuario,'transporte1')=='enabled') ? 'enabled' : 'disabled';
-$btnNuevo= (comprobar($usuario,'transporte2')=='enabled') ? '"/Servicios/Altas/altatrans.php?flag=0"' : '"#"';
+$btnNuevo= (comprobar($usuario,'transporte2')=='enabled') ? '/Servicios/Altas/altatrans.php?flag=0' : '"#"';
 $btnModif= (comprobar($usuario,'transporte3')=='enabled') ? '/Servicios/Modif/modiftrans.php?id=' : '"#"';
 $btnBorrar= (comprobar($usuario,'transporte4')=='enabled') ? '/Servicios/Bajas/borratrans.php?id=' : '"#"';
 //echo 'variable btnBuscar: ' . $btnBuscar;
@@ -49,7 +49,7 @@ $btnBorrar= (comprobar($usuario,'transporte4')=='enabled') ? '/Servicios/Bajas/b
 							<tr>
 								<td><input text="trans" name="trans" style="width: 100%" placeholder="Transporte a buscar"></td>
 								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary" <?php echo $btnBuscar; ?>></td>
-								<td><a href=<?php echo $btnNuevo; ?> class="btn btn-primary" > Nuevo Transporte </a></td>
+								<td><a href="<?php echo $btnNuevo; ?>" class="btn btn-primary" > Nuevo Transporte </a></td>
 								<!-- <td><input type="submit" name="Nuevo" value="Nuevo Transporte" class="btn btn-primary"><td> -->
 							</tr>		
 					</tbody>

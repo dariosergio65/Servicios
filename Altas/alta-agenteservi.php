@@ -7,6 +7,7 @@ $usuario=$_SESSION['ingresado'];
 
 include ("../db.php");
 include ("../includes/header.php");
+include ("../includes/funciones.php");
 //include_once ("funciones.js");
 ?>
 
@@ -21,11 +22,12 @@ include ("../includes/header.php");
 
 <?php
 //session_unset();  
-}  unset ($_SESSION['message']); 
+}  unset ($_SESSION['message']); //
 //session_unset(); 
 ?>
 
 <?php
+
 if (isset($_POST['cargaagservi'])) {
     $miidagente = $_POST['agente'];//
     $miidservicio = $_POST['servicio'];//
@@ -36,6 +38,34 @@ if (isset($_POST['cargaagservi'])) {
     $mivalordia = $_POST['valdia'];
     $midolarfecha = $_POST['dolfecha'];
 
+    //echo ' x ' . $miidagente . ' x '; die();
+
+    if ( ($miidagente==0) or is_null($miidagente) or !isset($miidagente) or ($miidagente=='') ) { 
+        $_SESSION['message'] = "Debe elegir un agente de servicio";
+        $_SESSION['message_type'] = "warning";
+        if ( isset($_POST['servicio']) and ($_POST['servicio'] > 0) ) {
+            $vuelve1 = "/Servicios/Altas/alta-agenteservi.php?id=" . $_POST['servicio'];
+            header("location: " . $vuelve1);
+        }else{
+
+            header("location: " . $_SERVER['PHP_SELF']);
+        }
+        die();
+    }
+    if ( ($miidservicio==0) or is_null($miidservicio) or !isset($miidservicio) or ($miidservicio=='') ) { 
+        $_SESSION['message'] = "Debe elegir un servicio";
+        $_SESSION['message_type'] = "warning";
+        header("location: " . $_SERVER['PHP_SELF']);
+        die();
+    }  
+
+    iniciasivacia($mifechaini,'date'); 
+    iniciasivacia($mifechafin,'date');
+    iniciasivacia($micanthoras,'decimal');
+    iniciasivacia($mivalorhora,'decimal');
+    iniciasivacia($mivalordia,'decimal');
+    iniciasivacia($midolarfecha,'decimal');
+
 
     $query="INSERT INTO agenteservicio (id_agente,id_servicio,FechaIni,FechaFin,Cant_horas,Valor_hora,Valor_dia,Dolarfecha)
     VALUES ('$miidagente',$miidservicio,STR_TO_DATE('$mifechaini', '%Y-%m-%d'),STR_TO_DATE('$mifechafin', '%Y-%m-%d'),$micanthoras,$mivalorhora,$mivalordia,$midolarfecha)";
@@ -45,7 +75,11 @@ if (isset($_POST['cargaagservi'])) {
     if ($result) {    
         $_SESSION['message'] = "Registro cargado con exito";
         $_SESSION['message_type'] = "success";
-        header("location: " . $_SERVER['PHP_SELF']);
+        if (isset($_POST['flag1'])) { 
+            header("location: /Servicios/Buscar/detalleservicios.php?id=" . $_POST['servicio']);
+        }else{
+            header("location: " . $_SERVER['PHP_SELF']);
+        }
     }
 
     if(!$result) {
@@ -66,7 +100,7 @@ if (isset($_POST['cargaagservi'])) {
                     <thead class="thead-cel" style="text-align:center">
                         <tr>
                             <th colspan=2>Agente: 
-                                <select name="agente" style="width: 50%">
+                                <select name="agente" style="width: 50%" required>
                                     <option value="0">Seleccione:</option>
                                     <?php
                                     $queryag="SELECT * FROM agentes";
@@ -77,6 +111,25 @@ if (isset($_POST['cargaagservi'])) {
                                     ?>
                                 </select>
                             </th>
+                            <?php if (isset($_GET['id'])) { 
+                                $idservi=$_GET['id'];
+                                $qservi="SELECT Nombre FROM servicios WHERE id= $idservi";
+                                $rservi=mysqli_query($conn,$qservi);
+                                if ($rservi) {
+                                    $nombreservi = mysqli_fetch_array($rservi); 
+                                    $ns=$nombreservi['Nombre'];   
+                                }
+                            ?>
+                                <th colspan=2>
+                                Servicio:
+                                    <input text="servi" name="servi" rows="2" value="<?php	echo $ns; ?>" style="width: 50%" disabled >
+                                    </text>
+                                    <input type="hidden" name="servicio" value="<?php echo $idservi; ?>">
+                                    <input type="hidden" name="flag1" value="nada">
+                                </th>
+                            <?php }else{     
+                                
+                            ?>
                             <th colspan=2>Servicio: 
                                 <select name="servicio" style="width: 50%">
                                     <option value="0">Seleccione:</option>
@@ -89,6 +142,7 @@ if (isset($_POST['cargaagservi'])) {
                                     ?>
                                 </select>
                             </th>
+                            <?php } ?>
                         </tr>
                     </thead>
 

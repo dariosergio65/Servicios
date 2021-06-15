@@ -42,13 +42,13 @@ $esta = $_SERVER['PHP_SELF'];
 					<tbody>
 							<tr>
 								<td>
-									<input text="est" name="agen" style="width: 100%" placeholder="Agente a buscar">
+									<input text="est" name="agen" style="width: 100%" value="<?php	if (isset($_POST['agen'])){echo $_POST['agen'];} ?>" placeholder="Agente a buscar">
 								</td>
 								<td>
-									<input text="est1" name="nomserv" style="width: 100%" placeholder="Nombre del Servicio">
+									<input text="est1" name="nomserv" style="width: 100%" value="<?php	if (isset($_POST['nomserv'])){echo $_POST['nomserv'];} ?>" placeholder="Nombre del Servicio">
 								</td>
 								<td>	
-									<input text="est2" name="lugar" style="width: 100%" placeholder="Lugar a buscar">
+									<input text="est2" name="lugar" style="width: 100%" value="<?php	if (isset($_POST['lugar'])){echo $_POST['lugar'];} ?>" placeholder="Lugar a buscar">
 								</td>
 								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary"></td>
 								<td>
@@ -150,7 +150,7 @@ $esta = $_SERVER['PHP_SELF'];
 		</div>
 	</div>
 
-</div>
+</div> 
 
 <?php 
 $rutafooter = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/footer.php';

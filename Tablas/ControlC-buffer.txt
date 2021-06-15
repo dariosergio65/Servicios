@@ -1,0 +1,84 @@
+<?php
+session_start();
+if (!isset($_SESSION['ingresado'])){
+	header("location: ../index.php");
+	die();
+}
+$rutaf = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/funciones.php';
+include ($rutaf);
+$rutaindex = '/Servicios/index.php';
+$usuario=$_SESSION['ingresado']; 
+
+$pantalla = 'altaagen0';//ojo al cambiar el nombre del archivo php
+
+$r=comprobar($usuario,$pantalla);
+if($r=='disabled'){
+    header ("location: " . $rutaindex);
+    die();
+}
+
+include ("../db.php");
+include ("../includes/header.php");
+
+?>
+
+<?php if (isset($_SESSION['message'])) { ?>
+
+    <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['message'] ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+<?php } unset($_SESSION['message']); ?>
+
+
+
+    echo '<meta http-equiv="refresh" content="0;url=' . $vuelta . '" />';
+
+
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifagen0','Pantalla Modificar Agente');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifagen1','Botón Modificar Agente');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifagserv0','Pantalla Modificar Agente-Servicio');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifagserv1','Botón Modificar Agente-Servicio');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifcliente0','Pantalla Modificar Cliente');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifcliente1','Botón Modificar Cliente');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifest0','Pantalla Modificar Estado de personal');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifest1','Botón Modificar Estado de personal');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifpan0','Pantalla Modificar Pantalla');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifpan1','Botón Modificar Pantalla');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifper0','Pantalla Modificar personal');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifper1','Botón Modificar personal');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifsector0','Pantalla Modificar sector');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifsector1','Botón Modificar sector');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifservicio0','Pantalla Modificar servicio');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifservicio1','Botón Modificar servicio');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modiftrans0','Pantalla Modificar transporte');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modiftrans1','Botón Modificar transporte');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifuser0','Pantalla Modificar usuario');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifuser1','Botón Modificar usuario');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifvend0','Pantalla Modificar vendedor');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('modifvend1','Botón Modificar vendedor');
+
+
+
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('alta-agenteservi0','Pantalla Altas agente-servicio');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('alta-agenteservi1','Botón Cargar agente-servicio');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altacliente0','Pantalla Alta cliente');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altacliente1','Botón Carga Cliente');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altaest0','Pantalla Alta estado de agente');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altaest1','Botón Carga estado de agente');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altapan0','Pantalla Alta de pantalla');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altapan1','Botón Carga de pantalla');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altasector0','Pantalla Alta sector');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altasector1','Botón Carga Sector');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altaservi-agentes0','Pantalla Ver...');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altaservi-agentes1','Botón ver...');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altatrans0','Pantalla Alta vehículo');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altatrans1','Botón Carga vehículo');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altauser0','Pantalla Alta usuario');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altauser1','Botón Carga Usuario');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altavend0','Pantalla Alta vendedor');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altavend1','Botón Carga vendedor');
+INSERT INTO `pantallas`(`id`, `Descripcion`) VALUES ('altaagen1','Botón Cargar Transporte');

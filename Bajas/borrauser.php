@@ -5,11 +5,11 @@ if (!isset($_SESSION['ingresado'])){
 }
 $usuario=$_SESSION['ingresado'];
 
-$rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
-$rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
+$rutadb = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/db.php';
+$rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/header.php';
 include ($rutadb);
 include ($rutaheader); 
-$regreso = $_SERVER['DOCUMENT_ROOT'] . '/servicios/abmb/agentes.php';
+//$regreso = $_SERVER['DOCUMENT_ROOT'] . '/servicios/abmb/usuarios.php';
 ?>
 
 <?php
@@ -33,6 +33,6 @@ if (isset($_GET['id'])) {
 ?>
 
 <?php 
-$rutafooter = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/footer.php';
+$rutafooter = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/footer.php';
 include ($rutafooter); 
 ?>

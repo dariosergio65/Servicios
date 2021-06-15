@@ -83,7 +83,7 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraagen.php';
 						<?php
 							if (isset($_POST['Busca'])){
 								$miagen= '%' . $_POST['agen'] . '%';
-								$query = "SELECT dni,Agente,Celular,Estado,Vence,OBS FROM agentes LEFT JOIN estados ON agentes.id_estado=estados.id WHERE Agente like '$miagen' AND Activo=1";
+								$query = "SELECT dni,Agente,Celular,Estado,Vence,OBS FROM agentes LEFT JOIN estados ON agentes.id_estado=estados.id WHERE Agente like '$miagen' AND Activo=1 order by Estado,Vence";
 							} 
 							else{
 								$query = "SELECT dni,Agente,Celular,Estado,Vence,OBS FROM agentes LEFT JOIN estados ON agentes.id_estado=estados.id WHERE Activo=1 order by Estado,Vence";

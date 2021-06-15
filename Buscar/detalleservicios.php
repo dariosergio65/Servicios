@@ -27,6 +27,9 @@ include ("../includes/header.php");
 if (isset($_GET['id'])) {
     $id=$_GET['id'];
 
+    $addPersonal = "/Servicios/Altas/alta-agenteservi.php?id=" . $id;
+    $borrap = "/Servicios/Bajas/borraagserv.php?flag1=" . $id . "&agservid=";   //mas abajo agrega id de agenteservicio
+
     $query="SELECT s.id as id1, s.Nombre as snombre, s.OpRef as soperef, c.Cliente as cliref, s.OpServicio as sopserv, cc.Cliente as cliserv, s.Lugar as slugar, s.Trabajo as strab, s.FechaIni as sfechaini, s.FechaFin as sfechafin, s.OBS as sobs, s.Facturado as sfac, e.Estado as eestado, t.Transporte as trans
     FROM servicios s
     LEFT JOIN clientes c ON s.idCliente1=c.id
@@ -53,12 +56,13 @@ if (isset($_GET['id'])) {
         $mitransporte = $row['trans'];
         $miestado = $row['eestado'];
         $mifacturado = $row['sfac'];
+        $facform = number_format($mifacturado, 2, '.', ' ');
     }
 
     if(!$result) {
         //echo $_POST['contacto'] . "<br>";
         //echo $_POST['vendedor'];
-        die("Algo fallo y no se pudo CARGAR el registro.");
+        die("Algo fallo y no se pudo CARGAR el registro-.");
     }
 }
 ?>
@@ -96,7 +100,7 @@ if (isset($_GET['id'])) {
                     <tr>
                         <th BGCOLOR="#9b9b9b" style="text-align:left" colspan=4>
                             <div class="form-group">Trabajo Realizado
-                                <textarea name="trabajo" rows="2" style="width: 100%" class="form-control" disabled> <?php echo $mitrabajo; ?></textarea>
+                                <textarea name="trabajo" rows="3" style="width: 100%" class="form-control" disabled> <?php echo $mitrabajo; ?></textarea>
                             </div>
                         </th>
                     </tr>
@@ -120,7 +124,7 @@ if (isset($_GET['id'])) {
                             Vehículo: <input text="tra" name="tra" value="<?php echo $mitransporte; ?>" style="width: 80%" disabled>
                         </td>
                         <th colspan=2>
-                            Facturado $: <input text="fac" name="fac" value="<?php echo $mifacturado; ?>" style="width: 80%" disabled>
+                            Facturado $: <input text="fac" name="fac" value="<?php echo $facform; ?>" style="width: 80%" disabled>
                         </th>
                     </tr>
                 </tbody>
@@ -129,7 +133,7 @@ if (isset($_GET['id'])) {
     </div>
 </div>
 
-<h5 style="color:#FF0000">PERSONAL LAGO </h5>
+<h5 style="color:blue">PERSONAL LAGO <a href="<?php echo $addPersonal; ?>"> <i class="fas fa-plus-circle"> </i> </a> </h5>
 
 <div class="col-md-12 container p-2">
     <div class="row">
@@ -138,7 +142,7 @@ if (isset($_GET['id'])) {
             <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
 
                 <?php
-                $query1="SELECT s.id as idp, a.Agente as nom, ase.Fechaini as ini, ase.Fechafin as fin, ase.Cant_horas as trabajadas, ase.Valor_hora as valhora, ase.Valor_dia as valdia, ase.Dolarfecha as valdolar,
+                $query1="SELECT s.id as idp, a.dni as midni, a.Agente as nom, ase.Fechaini as ini, ase.Fechafin as fin, ase.Cant_horas as trabajadas, ase.Valor_hora as valhora, ase.Valor_dia as valdia, ase.Dolarfecha as valdolar,
                 (((SELECT DATEDIFF(ase.Fechafin , ase.Fechaini)+1)*ase.Valor_dia)+(ase.Cant_horas*ase.Valor_hora)) as totals,
                 ((((SELECT DATEDIFF(ase.Fechafin , ase.Fechaini)+1)*ase.Valor_dia)+(ase.Cant_horas*ase.Valor_hora))/ase.Dolarfecha) as totaluss
                 FROM servicios s 
@@ -163,7 +167,7 @@ if (isset($_GET['id'])) {
                 }
 
                 if(!$result1) {
-                    die("Algo fallo y no se pudo CARGAR el registro.");
+                    die("Algo fallo y no se pudo CARGAR el registro.--");
                 }
                 ?> 
 
@@ -179,6 +183,7 @@ if (isset($_GET['id'])) {
                             <th >Dolar Fecha </th>
                             <th >Total $ </th>
                             <th >Total US$ </th>
+                            <th >Baja </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -197,6 +202,18 @@ if (isset($_GET['id'])) {
                         // SUMATORIA
                         $sumapesos=$sumapesos+$row1['totals'];
                         $sumauss=$sumauss+$row1['totaluss'];
+                        // obener id del agenteservicio
+                        $dni=$row1['midni'];
+                        if($dni>0) {
+                            $q2="SELECT id FROM agenteservicio WHERE id_servicio=$id AND id_agente=$dni";
+                            $r2=mysqli_query($conn,$q2);
+                            if(!$r2) {
+                                die("Algo fallo y no se pudo CARGAR el registro---.");
+                            }else{
+                                $row2 = mysqli_fetch_array($r2);
+                                $idag=$row2['id'];
+                            }
+                        }
                     ?> 
                         <tr>
                             <td>
@@ -225,6 +242,9 @@ if (isset($_GET['id'])) {
                             </td>
                             <td>
                                 <?php echo $totaluss; ?>
+                            </td>
+                            <td>
+                                <a href="<?php echo $borrap . $idag; ?>"> <i class="fas fa-minus-circle" style="color:red"> </i> </a>
                             </td>
                         </tr>
                     <?php }
@@ -280,6 +300,10 @@ if (isset($_GET['id'])) {
                     <tr>
                         <td>Total Pagado $</td>
                         <td> <?php echo $clonsumapesos; ?>  </td>
+                    </tr>
+                    <tr>
+                        <td>Total Gastos $</td>
+                        <td style="color:magenta;"> <?php echo 'Faltan datos' ?>  </td>
                     </tr>
                 </tbody>
                 <tfoot class="tfoot-cel" style="text-align:right">

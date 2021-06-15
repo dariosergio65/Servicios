@@ -26,6 +26,7 @@ if (isset($_POST['cargauser'])) {
     $miuser = $_POST['user'];
     $minombre = $_POST['nombre'];
     $micat = $_POST['cat'];
+    $misector = $_POST['sec'];
     $miclave = encriptar($_POST['clave']);
 
     if (isset($_GET['flag'])) {
@@ -38,7 +39,7 @@ if (isset($_POST['cargauser'])) {
         }
     }
     
-    $query="INSERT INTO usuarios (User,Nombre,id_categoria,Clave) VALUES ('$miuser', '$minombre', $micat, '$miclave')";
+    $query="INSERT INTO usuarios (User,Nombre,id_categoria,id_sector,Clave) VALUES ('$miuser', '$minombre', $micat, $misector, '$miclave')";
     $result=mysqli_query($conn,$query);
     //$registro = mysqli_num_rows($result); 
     //echo "llegamos aca";
@@ -86,6 +87,20 @@ if (isset($_POST['cargauser'])) {
                                     $resultcat=mysqli_query($conn,$querycat);
                                     while ($valores = mysqli_fetch_array($resultcat)) {
                                         echo '<option value="' . $valores['id'] . '">' . $valores['nombre'] . '</option>';
+                                    }
+                                    ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sector: 
+                                    <select name="sec" style="width: 50%">
+                                    <option value="0">Seleccione:</option>
+                                    <?php
+                                    $querysec="SELECT * FROM sectores";
+                                    $resultsec=mysqli_query($conn,$querysec);
+                                    while ($sec = mysqli_fetch_array($resultsec)) {
+                                        echo '<option value="' . $sec['id'] . '">' . $sec['Sector'] . '</option>';
                                     }
                                     ?>
                                     </select>

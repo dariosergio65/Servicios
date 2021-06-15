@@ -1,5 +1,3 @@
-<?php // error_reporting(1);  //SACAR ESTA LINEA CUANDO ANDE TODO 
-?>
 <?php
 session_start();
 if (!isset($_SESSION['ingresado'])){
@@ -25,6 +23,11 @@ include ($rutadb);
 include ($rutaheader); 
 $esta = $_SERVER['PHP_SELF'];
 
+$btnBuscar= (comprobar($usuario,'tablero1')=='enabled') ? 'enabled' : 'disabled';
+$btnNuevo= (comprobar($usuario,'tablero2')=='enabled') ? '/Servicios/Altas/altaservicio.php?flag=0' : '"#"';
+$btnDetalle= (comprobar($usuario,'tablero3')=='enabled') ? '/Servicios/Buscar/detalleservicios.php?id=' : '"#"';
+$btnModif= (comprobar($usuario,'tablero4')=='enabled') ? '/Servicios/Modif/modifservicio.php?id=' : '"#"';
+$btnBorrar= (comprobar($usuario,'tablero5')=='enabled') ? '/Servicios/Bajas/borraservicio.php?id=' : '"#"';
 ?>
 
 <div class="col-md-12 container p-2">
@@ -32,7 +35,7 @@ $esta = $_SERVER['PHP_SELF'];
 		<div class="col-md-11">
 			<form action="<?php echo $esta; ?>" method="POST">
 							
-				<table class="table table-bordered">
+				<table class="table table-sm table-bordered">
 					<thead class="thead-cel" style="text-align:center">
 						<tr>
 							<th>Nombre</th>
@@ -43,18 +46,24 @@ $esta = $_SERVER['PHP_SELF'];
 					</thead>
 					<tbody>
 							<tr>
-								<td><input text="nombre" name="nombre" style="width: 100%" placeholder="Nombre del servicio"></td>
-								<td ><input text="op1" id="tdop" name="op1" value="" style="width: 100%" placeholder="Número de OP"></td>
+								<td>
+									<input text="nombre" name="nombre" style="width: 100%" value="<?php	if (isset($_POST['nombre'])){echo $_POST['nombre'];} ?>" placeholder="Nombre del servicio">
+								</td>
+								<td >
+									<input text="op1" id="tdop" name="op1" style="width: 100%" value="<?php	if (isset($_POST['op1'])){echo $_POST['op1'];} ?>" placeholder="Número de OP">
+								</td>
 								<script>
 								var mitdop = document.getElementById("tdop");
 								mitdop.style.background = "yellow";
 								</script>
-								<td><input text="lugar" name="lugar" style="width: 100%" placeholder="Lugar Donde se realizó el servicio"></td>
+								<td>
+									<input text="lugar" name="lugar" style="width: 100%" value="<?php	if (isset($_POST['lugar'])){echo $_POST['lugar'];} ?>" placeholder="Lugar donde se realizó el servicio">
+								</td>
 
-								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary"><td>
+								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary" <?php echo $btnBuscar; ?> > <td>
 								<!-- <td><input type="submit" name="Nuevo" value="Nuevo servicio" class="btn btn-primary"><td> Falta el codigo de "Nuevo" -->
 								<td>
-								<a href="<?php echo '../Altas/altaservicio.php' ?>" class="btn btn-primary ">Nuevo Servicio </i>
+								<a href="<?php echo $btnNuevo; ?>" class="btn btn-primary ">Nuevo Servicio </i>
 								</a>
 								</td>
 							</tr>		
@@ -81,93 +90,94 @@ $esta = $_SERVER['PHP_SELF'];
 
 		<div class="col-md-12">
 
-				<table class="table table-sm table-bordered table-hover">
-					<thead class="thead-dario" style="text-align:center">
-						<tr>
-							<th>Servicio</th>
-							<th>OP</th>
-							<th>Cliente OP</th>
-							<th>OP Serv.</th>
-							<th>Cliente Serv.</th>
-							<th style="width: 20%">Trabajo Realizado</th>
-							<th>Lugar</th>
-							<th>Fecha inicio</th>
-							<th>Fecha final</th>
-							<th style="width: 9%">Acciones</th>
-						<tr>
-					</thead>
-					<tbody>
-						<?php
-							if (isset($_POST['Busca'])){
-								$op1fin=$_POST['op1'];
-								if(($op1fin < 1)) {$op1fin=1;} 
-								$nombrefin= '%' . $_POST['nombre'] . '%';
-								$lugarfin= '%' . $_POST['lugar'] . '%';
-//esto va a salir de varias tablas (OpRef = $op1fin OR OpServicio = $op1fin)
-								if ($op1fin == 1){
-									//$query = "SELECT * FROM servicios WHERE idCliente1 LIKE '$clientefin' AND Lugar LIKE '$lugarfin'";
-															// falta operario y Vehiculo
-									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin' order by s.FechaFin desc";
-									//$qCliente2 = "SELECT c.Cliente FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE idCliente1 LIKE '$clientefin' AND Lugar LIKE '$lugarfin'";
-									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin' order by s.FechaFin";
-								}
-								else{
-									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin)";
-									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin) order by s.FechaFin desc";
-								}
-							}elseif (isset($_GET['id'])) {
-									$serviid=$_GET['id'];
-									//echo 'nada';
-									//echo $serviid;
-									$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, s.idCliente2, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id WHERE (s.id = $serviid)";
-									$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id WHERE (s.id = $serviid) order by s.FechaFin desc";
-							} 
+			<table class="table table-sm table-bordered table-hover">
+				<thead class="thead-dario" style="text-align:center">
+					<tr>
+						<th>Servicio</th>
+						<th>OP Ref.</th>
+						<th>Cliente Ref.</th>
+						<th>OP Serv.</th>
+						<th>Cliente Serv.</th>
+						<th style="width: 20%">Trabajo Realizado</th>
+						<th>Lugar</th>
+						<th>Fecha inicio</th>
+						<th>Fecha final</th>
+						<th style="width: 9%">Acciones</th>
+					<tr>
+				</thead>
+				<tbody>
+					<?php
+						if (isset($_POST['Busca'])){
+							$op1fin=$_POST['op1'];
+							if(($op1fin < 1)) {$op1fin=1;} 
+							$nombrefin= '%' . $_POST['nombre'] . '%';
+							$lugarfin= '%' . $_POST['lugar'] . '%';
+							if ($op1fin == 1){
+									// falta operario y Vehiculo
+								$query = "SELECT s.id as misid, s.Nombre  as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s 
+								LEFT JOIN clientes c ON s.idCliente1=c.id 
+								LEFT JOIN clientes cc ON s.idCliente2=cc.id
+								WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin' ORDER BY s.FechaFin DESC";
+							}
 							else{
-								$query = "SELECT s.id, s.Nombre, s.OpRef, c.Cliente, s.OpServicio, c.Cliente, s.Trabajo, s.Lugar, s.FechaIni, s.FechaFin FROM servicios s LEFT JOIN clientes c ON s.idCliente1=c.id order by s.FechaFin desc";
-								$qCliente2 = "SELECT c.Cliente as cli2 FROM servicios s LEFT JOIN clientes c ON s.idCliente2=c.id order by s.FechaFin desc";
-								//$query = "SELECT * FROM servicios"; s.idCliente2
+								$query = "SELECT s.id as misid, s.Nombre as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s 
+								LEFT JOIN clientes c ON s.idCliente1=c.id
+								LEFT JOIN clientes cc ON s.idCliente2=cc.id 
+								WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin) ORDER BY s.FechaFin DESC";
 							}
-							unset($_POST['Busca']);
+						}elseif (isset($_GET['id'])) {
+								$serviid=$_GET['id'];
+								$query = "SELECT s.id as misid, s.Nombre as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s 
+								LEFT JOIN clientes c ON s.idCliente1=c.id 
+								LEFT JOIN clientes cc ON s.idCliente2=cc.id
+								WHERE (s.id = $serviid) ORDER BY s.FechaFin DESC";
+						} 
+						else{
+							$query = "SELECT s.id as misid, s.Nombre as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s
+							LEFT JOIN clientes c ON s.idCliente1=c.id 
+							LEFT JOIN clientes cc ON s.idCliente2=cc.id
+							ORDER BY s.FechaFin DESC";
+						}
+						unset($_POST['Busca']);
+						$result_tasks = mysqli_query($conn,$query);
+						$totalreg = mysqli_num_rows($result_tasks);
+						echo 'TOTAL = '.$totalreg ;
+						
+						if (!$result_tasks){
+							$query = "SELECT * FROM servicios order by FechaFin desc";
 							$result_tasks = mysqli_query($conn,$query);
-							if (isset($qCliente2)){
-								$result_tasks2 = mysqli_query($conn,$qCliente2);
-							}
+							echo 'ALGO MAL';
+						}
 
-							if (!$result_tasks){
-								$query = "SELECT * FROM servicios order by FechaFin desc";
-								$result_tasks = mysqli_query($conn,$query);
-								echo 'ALGO MAL';
-							}
-
-							while ($row=mysqli_fetch_array($result_tasks) and $row2=mysqli_fetch_array($result_tasks2)) { ?>
-								<tr>
-									<td><?php echo $row['Nombre'] ?></td>
-									<td><a href="../Buscar/VerOp.php?id=<?php echo $row['OpRef'] ?>"><?php echo $row['OpRef'] ?>
-										</a></td>
-									<td><?php echo $row['Cliente'] ?></td>
-									<td><a href="../Buscar/VerOp.php?id=<?php echo $row['OpServicio'] ?>"><?php echo $row['OpServicio'] ?>
-										</a></td>
-									<td><?php echo $row2['cli2'] ?></td>
-									<td><?php echo $row['Trabajo'] ?></td>
-									<td><?php echo $row['Lugar'] ?></td>
-									<td><?php echo $row['FechaIni'] ?></td>
-									<td><?php echo $row['FechaFin'] ?></td>
-									<td>
-										<a href="/Servicios/Buscar/detalleservicios.php?id=<?php echo $row['id'] ?>" class= 
-										"btn btn-warning btn-sm">D.</i>
-										</a>
-										
-										<a href="/Servicios/Modif/modifservicio.php?id=<?php echo $row['id'] ?>" class= "btn btn-primary btn-sm"> <i class="fa fa-cog fa-spin"></i>
-										</a>
+						while ($row=mysqli_fetch_array($result_tasks)) { ?>
+							<tr>
+								<td><?php echo $row['snombre'] ?></td>
+								<td><a href="../Buscar/VerOp.php?id=<?php echo $row['sopref'] ?>"><?php echo $row['sopref'] ?>
+									</a></td>
+								<td><?php echo $row['cliente1'] ?></td>
+								<td><a href="../Buscar/VerOp.php?id=<?php echo $row['sopserv'] ?>"><?php echo $row['sopserv'] ?>
+									</a></td>
+								<td><?php echo $row['cliente2'] ?></td>
+								<td><?php echo $row['strabajo'] ?></td>
+								<td><?php echo $row['slugar'] ?></td>
+								<td><?php echo $row['sini'] ?></td>
+								<td><?php echo $row['sfin'] ?></td>
+								<td>
+									<a href="<?php echo $btnDetalle; echo $row['misid']; ?>" class= 
+									"btn btn-success btn-sm"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+									</a>
 									
-										<a href="/Servicios/Bajas/borraservicio.php?id=<?php echo $row['id'] ?>" class="btn btn-danger btn-sm"> <i class="far fa-trash-alt"></i>
-										</a>
-									</td>
-								</tr>		
-							<?php }
-						?>
-					</tbody>
-				</table>
+									<a href="<?php echo $btnModif; echo $row['misid']; ?>" class= "btn btn-primary btn-sm"> <i class="far fa-edit	"></i>
+									</a>
+								
+									<a href="<?php echo $btnBorrar; echo $row['misid']; ?>" class="btn btn-danger btn-sm"> <i class="far fa-trash-alt"></i>
+									</a>
+								</td>
+							</tr>		
+						<?php }
+					?>
+				</tbody>
+			</table>
 		</div>
 	</div>
 

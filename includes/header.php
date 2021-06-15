@@ -20,7 +20,7 @@
         $usuario=$_SESSION['ingresado'];
     }
     if (isset($usuario)){
-      $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
+      $rutadb = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/db.php';
       include ($rutadb); 
       $query = "SELECT Nombre FROM usuarios WHERE User like '$usuario'";
 			$result_tasks = mysqli_query($conn,$query);
@@ -30,19 +30,34 @@
     }
 ?>
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark" >
 
 	<div class="container">
 
-		<a href="/servicios/menu.php" class="navbar-brand">SERVICIOS LAGO</a>
-    <h5 style="color:green;">Usuario: <?php if (isset($nombre)){ echo ' ' . $nombre;}?> </h5>
-    <h5 style="color:green;">Fecha: <?php echo date('l jS \of F Y'); ?> </h5>
-    <a href="/servicios/cierre.php" style="color:red;">Cerrar Sesión</a>
+		<a href="/Servicios/menu.php" class="navbar-brand" style="color:yellow;">MENU PRINCIPAL</a>
+    <!--h5 style="color:green;">Usuario: <?php //if (isset($nombre)){ echo ' ' . $nombre;}?> </h5-->
+    <!--h5 style="color:green;">Fecha: <?php //echo date('l jS \of F Y'); ?> </h5-->
+    <h5 style="color:YELLOW;">SERVICIOS LAGO </h5>
+    <!--a href="/Servicios/cierre.php" style="color:red;">Cerrar Sesión</a-->
+
+    
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown">
+        <?php if (isset($nombre)){ echo ' ' . $nombre;}?>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/Servicios/Modif/cambiaclave.php">Cambiar clave</a>
+          <a class="dropdown-item" href="/Servicios/cierre.php" style="color:red;">Cerrar Sesión</a>
+        </div>
+      </div>  
+    
 	
 	</div>
 
 </nav>
 
+  
+  
 <style type="text/css">
   .container{
    text-align: center;

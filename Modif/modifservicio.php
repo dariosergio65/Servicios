@@ -69,7 +69,7 @@ if (isset($_POST['update'])) {
 
     $id = $_POST['id'];
 
-    $query="UPDATE servicios SET Nombre = '$nunombre', OpRef = $nuopref, idCliente1 = $nucliente1, OpServicio = $nuopservicio, Trabajo = '$nutrabajo', Lugar = '$nulugar', FechaIni = '$nufechaini', FechaFin = '$nufechafin', id_estado = $nuestado, id_transporte = $nutranspo, OBS = '$nuobs', Facturado = '$nufacturado' WHERE id = $id";
+    $query="UPDATE servicios SET Nombre = '$nunombre', OpRef = $nuopref, idCliente1 = $nucliente1, OpServicio = $nuopservicio, idCliente2 = $nucliente2, Trabajo = '$nutrabajo', Lugar = '$nulugar', FechaIni = '$nufechaini', FechaFin = '$nufechafin', id_estado = $nuestado, id_transporte = $nutranspo, OBS = '$nuobs', Facturado = '$nufacturado' WHERE id = $id";
 
     $result=mysqli_query($conn,$query);
 
@@ -186,7 +186,7 @@ if (isset($_POST['update'])) {
                         </select>
                     </div>
 
-                    <div class="form-group">Trasnporte utilizado: 
+                    <div class="form-group">Transporte utilizado: 
                         <select name="transpo" style="width: 50%">
                                 <option value="0">Seleccione:</option>
                                 <?php

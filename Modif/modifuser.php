@@ -36,6 +36,7 @@ if (isset($_GET['id'])) {
         $row = mysqli_fetch_array($result);
         $minombre = $row['Nombre'];
         $micat = $row['id_categoria'];
+        $misector=$row['id_sector'];
         $miclave = $row['Clave'];
     }
 }
@@ -43,11 +44,11 @@ if (isset($_GET['id'])) {
 if (isset($_POST['update'])) {
     $minombre = $_POST['nombre'];
     $micat = $_POST['cat'];
+    $misector=$_POST['sec'];
     $miclave = $_POST['clave'];
-
     $miuser = $_POST['user'];
 
-    $query="UPDATE usuarios SET Nombre = '$minombre', id_categoria = $micat, Clave = '$miclave' WHERE User = '$miuser'";
+    $query="UPDATE usuarios SET Nombre = '$minombre', id_categoria = $micat, id_sector = $misector, Clave = '$miclave' WHERE User = '$miuser'";
     $result=mysqli_query($conn,$query);
 
     if(!$result) {
@@ -87,6 +88,22 @@ if (isset($_POST['update'])) {
                                     echo '<option value="' . $valores['id'] . '" selected>' . $valores['nombre'] . '</option>';
                                 }else{
                                     echo '<option value="' . $valores['id'] . '">' . $valores['nombre'] . '</option>';    
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">Sector: 
+                        <select name="sec" style="width: 50%">
+                            <option value="0">Seleccione:</option>
+                            <?php
+                            $querysec="SELECT * FROM sectores";
+                            $resultsec=mysqli_query($conn,$querysec);
+                            while ($sec = mysqli_fetch_array($resultsec)) {
+                                if ($micat==$sec['id']){
+                                    echo '<option value="' . $sec['id'] . '" selected>' . $sec['Sector'] . '</option>';
+                                }else{
+                                    echo '<option value="' . $sec['id'] . '">' . $sec['Sector'] . '</option>';    
                                 }
                             }
                             ?>

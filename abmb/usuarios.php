@@ -1,5 +1,3 @@
-<?php // error_reporting(1);  //SACAR ESTA LINEA CUANDO ANDE TODO 
-?>
 <?php
 session_start();
 if (!isset($_SESSION['ingresado'])){
@@ -63,8 +61,9 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borrauser.php';
 						<tr>
 							<th style="width: 10%">USUARIO</th>
 							<th style="width: 25%">Nombre real</th>
-							<th style="width: 10%">Categoria</th>
-							<th style="width: 40%">Clave</th>
+							<th style="width: 15%">Categoria</th>
+							<th style="width: 15%">Sector</th>
+							<th style="width: 20%">Clave</th>
 							<th style="width: 15%">Acciones</th>
 						<tr>
 					</thead>
@@ -75,13 +74,17 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borrauser.php';
 								$minombre= '%' . $_POST['nombre'] . '%';
 								$query = "SELECT * FROM usuarios 
 								INNER JOIN categorias
-								ON usuarios.id_categoria=categorias.id 
+								ON usuarios.id_categoria=categorias.id
+								INNER JOIN sectores
+								ON usuarios.id_sector=sectores.id 
 								WHERE User like '$miuser' AND usuarios.Nombre like '$minombre'"; //  AND Nombre like '$minombre'
 							} 
 							else{
 								$query = "SELECT * FROM usuarios 
 								INNER JOIN categorias
-								ON usuarios.id_categoria=categorias.id ";
+								ON usuarios.id_categoria=categorias.id
+								INNER JOIN sectores
+								ON usuarios.id_sector=sectores.id ";
 							}
 							unset($_POST['Busca']);
 							$result_tasks = mysqli_query($conn,$query);
@@ -89,7 +92,9 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borrauser.php';
 							if (!$result_tasks){
 								$query = "SELECT * FROM usuarios 
 								INNER JOIN categorias
-								ON usuarios.id_categoria=categorias.id ";
+								ON usuarios.id_categoria=categorias.id
+								INNER JOIN sectores
+								ON usuarios.id_sector=sectores.id ";
 								$result_tasks = mysqli_query($conn,$query);
 								echo 'ALGO SALIO MAL';
 							}
@@ -100,6 +105,7 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/servicios/bajas/borrauser.php';
 									<td><?php echo $row['User'] ?></td>
 									<td><?php echo $row['Nombre'] ?></td>
 									<td><?php echo $row['nombre'] ?></td>
+									<td><?php echo $row['Sector'] ?></td>
 									<td><?php echo $row['Clave'] ?></td>
 
 									<td>
