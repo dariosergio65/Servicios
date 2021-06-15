@@ -1,4 +1,0 @@
-SELECT o.OP, s.Sector, e.ingP, e.FechaingP, e.ingF, e.FechaingF, e.fabi, e.Fechafabi, e.fabF, e.FechaArm, e.insP, e.FechainsP, e.insF, e.FechainsF, e.desP, e.FechadesP, e.desF, e.FechadesF 
-FROM op o
-LEFT JOIN estadosop e ON o.OP=e.OP
-WHERE o.OP=5829
