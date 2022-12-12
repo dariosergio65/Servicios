@@ -16,8 +16,8 @@ if($r=='disabled'){
     header ("location: " . $rutaindex);
     die();
 }
-$rutadb = $_SERVER['DOCUMENT_ROOT'] . '/servicios/db.php';
-$rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/header.php';
+$rutadb = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/db.php';
+$rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/header.php';
 include ($rutadb);
 include ($rutaheader); 
 $esta = $_SERVER['PHP_SELF'];
@@ -32,7 +32,7 @@ $esta = $_SERVER['PHP_SELF'];
 				<table class="table table-bordered">
 					<thead class="thead-cel" style="text-align:center">
 						<tr>
-							<th style="width: 80%" >Servicios realizados por el personal Lago desde 07/12/2019</th>
+							<th style="width: 80%" >Accesos de Usuarios Lago</th>
 							<th style="width: 20%" >Acciones</th>
 							
 						</tr>
@@ -40,7 +40,7 @@ $esta = $_SERVER['PHP_SELF'];
 					<tbody>
 							<tr>
 								<td>
-									<input text="est" name="agen" style="width: 100%" placeholder="Agente a buscar">
+									<input text="est" name="agen" style="width: 100%" placeholder="Usuario a buscar">
 								</td>
 								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary"></td>
 								
@@ -66,44 +66,40 @@ $esta = $_SERVER['PHP_SELF'];
 
 	<div class="row">
 
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<table class="table table-sm table-bordered table-hover">
 				<thead class="thead-dario" style="text-align:center">
 					<tr>
-						<th style="width: 50%">Nombre Agente</th>
-						<th style="width: 30%">Servicios realizados</th>
-						<th style="width: 20%">Porcentaje</th>
+						<th style="width: 30%">Fecha</th>
+						<th style="width: 10%">Usuario</th>
+						<th style="width: 20%">Nombre</th>
+						<th style="width: 10%">Acción</th>
+						<th style="width: 20%">Ip</th>
+						<th style="width: 10%">Uri</th>
 					<tr>
 				</thead>
 				<tbody>
 					<?php
 						if (isset($_POST['Busca'])){
 							$miagen= '%' . $_POST['agen'] . '%';
-							$query = "SELECT count(id_agente) as canti, Agente FROM agenteservicio
-							INNER JOIN agentes ON agenteservicio.id_agente=agentes.dni
-							WHERE Agente like '$miagen'
-							GROUP BY id_agente
-							ORDER BY canti desc
+							$query = "SELECT a.fechahora, u.User, u.Nombre, a.accion, a.ip, a.requesturi FROM accesos a
+							INNER JOIN usuarios u ON a.idusuario=u.User
+							WHERE u.Nombre like '$miagen'
+							ORDER BY a.fechahora desc
 							";
 						} 
 						else{
-							$query = "SELECT count(id_agente) as canti, Agente FROM agenteservicio
-							INNER JOIN agentes ON agenteservicio.id_agente=agentes.dni
-							GROUP BY id_agente
-							ORDER BY canti desc
+							$query = "SELECT a.fechahora as fecha, u.User as useru, u.Nombre as nombreu, a.accion as acciona, a.ip as ipa, a.requesturi as reqa FROM accesos a
+							INNER JOIN usuarios u ON a.idusuario=u.User
+							ORDER BY a.fechahora desc
 							";
 						}
-
-						$queryservi = "SELECT count(id) as cantservi from servicios";
-						$result_servi = mysqli_query($conn,$queryservi);
-						$row_servi=mysqli_fetch_array($result_servi);	
-
 
 						unset($_POST['Busca']);
 						$result_tasks = mysqli_query($conn,$query);
 
 						if (!$result_tasks){
-							$query = "SELECT * FROM agentes";
+							$query = "SELECT * FROM accesos";
 							$result_tasks = mysqli_query($conn,$query);
 							echo 'ALGO SALIO MAL';
 						}
@@ -111,25 +107,23 @@ $esta = $_SERVER['PHP_SELF'];
 						while ($row=mysqli_fetch_array($result_tasks)) { 
 					?>
 							<tr>
-								<td><?php echo $row['Agente']; ?></td>
-								<td><?php echo $row['canti'] ?></td>
-								<td><?php echo number_format(($row['canti']/$row_servi['cantservi']*100),2).' %' ?></td>
+								<td><?php echo $row['fecha']; ?></td>
+								<td><?php echo $row['useru'] ?></td>
+								<td><?php echo $row['nombreu']; ?></td>
+								<td><?php echo $row['acciona'] ?></td>
+								<td><?php echo $row['ipa']; ?></td>
+								<td><?php echo $row['reqa'] ?></td>
 							</tr>		
 					<?php }
 					?>
 				</tbody>
 			</table>
 		</div>
-		<div class="col-md-4">
-			<?php echo 'Total de Servicios: ' . $row_servi['cantservi'] ?>
-		
-		</div>
 	</div>
-
 </div>
 
 <?php 
-$rutafooter = $_SERVER['DOCUMENT_ROOT'] . '/servicios/includes/footer.php';
+$rutafooter = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/footer.php';
 include ($rutafooter); 
 ?>
 

@@ -81,11 +81,11 @@ $btnBorrar= (comprobar($usuario,'internos4')=='enabled') ? '/Servicios/Bajas/bor
 				<table class="table table-sm table-bordered table-hover">
 					<thead class="thead-dario" style="text-align:center">
 						<tr>
-							<th style="width: 20%">Nombre</th>
-							<th style="width: 15%">Apellido</th>
+							<th style="width: 25%">Nombre</th>
+							<th style="width: 20%">Apellido</th>
 							<th style="width: 10%">Interno</th>
 							<th style="width: 25%">Equipo</th>
-							<th style="width: 30%">Acciones</th>
+							<th style="width: 10%">Acciones</th>
 						<tr>
 					</thead>
 					<tbody>
@@ -119,12 +119,12 @@ $btnBorrar= (comprobar($usuario,'internos4')=='enabled') ? '/Servicios/Bajas/bor
 
 									<td>
 										<a href="<?php echo $btnModif; echo $row['id']; ?> " class="btn btn-primary btn-sm">
-											Modificar <i class="fa fa-cog fa-spin"></i>
+										<i class="far fa-edit"> </i>
 										</a>
 									
 										<a href="<?php echo $btnBorrar; echo $row['id']; ?> " class= 
 										"btn btn-danger btn-sm">
-											Borrar <i class="far fa-trash-alt"></i>
+											<i class="far fa-trash-alt"></i>
 										</a>
 									</td>
 

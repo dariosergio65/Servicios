@@ -9,7 +9,7 @@ include ($rutaf);
 $rutaindex = '/Servicios/index.php';
 $usuario=$_SESSION['ingresado']; 
 
-$pantalla = 'abmop0';//ojo al cambiar el nombre del archivo php
+$pantalla = 'despachar0';//ojo al cambiar el nombre del archivo php
 
 $r=comprobar($usuario,$pantalla);
 if($r=='disabled'){
@@ -22,7 +22,7 @@ $rutaheader = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/includes/header.php';
 include ($rutadb);
 include ($rutaheader); 
 $esta = $_SERVER['PHP_SELF'];
-$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraop.php';
+//$rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraop.php';
 
 // falta borraop.php modifop.php
 
@@ -36,16 +36,15 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraop.php';
 				<table class="table table-bordered">
 					<thead class="thead-cel" style="text-align:center">
 						<tr>
-							<th style="width: 50%">Orden de Pedido</th>
-							<th style="width: 40%" colspan=2>Acciones</th>
+							<th style="width: 70%;color:#990033">OPs Inspeccionadas. FALTA DESPACHO</th>
+							<th style="width: 30%" colspan=2>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
 							<tr>
 								<td><input text="op" name="op" style="width: 100%" value="<?php	if (isset($_POST['op'])){echo $_POST['op'];} ?>" placeholder="OP a buscar"></td>
 								<td><input type="submit" name="Busca" value="Buscar" class="btn btn-secondary"></td>
-								<td><a href="/Servicios/Altas/altaop.php?flag=0" class="btn btn-primary"> Nueva OP <i class="fa fa-cog fa-spin"></i>
-								</a></td>
+								
 							</tr>		
 					</tbody>
 				</table>
@@ -74,13 +73,14 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraop.php';
 					<thead class="thead-dario" style="text-align:center">
 						<tr>
 							<th style="width: 5%">OP</th>
-							<th style="width: 10%">OC</th>
+							<th style="width: 5%">OC</th>
 							<th style="width: 10%">Cliente</th>
-							<th style="width: 10%">Fecha de OC</th>
-							<th style="width: 10%">Fecha Tope</th>
 							<th style="width: 30%">Material</th>
-							<th style="width: 15%">Observaciones</th>
-							<th style="width: 10%">Acciones</th>
+							<th style="width: 10%">Insp. Pedida</th>
+							<th style="width: 10% ">Insp Final</th>
+							<th style="width: 10%">Desp. Parcial</th>
+							<th style="width: 10% ">Desp. Final</th>
+							<th style="width: 10%">Observaciones</th>
 						<tr>
 					</thead>
 					<tbody>
@@ -91,16 +91,25 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraop.php';
 									$miop=0; 
 								} */
 								if ( $miop==0 ){ 
-									$query = "SELECT OP,OC,Cliente,FechaOC,FechaTope,Material,OBS FROM op 
-									LEFT JOIN clientes ON op.idCliente=clientes.id order by FechaOC desc";
+									$query = "SELECT op.OP as ope,OC,Cliente,Material,estadosop.insP,insF,desP,desF,OBS FROM op 
+									LEFT JOIN clientes ON op.idCliente=clientes.id
+									LEFT JOIN estadosop ON op.OP=estadosop.OP 
+									WHERE insF IS NOT NULL AND insF > 0 AND desF=0
+									order by ope desc";
 								}else{
-									$query = "SELECT OP,OC,Cliente,FechaOC,FechaTope,Material,OBS FROM op 
-									LEFT JOIN clientes ON op.idCliente=clientes.id WHERE OP = $miop ";
+									$query = "SELECT op.OP as ope,OC,Cliente,Material,estadosop.insP,insF,desP,desF,OBS FROM op 
+									LEFT JOIN clientes ON op.idCliente=clientes.id 
+									LEFT JOIN estadosop ON op.OP=estadosop.OP
+									WHERE insF IS NOT NULL AND insF > 0 AND desF=0
+									and op.OP = $miop ";
 								}
 							} 
 							else{
-								$query = "SELECT OP,OC,Cliente,FechaOC,FechaTope,Material,OBS FROM op 
-								LEFT JOIN clientes ON op.idCliente=clientes.id order by FechaOC desc";
+								$query = "SELECT op.OP as ope,OC,Cliente,Material,estadosop.insP,insF,desP,desF,OBS FROM op 
+									LEFT JOIN clientes ON op.idCliente=clientes.id
+									LEFT JOIN estadosop ON op.OP=estadosop.OP
+									WHERE insF IS NOT NULL AND insF > 0 AND desF=0
+									order by ope desc";
 							}
 							//unset($_POST['Busca']);
 							$result_tasks = mysqli_query($conn,$query);
@@ -113,26 +122,26 @@ $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraop.php';
 							}
 
 							while ($row=mysqli_fetch_array($result_tasks)) { 
+								if ($row['insP']== 0){$row['insP']="Falta";}
+								if ($row['insP']== 1){$row['insP']="Hecho";}
+								if ($row['insF']== 0){$row['insF']="Falta";}
+								if ($row['insF']== 1){$row['insF']="Hecho";}
+								if ($row['desP']== 0){$row['desP']="Falta";}
+								if ($row['desP']== 1){$row['desP']="Hecho";}
+								if ($row['desF']== 0){$row['desF']="Falta";}
+								if ($row['desF']== 1){$row['desF']="Hecho";} 
+
 						?>
 								<tr>
-									<td><a href="../Buscar/VerOp.php?id=<?php echo $row['OP'] ?>"><?php echo $row['OP'] ?></a></td>
+									<td><a href="../Buscar/VerOp.php?id=<?php echo $row['ope'] ?>"><?php echo $row['ope'] ?></a></td>
 									<td><?php echo $row['OC'] ?></td>
 									<td><?php echo $row['Cliente'] ?></td>
-									<td><?php echo $row['FechaOC'] ?></td>
-									<td><?php echo $row['FechaTope'] ?></td>
 									<td><?php echo $row['Material'] ?></td>
+									<td><?php echo $row['insP'] ?></td>
+									<td><?php echo $row['insF'] ?></td>
+									<td><?php echo $row['desP'] ?></td>
+									<td><?php echo $row['desF'] ?></td>
 									<td><?php echo $row['OBS'] ?></td>							
-
-									<td>
-										<a href="/Servicios/Modif/modifop.php?id=<?php echo $row['OP'] ?>" class= 
-										"btn btn-primary btn-sm">
-											<i class="far fa-edit"> </i>
-										</a>
-									
-										<a href="/Servicios/Bajas/borraop.php?id=<?php echo $row['OP'] ?>" class= 
-										"btn btn-danger btn-sm"> <i class="far fa-trash-alt"></i>
-										</a>
-									</td>
 								</tr>		
 						<?php }
 						?>

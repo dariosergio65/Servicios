@@ -100,6 +100,7 @@ $btnBorrar= (comprobar($usuario,'tablero5')=='enabled') ? '/Servicios/Bajas/borr
 						<th>Cliente Serv.</th>
 						<th style="width: 20%">Trabajo Realizado</th>
 						<th>Lugar</th>
+						<th>Estado</th>
 						<th>Fecha inicio</th>
 						<th>Fecha final</th>
 						<th style="width: 9%">Acciones</th>
@@ -114,28 +115,33 @@ $btnBorrar= (comprobar($usuario,'tablero5')=='enabled') ? '/Servicios/Bajas/borr
 							$lugarfin= '%' . $_POST['lugar'] . '%';
 							if ($op1fin == 1){
 									// falta operario y Vehiculo
-								$query = "SELECT s.id as misid, s.Nombre  as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s 
+								$query = "SELECT s.id as misid, s.Nombre  as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, e.Estado as estado, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s 
 								LEFT JOIN clientes c ON s.idCliente1=c.id 
 								LEFT JOIN clientes cc ON s.idCliente2=cc.id
+								LEFT JOIN estadoservi e ON s.id_estado=e.id
 								WHERE s.nombre LIKE '$nombrefin' AND s.Lugar LIKE '$lugarfin' ORDER BY s.FechaFin DESC";
 							}
 							else{
-								$query = "SELECT s.id as misid, s.Nombre as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s 
+								$query = "SELECT s.id as misid, s.Nombre as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, e.Estado as estado, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s 
 								LEFT JOIN clientes c ON s.idCliente1=c.id
-								LEFT JOIN clientes cc ON s.idCliente2=cc.id 
+								LEFT JOIN clientes cc ON s.idCliente2=cc.id
+								LEFT JOIN estadoservi e ON s.id_estado=e.id 
 								WHERE (OpRef = $op1fin) OR (OpServicio = $op1fin) ORDER BY s.FechaFin DESC";
 							}
 						}elseif (isset($_GET['id'])) {
 								$serviid=$_GET['id'];
-								$query = "SELECT s.id as misid, s.Nombre as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s 
+								$query = "SELECT s.id as misid, s.Nombre as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, e.Estado as estado, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s 
 								LEFT JOIN clientes c ON s.idCliente1=c.id 
 								LEFT JOIN clientes cc ON s.idCliente2=cc.id
+								LEFT JOIN estadoservi e ON s.id_estado=e.id
 								WHERE (s.id = $serviid) ORDER BY s.FechaFin DESC";
 						} 
 						else{
-							$query = "SELECT s.id as misid, s.Nombre as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, s.FechaIni as sini, s.FechaFin as sfin FROM servicios s
+							$query = "SELECT s.id as misid, s.Nombre as snombre, s.OpRef as sopref, c.Cliente as cliente1, s.OpServicio as sopserv, cc.Cliente as cliente2, s.Trabajo as strabajo, s.Lugar as slugar, e.Estado as estado,
+							s.FechaIni as sini, s.FechaFin as sfin FROM servicios s
 							LEFT JOIN clientes c ON s.idCliente1=c.id 
 							LEFT JOIN clientes cc ON s.idCliente2=cc.id
+							LEFT JOIN estadoservi e ON s.id_estado=e.id
 							ORDER BY s.FechaFin DESC";
 						}
 						unset($_POST['Busca']);
@@ -160,6 +166,16 @@ $btnBorrar= (comprobar($usuario,'tablero5')=='enabled') ? '/Servicios/Bajas/borr
 								<td><?php echo $row['cliente2'] ?></td>
 								<td><?php echo $row['strabajo'] ?></td>
 								<td><?php echo $row['slugar'] ?></td>
+								<?php
+									if ($row['estado']=='En Curso'){ ?>
+											<td bgcolor="#990033"><?php echo $row['estado'] ?></td>
+										<?php
+										}else{
+										?>
+											<td><?php echo $row['estado'] ?></td>
+										<?php
+										}
+								?>
 								<td><?php echo $row['sini'] ?></td>
 								<td><?php echo $row['sfin'] ?></td>
 								<td>

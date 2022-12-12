@@ -7,6 +7,7 @@ $usuario=$_SESSION['ingresado'];
 //include("../includes/header.php"); 
 
 include("../db.php");
+include ("../includes/header.php");
 ?>
 
 <?php if (isset($_SESSION['message'])) { ?>
@@ -74,7 +75,7 @@ if (isset($_GET['id'])) {
 
 ?>
 
-<?php include ("../includes/header.php"); ?>
+
 
 <div class="col-md-12 container p-2">
     <div class="row">
@@ -149,7 +150,7 @@ if (isset($_GET['id'])) {
                                 <?php if ($misector=='Ingenieria' or $misector=='admin'){
                                     $ira=$btnModif.$row1['OP'].'&sector=inge'
                                 ?>
-                                    <a href="<?php echo $ira; ?>" style="background:yellow;color:red" class= "btn btn-primary btn-sm"> <i class="far fa-edit"> </i> </a>
+                                    <a href="<?php echo $ira; ?>" style="background:yellow;color:red" class= "btn btn-primary btn-sm"> <i class="far fa-edit"> </i> </a> 
                                 <?php }  ?>
                             </th>
                             <th colspan=2>Fabricación 

@@ -141,7 +141,7 @@ $esta = $_SERVER['PHP_SELF'];
 									<td><?php echo $row['strab'] ?></td>
 									<td><?php echo $row['slugar'] ?></td>
 									<td><?php echo $row['sfechaini'] ?></td>
-									<th style="color:magenta"> 
+									<th style="color:#990033"> 
 									<?php $idserv=$row['id1'];
 										$query1="SELECT ag.dni as agdni, ag.Agente as agnombre
 										FROM agentes ag

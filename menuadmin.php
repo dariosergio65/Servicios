@@ -32,6 +32,8 @@ if (isset($_POST['abmpan'])){
     header ("location: abmb/pantallas.php");
 }elseif (isset($_POST['abmusers'])){
     header ("location: abmb/usuarios.php");
+}elseif (isset($_POST['accesos'])){
+    header ("location: Consultas/accesos.php");
 }elseif (isset($_POST['permisos'])){
     header ("location: abmb/permisos.php");
 }elseif (isset($_POST['recarga'])){
@@ -68,8 +70,8 @@ if (isset($_POST['abmpan'])){
                             </td>
                             <td>
                                 <div class="form-group">
-                                        <button class="btn btn-dark" name="nada" <?php echo $btn[3]; ?>>
-                                        NADA
+                                        <button class="btn btn-success" name="accesos" <?php echo $btn[3]; ?>>
+                                        ACCESOS
                                         </button>
                                 </div>
                             </td>
