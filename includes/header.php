@@ -6,9 +6,13 @@
 	<title>SERVICIOS LAGO</title>
 	<!-- BOOSTRAP 4 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	
+  <!-- <link rel="stylesheet" href="../css/bootstrap.min.css" > -->
 
 	<!-- FONT AWSOME 5 -->
 	<script src="https://kit.fontawesome.com/7c61217b20.js" crossorigin="anonymous"></script>
+
+  
 
 </head>
 <body>
@@ -37,7 +41,7 @@
 		<a href="/Servicios/menu.php" class="navbar-brand" style="color:yellow;">MENU PRINCIPAL</a>
     <!--h5 style="color:green;">Usuario: <?php //if (isset($nombre)){ echo ' ' . $nombre;}?> </h5-->
     <!--h5 style="color:green;">Fecha: <?php //echo date('l jS \of F Y'); ?> </h5-->
-    <h5 style="color:YELLOW;">SERVICIOS LAGO </h5>
+    <h5 style="color:WHITE;">SERVICIOS LAGO </h5>
     <!--a href="/Servicios/cierre.php" style="color:red;">Cerrar Sesión</a-->
 
     

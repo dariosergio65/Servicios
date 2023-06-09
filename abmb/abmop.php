@@ -24,7 +24,6 @@ include ($rutaheader);
 $esta = $_SERVER['PHP_SELF'];
 $rutaborrar = $_SERVER['DOCUMENT_ROOT'] . '/Servicios/bajas/borraop.php';
 
-// falta borraop.php modifop.php
 
 ?>
 

@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.div1{
+    border: 1px solid green;
+    /* background-color: rgb(162, 185, 185); */
+    background-color: lightblue;
+}
+
+/* .calc{
+    background-color: green;
+    color: black;
+    padding: 0.2em;
+} */
+
+.cosdir{
+    background-color: rgb(85, 140, 192);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.ut-ib{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.final{
+    display: flex;
+    flex-direction: column;
+}
+.siniva{
+    font-weight: bolder;
+}
+
+@media print {
+    #parte1 {display:none;}
+    #parte2 {display:none;}
+    }

@@ -58,6 +58,10 @@ if (isset($_POST['tablero'])){
     header ("location: Consultas/inge.php");
 }elseif (isset($_POST['despachar'])){
     header ("location: Consultas/despachar.php");
+}elseif (isset($_POST['costoservicio'])){
+    header ("location: Altas/altacostoservi.php");
+}elseif (isset($_POST['celdas1'])){
+    header ("location: Costos/menuequipos.php");
 }elseif (isset($_POST['admin'])){
     header ("location: menuadmin.php");
 }
@@ -179,15 +183,15 @@ if (isset($_POST['tablero'])){
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <button class="btn btn-dark" name="nada" <?php echo $btn[11]; ?> disabled>
-                                    NADA
+                                    <button class="btn btn-success" name="costoservicio" <?php echo $btn[11]; ?> >
+                                    COTIZAR SERVICIO
                                     </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
-                                        <button class="btn btn-dark" name="nada" <?php echo $btn[17]; ?> disabled>
-                                        NADA
+                                        <button class="btn btn-success" name="celdas1" <?php echo $btn[17]; ?> >
+                                        CELDAS
                                         </button>
                                 </div>
                             </td>
